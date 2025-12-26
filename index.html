@@ -7,12 +7,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
         :root {
             --gold-light: #FFD700;
             --gold-primary: #D4AF37;
             --gold-secondary: #B8860B;
+            --gold-dark: #996515;
             --black-deep: #0A0A0A;
             --black-surface: #121212;
         }
@@ -31,6 +32,89 @@
             min-height: 100vh;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* Background Image Layers with 70% Visibility */
+        .background-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            background: linear-gradient(145deg, #000000 70%, rgba(212, 175, 55, 0.05) 100%);
+        }
+        
+        .quiz-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('kegel.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.7; /* 70% visible */
+            z-index: -9;
+        }
+        
+        .analysis-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('kegel.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.7; /* 70% visible */
+            z-index: -9;
+        }
+        
+        .exercise-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('kegel.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.7; /* 70% visible */
+            z-index: -9;
+        }
+        
+        .modal-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('kegel.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.7; /* 70% visible */
+            z-index: -9;
+        }
+
+        /* Question Popup Background */
+        .question-popup-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('kegel.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.9; /* 70% visible */
+            z-index: -9;
         }
 
         /* iPhone 12 Mini Optimization */
@@ -44,76 +128,169 @@
 
         /* Main Container */
         .main-container {
-            background: linear-gradient(145deg, #000000 70%, rgba(212, 175, 55, 0.05) 100%);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            background: rgba(10, 10, 10, 0.85);
+            border: 1px solid rgba(212, 175, 55, 0.25);
             box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.6),
-                0 0 16px rgba(212, 175, 55, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+                0 10px 40px rgba(0, 0, 0, 0.9),
+                0 0 24px rgba(212, 175, 55, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
-        /* Gold Effects */
+        /* 3D Text Effects */
+        .text-3d-gold {
+            text-shadow: 
+                0 1px 0 rgba(255, 255, 255, 0.1),
+                0 2px 0 rgba(255, 255, 255, 0.05),
+                0 3px 0 rgba(212, 175, 55, 0.1),
+                0 4px 0 rgba(212, 175, 55, 0.1),
+                0 5px 0 rgba(212, 175, 55, 0.08),
+                0 6px 1px rgba(0, 0, 0, 0.1),
+                0 0 5px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.3),
+                0 3px 5px rgba(0, 0, 0, 0.2),
+                0 5px 10px rgba(0, 0, 0, 0.25);
+            color: var(--gold-light);
+        }
+        
+        .text-3d-white {
+            text-shadow: 
+                0 1px 0 rgba(255, 255, 255, 0.1),
+                0 2px 0 rgba(255, 255, 255, 0.05),
+                0 3px 0 rgba(255, 255, 255, 0.05),
+                0 4px 0 rgba(255, 255, 255, 0.04),
+                0 5px 0 rgba(255, 255, 255, 0.03),
+                0 6px 1px rgba(0, 0, 0, 0.1),
+                0 0 5px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.3),
+                0 3px 5px rgba(0, 0, 0, 0.2);
+            color: #ffffff;
+        }
+        
+        .text-3d-secondary {
+            text-shadow: 
+                0 1px 0 rgba(255, 255, 255, 0.05),
+                0 2px 0 rgba(255, 255, 255, 0.04),
+                0 3px 0 rgba(212, 175, 55, 0.08),
+                0 0 5px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Gold Effects with 3D */
         .gold-shimmer {
-            background: linear-gradient(135deg, var(--gold-light), var(--gold-primary), #FFFFFF, var(--gold-primary), var(--gold-light));
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 25%, #FFFFFF 50%, var(--gold-primary) 75%, var(--gold-light) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             background-size: 200% auto;
             animation: shine 3s linear infinite;
+            text-shadow: 
+                0 1px 0 rgba(255, 255, 255, 0.1),
+                0 2px 0 rgba(255, 255, 255, 0.05),
+                0 3px 0 rgba(212, 175, 55, 0.1);
         }
 
         @keyframes shine {
             to { background-position: 200% center; }
         }
 
-        /* Buttons */
+        /* Buttons with 3D Effects */
         .gold-btn {
             background: linear-gradient(135deg, var(--gold-secondary) 0%, var(--gold-primary) 100%);
             color: #000;
-            font-weight: 700;
+            font-weight: 800;
             border: none;
             transition: all 0.3s ease;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 4px 0 var(--gold-dark),
+                0 6px 10px rgba(212, 175, 55, 0.3),
+                0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
         }
         
         .gold-btn:hover, .gold-btn:active {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+            box-shadow: 
+                0 6px 0 var(--gold-dark),
+                0 8px 15px rgba(212, 175, 55, 0.4),
+                0 12px 25px rgba(0, 0, 0, 0.25);
+        }
+        
+        .gold-btn:active {
+            transform: translateY(1px);
+            box-shadow: 
+                0 2px 0 var(--gold-dark),
+                0 3px 5px rgba(212, 175, 55, 0.3);
         }
         
         .secondary-btn {
-            background: rgba(26, 26, 26, 0.8);
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid rgba(212, 175, 55, 0.4);
             color: var(--gold-light);
             transition: all 0.3s ease;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: 
+                0 3px 0 rgba(0, 0, 0, 0.3),
+                0 5px 10px rgba(0, 0, 0, 0.2);
         }
         
         .secondary-btn:hover, .secondary-btn:active {
-            background: rgba(212, 175, 55, 0.1);
+            background: rgba(212, 175, 55, 0.15);
             border-color: var(--gold-primary);
+            box-shadow: 
+                0 4px 0 rgba(0, 0, 0, 0.3),
+                0 7px 15px rgba(0, 0, 0, 0.25);
         }
 
         .option-btn {
-            background: rgba(26, 26, 26, 0.8);
-            border: 1px solid rgba(212, 175, 55, 0.15);
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid rgba(212, 175, 55, 0.2);
             transition: all 0.2s ease;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: 
+                0 2px 0 rgba(0, 0, 0, 0.2),
+                0 3px 5px rgba(0, 0, 0, 0.1);
         }
         
         .option-btn:hover, .option-btn:active {
             border-color: var(--gold-primary);
-            background: rgba(212, 175, 55, 0.1);
+            background: rgba(212, 175, 55, 0.12);
+            transform: translateY(-1px);
+            box-shadow: 
+                0 3px 0 rgba(0, 0, 0, 0.2),
+                0 5px 8px rgba(0, 0, 0, 0.15);
         }
 
-        /* Exercise Cards */
+        /* Exercise Cards with 3D */
         .exercise-card {
-            background: rgba(26, 26, 26, 0.7);
-            border: 1px solid rgba(212, 175, 55, 0.15);
+            background: rgba(20, 20, 20, 0.9);
+            border: 1px solid rgba(212, 175, 55, 0.2);
             transition: all 0.3s ease;
+            cursor: pointer;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: 
+                0 3px 0 rgba(0, 0, 0, 0.2),
+                0 5px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 5px 0 rgba(0, 0, 0, 0.2),
+                0 8px 15px rgba(0, 0, 0, 0.2);
         }
         
         .exercise-card.current {
             border-color: var(--gold-primary);
-            background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(212, 175, 55, 0.1));
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(212, 175, 55, 0.18));
             animation: pulse-glow 2s infinite;
+            box-shadow: 
+                0 4px 0 rgba(212, 175, 55, 0.3),
+                0 6px 15px rgba(212, 175, 55, 0.25),
+                0 0 20px rgba(212, 175, 55, 0.1);
         }
         
         .exercise-card.locked {
@@ -124,79 +301,100 @@
         
         .exercise-card.completed {
             border-color: #10B981;
-            background: rgba(16, 185, 129, 0.05);
+            background: rgba(16, 185, 129, 0.12);
+            box-shadow: 
+                0 3px 0 rgba(16, 185, 129, 0.3),
+                0 5px 10px rgba(16, 185, 129, 0.15);
         }
 
         @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.3); }
-            50% { box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1); }
+            0%, 100% { 
+                box-shadow: 
+                    0 4px 0 rgba(212, 175, 55, 0.3),
+                    0 6px 15px rgba(212, 175, 55, 0.25),
+                    0 0 20px rgba(212, 175, 55, 0.1);
+            }
+            50% { 
+                box-shadow: 
+                    0 4px 0 rgba(212, 175, 55, 0.3),
+                    0 6px 20px rgba(212, 175, 55, 0.35),
+                    0 0 25px rgba(212, 175, 55, 0.15);
+            }
         }
 
-        /* Progress */
+        /* Progress Bar with 3D */
         .progress-bar {
             background: linear-gradient(90deg, var(--gold-secondary), var(--gold-primary));
             background-size: 200% auto;
             animation: shine 2s linear infinite;
-            height: 5px;
+            height: 8px;
             border-radius: 10px;
+            box-shadow: 
+                0 2px 0 rgba(212, 175, 55, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+        
+        .progress-bar-container {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.5),
+                0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
-        /* Badges */
+        /* Badges with 3D */
         .badge {
             font-size: 0.7rem;
-            font-weight: 700;
+            font-weight: 800;
             padding: 4px 10px;
             border-radius: 12px;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
         }
         
         .badge-gold {
             background: linear-gradient(135deg, var(--gold-secondary), var(--gold-primary));
             color: black;
+            box-shadow: 
+                0 3px 0 var(--gold-dark),
+                0 5px 10px rgba(212, 175, 55, 0.2);
         }
 
-        /* Video Container - Custom Player */
+        /* Video Container - Custom Player with 3D */
         .video-container {
             background: #000;
             border-radius: 16px;
             overflow: hidden;
             border: 2px solid var(--gold-primary);
             position: relative;
-        }
-        
-        .custom-video-player {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 14px;
-        }
-        
-        .video-controls {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-            padding: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            box-shadow: 
+                0 8px 0 rgba(0, 0, 0, 0.4),
+                0 15px 30px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(212, 175, 55, 0.2);
         }
 
-        /* Category Tags */
+        /* Category Tags with 3D */
         .category-tag {
             font-size: 0.65rem;
-            font-weight: 600;
-            padding: 3px 8px;
+            font-weight: 700;
+            padding: 4px 10px;
             border-radius: 8px;
-            background: rgba(212, 175, 55, 0.15);
+            background: rgba(212, 175, 55, 0.2);
             color: var(--gold-light);
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: 
+                0 2px 0 rgba(0, 0, 0, 0.3),
+                0 3px 5px rgba(0, 0, 0, 0.2);
         }
 
-        /* Solution Highlight */
+        /* Solution Highlight with 3D */
         .solution-highlight {
-            background: linear-gradient(90deg, rgba(212, 175, 55, 0.15), transparent);
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.2), transparent);
             border-left: 3px solid var(--gold-primary);
+            box-shadow: 
+                0 3px 0 rgba(0, 0, 0, 0.2),
+                0 5px 10px rgba(0, 0, 0, 0.15);
         }
 
         /* Safe Areas */
@@ -213,137 +411,322 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Exercise Status */
+        /* Exercise Status with 3D */
         .exercise-status {
             font-size: 0.7rem;
-            font-weight: 600;
-            padding: 3px 8px;
+            font-weight: 700;
+            padding: 4px 10px;
             border-radius: 6px;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
         }
         
-        .status-current { background: rgba(212, 175, 55, 0.2); color: var(--gold-light); }
-        .status-completed { background: rgba(16, 185, 129, 0.2); color: #10B981; }
+        .status-current { 
+            background: rgba(212, 175, 55, 0.25); 
+            color: var(--gold-light); 
+            box-shadow: 0 2px 0 rgba(212, 175, 55, 0.3);
+        }
+        .status-completed { 
+            background: rgba(16, 185, 129, 0.25); 
+            color: #10B981; 
+            box-shadow: 0 2px 0 rgba(16, 185, 129, 0.3);
+        }
 
-        /* Next Button Container */
-        .next-btn-container {
-            background: rgba(0, 0, 0, 0.8);
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        /* Number Indicators with 3D */
+        .number-indicator {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: 
+                0 3px 0 rgba(0, 0, 0, 0.3),
+                0 5px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .number-current {
+            background: linear-gradient(135deg, var(--gold-secondary), var(--gold-primary));
+            color: black;
+            animation: pulse 2s infinite;
+            box-shadow: 
+                0 3px 0 var(--gold-dark),
+                0 5px 10px rgba(212, 175, 55, 0.3);
+        }
+        
+        .number-completed {
+            background: #10B981;
+            color: white;
+            box-shadow: 
+                0 3px 0 #0A8F6E,
+                0 5px 10px rgba(16, 185, 129, 0.3);
+        }
+        
+        .number-locked {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 2px 0 rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 
+                    0 3px 0 var(--gold-dark),
+                    0 5px 10px rgba(212, 175, 55, 0.3);
+            }
+            50% { 
+                transform: scale(1.05);
+                box-shadow: 
+                    0 4px 0 var(--gold-dark),
+                    0 7px 15px rgba(212, 175, 55, 0.4);
+            }
+        }
+
+        /* Question Text with Enhanced Visibility */
+        .question-text {
+            text-shadow: 
+                0 1px 0 rgba(255, 255, 255, 0.1),
+                0 2px 0 rgba(255, 255, 255, 0.05),
+                0 0 10px rgba(212, 175, 55, 0.2),
+                0 0 20px rgba(212, 175, 55, 0.1);
+            color: #ffffff;
+            font-weight: 700;
+            line-height: 1.4;
+            letter-spacing: -0.01em;
+        }
+        
+        .hint-text {
+            text-shadow: 
+                0 1px 0 rgba(0, 0, 0, 0.5),
+                0 0 5px rgba(212, 175, 55, 0.2);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Section Labels */
+        .section-label {
+            text-shadow: 
+                0 1px 0 rgba(255, 255, 255, 0.1),
+                0 2px 0 rgba(212, 175, 55, 0.1),
+                0 0 8px rgba(212, 175, 55, 0.2);
+            color: var(--gold-light);
+            letter-spacing: 0.08em;
+        }
+
+        /* Score Display with 3D */
+        .score-display {
+            text-shadow: 
+                0 1px 0 rgba(255, 255, 255, 0.1),
+                0 2px 0 rgba(255, 255, 255, 0.05),
+                0 3px 0 rgba(212, 175, 55, 0.15),
+                0 4px 0 rgba(212, 175, 55, 0.1),
+                0 0 15px rgba(212, 175, 55, 0.3);
+            font-weight: 900;
+        }
+
+        /* Responsive Backgrounds - Ensure visibility on mobile */
+        @media (max-width: 768px) {
+            .quiz-background,
+            .analysis-background,
+            .exercise-background,
+            .modal-background,
+            .question-popup-bg {
+                background-attachment: scroll;
+                opacity: 0.7 !important; /* Force 70% on mobile */
+            }
+            
+            /* Make sure background covers properly on mobile */
+            .quiz-background::before,
+            .analysis-background::before,
+            .exercise-background::before,
+            .modal-background::before,
+            .question-popup-bg::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.3); /* Dark overlay for better text visibility */
+                z-index: -1;
+            }
+        }
+
+        /* Custom Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--gold-secondary), var(--gold-primary));
+            border-radius: 10px;
+        }
+
+        /* Header Logo Glow */
+        .logo-glow {
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3))
+                    drop-shadow(0 0 20px rgba(212, 175, 55, 0.2))
+                    drop-shadow(0 0 30px rgba(212, 175, 55, 0.1));
+        }
+
+        /* Glass Effect for Cards */
+        .glass-effect {
+            background: rgba(15, 15, 15, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Ensure text is readable on background */
+        .text-on-bg {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Question Popup Container */
+        .question-popup-container {
+            background: rgba(10, 10, 10, 0.85);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.9),
+                0 0 24px rgba(212, 175, 55, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
         }
     </style>
 </head>
 <body class="flex items-center justify-center p-0">
-    <div class="w-full min-h-screen safe-area-top safe-area-bottom flex items-center justify-center px-3">
+    <!-- Background Layers - All with 70% opacity -->
+    <div class="background-layer"></div>
+    <div class="quiz-background" id="quiz-bg"></div>
+    <div class="analysis-background hidden" id="analysis-bg"></div>
+    <div class="exercise-background hidden" id="exercise-bg"></div>
+    
+    <div class="w-full min-h-screen safe-area-top safe-area-bottom flex items-center justify-center px-3 text-on-bg">
         <div class="w-full max-w-md main-container rounded-xl p-4 fade-in">
             
             <!-- Header -->
-            <header class="text-center mb-5">
-                <div class="flex justify-center mb-3">
-                    <div class="relative">
-                        <div class="absolute inset-0 bg-gradient-to-r from-gold-primary to-gold-light blur-lg opacity-20"></div>
-                        <div class="w-16 h-16 bg-gradient-to-br from-gold-primary to-gold-secondary rounded-full flex items-center justify-center relative z-10">
-                            <i class="fas fa-heartbeat text-black text-2xl"></i>
+            <header class="text-center mb-6">
+                <div class="flex justify-center mb-4">
+                    <div class="relative logo-glow">
+                        <div class="absolute inset-0 bg-gradient-to-r from-gold-primary to-gold-light blur-xl opacity-30"></div>
+                        <div class="w-18 h-18 bg-gradient-to-br from-gold-primary to-gold-secondary rounded-full flex items-center justify-center relative z-10" style="width: 72px; height: 72px;">
+                            <i class="fas fa-heartbeat text-black text-3xl"></i>
                         </div>
                     </div>
                 </div>
-                <h1 class="text-xl font-black gold-shimmer mb-1">S.T.I-KEGAL</h1>
-                <p class="text-xs text-gold-light/70 font-semibold uppercase tracking-wider">PELVIC-HEALTH-PARTNER</p>
+                <h1 class="text-2xl font-black text-3d-gold mb-2 tracking-tight">S.T.I-KEGAL</h1>
+                <p class="text-xs text-gold-light/80 font-bold uppercase tracking-wider text-3d-secondary">PELVIC HEALTH PARTNER</p>
             </header>
 
             <!-- Main Content -->
             <main id="app-content" class="mb-4">
                 <!-- Progress -->
-                <div id="progress-section" class="mb-4">
+                <div id="progress-section" class="mb-5">
                     <div class="flex justify-between items-center mb-2">
-                        <span id="step-label" class="text-xs font-semibold text-gold-primary uppercase tracking-wider">Medical Assessment</span>
-                        <span id="question-counter" class="text-xs font-semibold text-gold-light">1/50</span>
+                        <span id="step-label" class="text-xs font-bold section-label uppercase tracking-wider">Medical Assessment</span>
+                        <span id="question-counter" class="text-xs font-bold text-gold-light text-3d-secondary">1/50</span>
                     </div>
-                    <div class="h-1.5 bg-black/40 rounded-full overflow-hidden">
+                    <div class="progress-bar-container">
                         <div id="progress-bar" class="progress-bar w-5"></div>
                     </div>
-                    <p id="progress-text" class="text-xs text-gray-400 mt-1 text-center">Comprehensive health evaluation...</p>
+                    <p id="progress-text" class="text-xs text-gray-300 mt-1.5 text-center text-3d-secondary">Comprehensive health evaluation...</p>
                 </div>
 
                 <!-- Quiz Section -->
                 <div id="quiz-section" class="fade-in">
-                    <div class="mb-4">
-                        <h2 id="question-text" class="text-lg font-bold text-white mb-2">Starting comprehensive assessment</h2>
-                        <p id="question-hint" class="text-xs text-gray-400 hidden"></p>
+                    <div class="mb-5">
+                        <h2 id="question-text" class="text-lg font-bold question-text mb-3"></h2>
+                        <p id="question-hint" class="text-xs hint-text hidden"></p>
                     </div>
-                    <div id="options-container" class="space-y-2"></div>
+                    <div id="options-container" class="space-y-2.5"></div>
                     <div id="custom-input-container" class="hidden mt-3 space-y-2">
-                        <textarea id="custom-input" rows="2" class="w-full bg-black/40 border border-gold-primary/20 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-gold-primary" placeholder="Please provide details..."></textarea>
+                        <textarea id="custom-input" rows="2" class="w-full bg-black/50 border border-gold-primary/30 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-gold-primary focus:ring-1 focus:ring-gold-primary/30 glass-effect" placeholder="Please provide details..."></textarea>
                         <div class="flex gap-2">
-                            <button onclick="submitCustomAnswer()" class="flex-1 gold-btn py-2.5 rounded-lg text-sm font-semibold">Submit</button>
-                            <button onclick="showCurrentQuestion()" class="py-2.5 px-3 bg-black/40 border border-gold-primary/20 text-gold-primary rounded-lg text-sm font-semibold">Back</button>
+                            <button onclick="submitCustomAnswer()" class="flex-1 gold-btn py-3 rounded-lg text-sm font-bold">Submit</button>
+                            <button onclick="showCurrentQuestion()" class="py-3 px-4 bg-black/50 border border-gold-primary/30 text-gold-primary rounded-lg text-sm font-bold">Back</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Analysis Section -->
                 <div id="analysis-section" class="hidden">
-                    <div class="text-center mb-4">
-                        <h2 class="text-lg font-black gold-shimmer mb-1">Assessment Complete!</h2>
-                        <p class="text-xs text-gold-light/70 font-semibold mb-3">Your Personalized Medical Report</p>
+                    <div class="text-center mb-5">
+                        <h2 class="text-xl font-black text-3d-gold mb-2">Assessment Complete!</h2>
+                        <p class="text-xs text-gold-light/80 font-bold mb-4 text-3d-secondary">Your Personalized Medical Report</p>
                     </div>
                     
-                    <div class="grid grid-cols-3 gap-2 mb-3">
-                        <div class="bg-black/40 p-3 rounded-lg border border-gold-primary/10 text-center">
-                            <div class="text-xs uppercase text-gray-400 mb-1">Primary Focus</div>
-                            <div id="focus-score" class="text-base font-black gold-shimmer">--</div>
+                    <div class="grid grid-cols-3 gap-3 mb-4">
+                        <div class="glass-effect p-4 rounded-lg border border-gold-primary/15 text-center">
+                            <div class="text-xs uppercase text-gray-400 mb-2 text-3d-secondary">Primary Focus</div>
+                            <div id="focus-score" class="text-lg font-black score-display">--</div>
                         </div>
-                        <div class="bg-black/40 p-3 rounded-lg border border-gold-primary/10 text-center">
-                            <div class="text-xs uppercase text-gray-400 mb-1">Urgency Level</div>
-                            <div id="urgency-score" class="text-base font-black gold-shimmer">--</div>
+                        <div class="glass-effect p-4 rounded-lg border border-gold-primary/15 text-center">
+                            <div class="text-xs uppercase text-gray-400 mb-2 text-3d-secondary">Urgency Level</div>
+                            <div id="urgency-score" class="text-lg font-black score-display">--</div>
                         </div>
-                        <div class="bg-black/40 p-3 rounded-lg border border-gold-primary/10 text-center">
-                            <div class="text-xs uppercase text-gray-400 mb-1">Program Length</div>
-                            <div id="program-score" class="text-base font-black gold-shimmer">--</div>
+                        <div class="glass-effect p-4 rounded-lg border border-gold-primary/15 text-center">
+                            <div class="text-xs uppercase text-gray-400 mb-2 text-3d-secondary">Program Length</div>
+                            <div id="program-score" class="text-lg font-black score-display">--</div>
                         </div>
                     </div>
                     
-                    <div class="bg-black/30 p-3 rounded-lg border border-gold-primary/10 mb-4 solution-highlight">
-                        <h3 class="text-sm font-bold text-white mb-1 flex items-center">
+                    <div class="glass-effect p-4 rounded-lg border border-gold-primary/15 mb-5 solution-highlight">
+                        <h3 class="text-sm font-bold text-white mb-2 flex items-center text-3d-white">
                             <i class="fas fa-stethoscope text-gold-primary mr-2"></i> Medical Solution Prescription
                         </h3>
-                        <p id="analysis-text" class="text-xs text-gray-300 leading-relaxed">
+                        <p id="analysis-text" class="text-sm text-gray-300 leading-relaxed text-3d-secondary">
                             Analyzing your 50-point assessment for precise solution...
                         </p>
-                        <div id="solution-points" class="mt-2 space-y-1"></div>
+                        <div id="solution-points" class="mt-3 space-y-2"></div>
                     </div>
                     
-                    <button onclick="showExercisePlan()" class="w-full gold-btn py-3 rounded-lg text-sm font-bold">
+                    <button onclick="showExercisePlan()" class="w-full gold-btn py-3.5 rounded-lg text-sm font-bold">
                         <i class="fas fa-clipboard-check mr-2"></i> View Prescribed Protocol
                     </button>
                 </div>
 
                 <!-- Exercise Plan Section -->
                 <div id="exercise-section" class="hidden">
-                    <div class="flex justify-between items-center mb-3">
+                    <div class="flex justify-between items-center mb-4">
                         <div>
-                            <h2 class="text-lg font-bold text-white mb-1">Medical Protocol</h2>
+                            <h2 class="text-lg font-bold text-3d-white mb-1.5">Medical Protocol</h2>
                             <div class="flex items-center">
                                 <span class="badge badge-gold mr-2">Day <span id="current-day">1</span>/30</span>
-                                <span id="completion-stats" class="text-xs text-gray-400">0/12 completed</span>
+                                <span id="completion-stats" class="text-xs text-gray-400 text-3d-secondary">0/6 completed</span>
                             </div>
                         </div>
                         <div class="text-right">
                             <div class="flex items-center space-x-2">
-                                <div class="w-2 h-2 rounded-full bg-gold-primary animate-pulse"></div>
-                                <span class="text-xs text-gold-primary">Current</span>
+                                <div class="w-2.5 h-2.5 rounded-full bg-gold-primary animate-pulse"></div>
+                                <span class="text-xs text-gold-primary font-bold text-3d-secondary">Current</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="mb-3 p-3 bg-gradient-to-r from-black/40 to-gold-primary/5 rounded-lg border border-gold-primary/10">
-                        <h3 class="text-sm font-bold text-white mb-1">
+                    <div class="mb-4 p-3.5 bg-gradient-to-r from-black/50 to-gold-primary/10 rounded-lg border border-gold-primary/15 glass-effect">
+                        <h3 class="text-sm font-bold text-white mb-1.5 flex items-center text-3d-white">
                             <i class="fas fa-prescription-bottle-alt text-gold-primary mr-2"></i> Medical Protocol Rules
                         </h3>
-                        <p class="text-xs text-gray-300">Complete exercises in prescribed order. Watch each video fully before proceeding.</p>
+                        <p class="text-xs text-gray-300 text-3d-secondary">Complete exercises in prescribed order. Watch each video fully before proceeding.</p>
                     </div>
                     
-                    <div id="exercise-list" class="space-y-2 max-h-[320px] overflow-y-auto pr-1 pb-2"></div>
+                    <div id="exercise-list" class="space-y-3 max-h-[340px] overflow-y-auto pr-1.5 pb-2 custom-scrollbar"></div>
                     
-                    <button onclick="restartAssessment()" class="w-full mt-3 py-2.5 bg-black/40 border border-gold-primary/20 text-gold-primary rounded-lg text-sm font-semibold">
+                    <button onclick="restartAssessment()" class="w-full mt-4 py-3 bg-black/50 border border-gold-primary/30 text-gold-primary rounded-lg text-sm font-bold glass-effect">
                         <i class="fas fa-redo mr-2"></i> New Assessment
                     </button>
                 </div>
@@ -351,41 +734,83 @@
         </div>
     </div>
 
+    <!-- Question Popup Modal -->
+    <div id="question-popup-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3">
+        <!-- Question Popup Background -->
+        <div class="question-popup-bg"></div>
+        
+        <div class="w-full max-w-md z-10">
+            <div class="question-popup-container p-4">
+                <div class="text-center mb-4">
+                    <h2 class="text-xl font-black text-3d-gold mb-2">Medical Assessment</h2>
+                    <p class="text-xs text-gold-light/80 font-bold mb-3 text-3d-secondary">Question <span id="popup-question-number">1</span> of 50</p>
+                </div>
+                
+                <div class="mb-4">
+                    <h3 id="popup-question-text" class="text-lg font-bold question-text mb-3"></h3>
+                    <p id="popup-question-hint" class="text-xs hint-text hidden"></p>
+                </div>
+                
+                <div id="popup-options-container" class="space-y-2.5 mb-4"></div>
+                
+                <div id="popup-custom-input-container" class="hidden mt-3 space-y-2">
+                    <textarea id="popup-custom-input" rows="2" class="w-full bg-black/50 border border-gold-primary/30 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-gold-primary focus:ring-1 focus:ring-gold-primary/30 glass-effect" placeholder="Please provide details..."></textarea>
+                    <div class="flex gap-2">
+                        <button onclick="submitPopupCustomAnswer()" class="flex-1 gold-btn py-3 rounded-lg text-sm font-bold">Submit</button>
+                        <button onclick="closeQuestionPopup()" class="py-3 px-4 bg-black/50 border border-gold-primary/30 text-gold-primary rounded-lg text-sm font-bold">Cancel</button>
+                    </div>
+                </div>
+                
+                <div class="flex gap-2">
+                    <button onclick="closeQuestionPopup()" class="flex-1 secondary-btn py-3 rounded-lg text-sm font-bold">
+                        <i class="fas fa-times mr-1.5"></i> Close
+                    </button>
+                    <button onclick="nextQuestionFromPopup()" class="flex-1 gold-btn py-3 rounded-lg text-sm font-bold">
+                        Next <i class="fas fa-arrow-right ml-1.5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Video Modal with Next Button -->
-    <div id="video-modal" class="fixed inset-0 z-50 bg-black hidden items-center justify-center p-3">
-        <div class="w-full max-w-md">
+    <div id="video-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3">
+        <!-- Modal Background -->
+        <div class="modal-background"></div>
+        
+        <div class="w-full max-w-md z-10 text-on-bg">
             <div class="video-container">
                 <div class="relative">
-                    <button onclick="closeVideoModal()" class="absolute top-3 right-3 z-20 bg-black/80 p-2 rounded-full">
+                    <button onclick="closeVideoModal()" class="absolute top-3 right-3 z-20 bg-black/90 p-2.5 rounded-full border border-gold-primary/20">
                         <i class="fas fa-times text-white text-sm"></i>
                     </button>
                     <div id="video-frame" class="w-full h-[60vh]"></div>
                 </div>
             </div>
             
-            <div class="mt-3 p-3 bg-black/80 rounded-lg border border-gold-primary/20">
-                <h3 id="video-title" class="text-sm font-bold text-white mb-1"></h3>
-                <p id="video-description" class="text-xs text-gray-300 mb-2"></p>
-                <div class="flex items-center justify-between text-xs text-gray-400 mb-3">
-                    <span><i class="fas fa-clock mr-1"></i> Duration: <span id="video-duration">2:30</span></span>
-                    <span><i class="fas fa-redo mr-1"></i> Reps: <span id="video-reps">10x</span></span>
+            <div class="mt-4 p-4 bg-black/95 rounded-lg border border-gold-primary/20 glass-effect">
+                <h3 id="video-title" class="text-sm font-bold text-white mb-2 text-3d-white"></h3>
+                <p id="video-description" class="text-xs text-gray-300 mb-3 text-3d-secondary"></p>
+                <div class="flex items-center justify-between text-xs text-gray-400 mb-4">
+                    <span class="flex items-center"><i class="fas fa-clock mr-1.5"></i> Duration: <span id="video-duration" class="font-bold ml-1">2:30</span></span>
+                    <span class="flex items-center"><i class="fas fa-redo mr-1.5"></i> Reps: <span id="video-reps" class="font-bold ml-1">10x</span></span>
                     <span class="category-tag" id="video-category"></span>
                 </div>
                 
-                <div id="solution-benefit" class="mb-3 p-2 rounded bg-black/40 border border-gold-primary/10">
-                    <div class="flex items-center">
+                <div id="solution-benefit" class="mb-4 p-3 rounded bg-black/60 border border-gold-primary/15">
+                    <div class="flex items-center mb-1.5">
                         <i class="fas fa-lightbulb text-gold-primary mr-2"></i>
-                        <span class="text-xs font-semibold text-gold-light">Solution Benefit:</span>
+                        <span class="text-xs font-bold text-gold-light text-3d-secondary">Solution Benefit:</span>
                     </div>
-                    <p id="solution-text" class="text-xs text-gray-300 mt-1"></p>
+                    <p id="solution-text" class="text-xs text-gray-300 text-3d-secondary"></p>
                 </div>
                 
-                <div class="flex gap-2">
-                    <button onclick="repeatCurrentVideo()" class="flex-1 secondary-btn py-2.5 rounded-lg text-sm font-semibold">
-                        <i class="fas fa-redo mr-1"></i> Repeat
+                <div class="flex gap-3">
+                    <button onclick="repeatCurrentVideo()" class="flex-1 secondary-btn py-3 rounded-lg text-sm font-bold">
+                        <i class="fas fa-redo mr-1.5"></i> Repeat
                     </button>
-                    <button onclick="nextVideo()" class="flex-1 gold-btn py-2.5 rounded-lg text-sm font-semibold">
-                        Next <i class="fas fa-arrow-right ml-1"></i>
+                    <button onclick="nextVideo()" class="flex-1 gold-btn py-3 rounded-lg text-sm font-bold">
+                        Next <i class="fas fa-arrow-right ml-1.5"></i>
                     </button>
                 </div>
             </div>
@@ -409,7 +834,9 @@
         selectedCategory: null,
         selectedExercises: [],
         currentVideoIndex: 0,
-        userProfile: {}
+        userProfile: {},
+        dayProgress: {},
+        dayExercises: {}
     };
 
     // ==================== COMPLETE 60+ EXERCISE LIBRARY ====================
@@ -1650,6 +2077,8 @@
     function initApp() {
         showQuestion();
         setupEventListeners();
+        // Show quiz background by default
+        document.getElementById('quiz-bg').classList.remove('hidden');
     }
 
     function showQuestion() {
@@ -1676,15 +2105,19 @@
         const container = document.getElementById('options-container');
         container.innerHTML = '';
         
-        question.options.forEach(option => {
+        question.options.forEach((option, index) => {
             const btn = document.createElement('button');
-            btn.className = "w-full option-btn p-3 rounded-lg text-sm font-medium flex justify-between items-center mb-1";
+            btn.className = "w-full option-btn p-3.5 rounded-lg text-sm font-bold flex justify-between items-center mb-1.5";
             btn.innerHTML = `
-                <span>${option}</span>
-                <div class="w-5 h-5 rounded-full border border-gold-primary/30 flex items-center justify-center">
+                <span class="text-left">${option}</span>
+                <div class="w-5 h-5 rounded-full border border-gold-primary/40 flex items-center justify-center">
                     <div class="w-2 h-2 rounded-full bg-gold-primary opacity-0"></div>
                 </div>
             `;
+            
+            // Add animation delay for staggered appearance
+            btn.style.animationDelay = `${index * 0.05}s`;
+            btn.classList.add('fade-in');
             
             btn.onclick = () => handleAnswer(option, question);
             container.appendChild(btn);
@@ -1694,6 +2127,9 @@
         document.getElementById('quiz-section').classList.remove('hidden');
         document.getElementById('analysis-section').classList.add('hidden');
         document.getElementById('exercise-section').classList.add('hidden');
+        
+        // Update background
+        updateBackground('quiz');
     }
 
     function handleAnswer(answer, question) {
@@ -1707,9 +2143,102 @@
         // Update scores based on answers
         updateScores(answer, question);
         
+        // Add visual feedback
+        const selectedOption = event.target.closest('.option-btn');
+        if (selectedOption) {
+            selectedOption.classList.add('bg-gold-primary/20');
+            selectedOption.style.borderColor = 'var(--gold-primary)';
+        }
+        
         // Move to next question
+        setTimeout(() => {
+            appState.currentQuestion++;
+            showQuestion();
+        }, 300);
+    }
+
+    // Function to open question popup
+    function openQuestionPopup() {
+        const question = questions[appState.currentQuestion];
+        if (!question) return;
+        
+        // Update popup content
+        document.getElementById('popup-question-number').textContent = appState.currentQuestion + 1;
+        document.getElementById('popup-question-text').textContent = question.text;
+        
+        // Clear and show options in popup
+        const container = document.getElementById('popup-options-container');
+        container.innerHTML = '';
+        
+        question.options.forEach((option, index) => {
+            const btn = document.createElement('button');
+            btn.className = "w-full option-btn p-3.5 rounded-lg text-sm font-bold flex justify-between items-center mb-1.5";
+            btn.innerHTML = `
+                <span class="text-left">${option}</span>
+                <div class="w-5 h-5 rounded-full border border-gold-primary/40 flex items-center justify-center">
+                    <div class="w-2 h-2 rounded-full bg-gold-primary opacity-0"></div>
+                </div>
+            `;
+            
+            // Add animation delay for staggered appearance
+            btn.style.animationDelay = `${index * 0.05}s`;
+            btn.classList.add('fade-in');
+            
+            btn.onclick = () => handlePopupAnswer(option, question);
+            container.appendChild(btn);
+        });
+        
+        // Show popup modal
+        document.getElementById('question-popup-modal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function handlePopupAnswer(answer, question) {
+        // Store in user profile
+        appState.userProfile[`q${question.id}`] = answer;
+        
+        // Store gender and age
+        if (question.id === 1) appState.gender = answer;
+        if (question.id === 2) appState.age = answer;
+        
+        // Update scores based on answers
+        updateScores(answer, question);
+        
+        // Add visual feedback
+        const selectedOption = event.target.closest('.option-btn');
+        if (selectedOption) {
+            selectedOption.classList.add('bg-gold-primary/20');
+            selectedOption.style.borderColor = 'var(--gold-primary)';
+        }
+        
+        // Close popup and move to next question
+        setTimeout(() => {
+            closeQuestionPopup();
+            appState.currentQuestion++;
+            
+            if (appState.currentQuestion >= appState.totalQuestions) {
+                generatePersonalizedProgram();
+            } else {
+                showQuestion();
+            }
+        }, 300);
+    }
+
+    function closeQuestionPopup() {
+        document.getElementById('question-popup-modal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    function nextQuestionFromPopup() {
+        // Move to next question without selecting an answer
+        closeQuestionPopup();
         appState.currentQuestion++;
-        setTimeout(showQuestion, 200);
+        
+        if (appState.currentQuestion >= appState.totalQuestions) {
+            generatePersonalizedProgram();
+        } else {
+            showQuestion();
+        }
     }
 
     function updateScores(answer, question) {
@@ -1753,6 +2282,9 @@
         document.getElementById('quiz-section').classList.add('hidden');
         document.getElementById('analysis-section').classList.remove('hidden');
         
+        // Update background
+        updateBackground('analysis');
+        
         // Analyze user profile and select appropriate exercises
         analyzeUserProfile();
         
@@ -1795,53 +2327,82 @@
             primaryCategory = "endurance";
         }
         
-        // Select 12 exercises for 30-day program
-        appState.selectedExercises = selectExercisesForProgram(primaryCategory, issues);
+        // Generate exercises for all 30 days
+        generate30DayProgram(primaryCategory, issues);
     }
 
-    function selectExercisesForProgram(primaryCategory, issues) {
-        let selected = [];
+    function generate30DayProgram(primaryCategory, issues) {
+        appState.dayExercises = {};
+        appState.dayProgress = {};
         
-        // Always start with foundational exercises
-        selected.push(...exerciseLibrary.foundational.slice(0, 3));
-        
-        // Add exercises from primary category
-        const primaryExercises = exerciseLibrary[primaryCategory];
-        if (primaryExercises) {
-            selected.push(...primaryExercises.slice(0, 4));
+        // For each day, select appropriate exercises
+        for (let day = 1; day <= 30; day++) {
+            appState.dayExercises[day] = generateDayExercises(day, primaryCategory, issues);
+            appState.dayProgress[day] = []; // Empty array for completed exercises per day
         }
         
-        // Add specific exercises for identified issues
-        if (issues.includes("urinary leakage")) {
-            selected.push(...exerciseLibrary.functional.filter(e => 
-                e.subcategory === "stress-response"
-            ).slice(0, 2));
+        // Set current day exercises
+        appState.selectedExercises = appState.dayExercises[1];
+    }
+
+    function generateDayExercises(day, primaryCategory, issues) {
+        let dayExercises = [];
+        
+        // Day-specific progression
+        if (day <= 7) {
+            // Week 1: Foundational exercises
+            dayExercises.push(...exerciseLibrary.foundational.slice(0, 3));
+            dayExercises.push(...exerciseLibrary.control.slice(0, 2));
+            dayExercises.push(...exerciseLibrary.breathing.slice(0, 1));
+        } else if (day <= 14) {
+            // Week 2: Add primary category exercises
+            dayExercises.push(...exerciseLibrary.foundational.slice(2, 4));
+            const primaryExercises = exerciseLibrary[primaryCategory];
+            if (primaryExercises) {
+                dayExercises.push(...primaryExercises.slice(0, 2));
+            }
+            dayExercises.push(...exerciseLibrary.control.slice(1, 2));
+            dayExercises.push(...exerciseLibrary.functional.slice(0, 1));
+        } else if (day <= 21) {
+            // Week 3: Add specific issue exercises
+            dayExercises.push(...exerciseLibrary[primaryCategory].slice(2, 4));
+            
+            if (issues.includes("urinary leakage")) {
+                dayExercises.push(...exerciseLibrary.functional.filter(e => 
+                    e.subcategory === "stress-response"
+                ).slice(0, 1));
+            }
+            
+            if (issues.includes("pelvic pain")) {
+                dayExercises.push(...exerciseLibrary.relaxation.slice(0, 1));
+            }
+            
+            if (issues.includes("sexual dysfunction")) {
+                const genderSpecific = appState.gender === "Male" ? 
+                    exerciseLibrary.sexual.filter(e => e.subcategory === "male") :
+                    exerciseLibrary.sexual.filter(e => e.subcategory === "female");
+                dayExercises.push(...genderSpecific.slice(0, 1));
+            }
+            
+            dayExercises.push(...exerciseLibrary.mindfulness.slice(0, 1));
+        } else {
+            // Week 4: Advanced and hybrid exercises
+            dayExercises.push(...exerciseLibrary[primaryCategory].slice(3, 5));
+            dayExercises.push(...exerciseLibrary.hybrid.slice(0, 1));
+            dayExercises.push(...exerciseLibrary.endurance.slice(0, 1));
+            dayExercises.push(...exerciseLibrary.mindfulness.slice(1, 2));
         }
         
-        if (issues.includes("pelvic pain")) {
-            selected.push(...exerciseLibrary.relaxation.slice(0, 2));
-        }
-        
-        if (issues.includes("sexual dysfunction")) {
-            const genderSpecific = appState.gender === "Male" ? 
-                exerciseLibrary.sexual.filter(e => e.subcategory === "male") :
-                exerciseLibrary.sexual.filter(e => e.subcategory === "female");
-            selected.push(...genderSpecific.slice(0, 2));
-        }
-        
-        // Add control exercises for everyone
-        selected.push(...exerciseLibrary.control.slice(0, 2));
-        
-        // Limit to 12 exercises and shuffle
-        selected = shuffleArray(selected).slice(0, 12);
+        // Ensure exactly 6 exercises per day
+        dayExercises = shuffleArray(dayExercises).slice(0, 6);
         
         // Sort by difficulty
-        selected.sort((a, b) => {
+        dayExercises.sort((a, b) => {
             const difficultyOrder = { "beginner": 1, "intermediate": 2, "advanced": 3 };
             return difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty];
         });
         
-        return selected;
+        return dayExercises;
     }
 
     function generateAnalysis() {
@@ -1869,7 +2430,7 @@
             analysis += "Sexual function improvements are a key focus area. ";
         }
         
-        analysis += `Your personalized 30-day program includes ${appState.selectedExercises.length} carefully selected exercises.`;
+        analysis += `Your personalized 30-day program includes ${appState.dayExercises[1].length} carefully selected exercises each day.`;
         
         analysisText.textContent = analysis;
         
@@ -1877,17 +2438,18 @@
         solutionPoints.innerHTML = '';
         
         const solutions = [
-            "🎯 <span class='text-gold-light font-semibold'>Targeted Approach:</span> Exercises specifically chosen for your symptoms",
-            "📊 <span class='text-gold-light font-semibold'>Progressive Plan:</span> Gradually increases difficulty over 30 days",
-            "🔄 <span class='text-gold-light font-semibold'>Sequential Learning:</span> Each exercise builds on previous ones",
-            "⏱️ <span class='text-gold-light font-semibold'>Time-Efficient:</span> 10-15 minutes daily commitment",
-            "📈 <span class='text-gold-light font-semibold'>Measurable Results:</span> Track progress with completion system",
-            "🎬 <span class='text-gold-light font-semibold'>Video Guidance:</span> Professional demonstrations for each exercise"
+            "🎯 <span class='text-gold-light font-bold'>Targeted Approach:</span> Exercises specifically chosen for your symptoms",
+            "📊 <span class='text-gold-light font-bold'>Progressive Plan:</span> Gradually increases difficulty over 30 days",
+            "🔄 <span class='text-gold-light font-bold'>Sequential Learning:</span> Each exercise builds on previous ones",
+            "⏱️ <span class='text-gold-light font-bold'>Time-Efficient:</span> 10-15 minutes daily commitment",
+            "📈 <span class='text-gold-light font-bold'>Measurable Results:</span> Track progress with completion system",
+            "🎬 <span class='text-gold-light font-bold'>Video Guidance:</span> Professional demonstrations for each exercise"
         ];
         
-        solutions.forEach(solution => {
+        solutions.forEach((solution, index) => {
             const point = document.createElement('div');
-            point.className = "text-xs text-gray-300 flex items-start";
+            point.className = "text-xs text-gray-300 flex items-start fade-in";
+            point.style.animationDelay = `${index * 0.1}s`;
             point.innerHTML = `<i class="fas fa-check text-green-500 mr-2 mt-0.5"></i> ${solution}`;
             solutionPoints.appendChild(point);
         });
@@ -1896,6 +2458,10 @@
     function showExercisePlan() {
         document.getElementById('analysis-section').classList.add('hidden');
         document.getElementById('exercise-section').classList.remove('hidden');
+        
+        // Update background
+        updateBackground('exercise');
+        
         renderExercisePlan();
     }
 
@@ -1903,42 +2469,50 @@
         const exerciseList = document.getElementById('exercise-list');
         exerciseList.innerHTML = '';
         
+        // Update day display
+        document.getElementById('current-day').textContent = appState.currentDay;
+        
+        // Get exercises for current day
+        const currentDayExercises = appState.dayExercises[appState.currentDay];
+        const completedExercises = appState.dayProgress[appState.currentDay] || [];
+        
         // Update stats
-        const completedCount = appState.completedExercises.length;
-        const totalExercises = appState.selectedExercises.length;
+        const completedCount = completedExercises.length;
+        const totalExercises = currentDayExercises.length;
         document.getElementById('completion-stats').textContent = `${completedCount}/${totalExercises} completed`;
         
-        appState.selectedExercises.forEach((exercise, index) => {
-            const isCompleted = appState.completedExercises.includes(exercise.id);
-            const isCurrent = index === appState.completedExercises.length;
-            const isLocked = index > appState.completedExercises.length;
+        currentDayExercises.forEach((exercise, index) => {
+            const isCompleted = completedExercises.includes(exercise.id);
+            const isCurrent = index === completedExercises.length;
+            const isLocked = index > completedExercises.length;
             
             const card = document.createElement('div');
-            card.className = `exercise-card p-3 rounded-lg ${isLocked ? 'locked' : ''} ${isCurrent ? 'current' : ''} ${isCompleted ? 'completed' : ''}`;
+            card.className = `exercise-card p-3.5 rounded-lg ${isLocked ? 'locked' : ''} ${isCurrent ? 'current' : ''} ${isCompleted ? 'completed' : ''} fade-in`;
+            card.style.animationDelay = `${index * 0.08}s`;
             
             card.innerHTML = `
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-3.5">
                     <div class="number-indicator ${isCurrent ? 'number-current' : isCompleted ? 'number-completed' : 'number-locked'}">
                         ${index + 1}
                     </div>
                     <div class="flex-1 min-w-0">
-                        <div class="flex items-center gap-2 mb-1">
+                        <div class="flex items-center gap-2 mb-1.5">
                             <span class="category-tag">${exercise.category}</span>
-                            <span class="text-xs text-gray-400">${exercise.difficulty}</span>
+                            <span class="text-xs text-gray-400 font-bold">${exercise.difficulty}</span>
                         </div>
-                        <h3 class="text-sm font-bold text-white mb-1 truncate">${exercise.name}</h3>
-                        <p class="text-xs text-gray-300 line-clamp-1">${exercise.benefit}</p>
-                        <div class="flex items-center gap-3 mt-2 text-xs text-gray-400">
-                            <span><i class="fas fa-clock mr-1"></i> ${exercise.duration}</span>
-                            <span><i class="fas fa-redo mr-1"></i> ${exercise.reps}</span>
+                        <h3 class="text-sm font-bold text-white mb-1.5 truncate text-3d-white">${exercise.name}</h3>
+                        <p class="text-xs text-gray-300 line-clamp-1 text-3d-secondary">${exercise.benefit}</p>
+                        <div class="flex items-center gap-3.5 mt-2 text-xs text-gray-400">
+                            <span class="flex items-center"><i class="fas fa-clock mr-1.5"></i> ${exercise.duration}</span>
+                            <span class="flex items-center"><i class="fas fa-redo mr-1.5"></i> ${exercise.reps}</span>
                         </div>
                     </div>
                     <div class="shrink-0">
                         ${isLocked ? 
                             '<i class="fas fa-lock text-base text-gray-600"></i>' : 
                          isCompleted ? 
-                            '<i class="fas fa-check-circle text-lg text-green-500"></i>' : 
-                            '<i class="fas fa-play-circle text-lg text-gold-primary"></i>'}
+                            '<i class="fas fa-check-circle text-lg text-green-500" style="filter: drop-shadow(0 2px 0 rgba(0,0,0,0.3))"></i>' : 
+                            '<i class="fas fa-play-circle text-lg text-gold-primary" style="filter: drop-shadow(0 2px 0 rgba(212,175,55,0.3))"></i>'}
                     </div>
                 </div>
             `;
@@ -1962,18 +2536,18 @@
     function openExerciseVideo(exercise, index) {
         appState.currentVideoIndex = index;
         
-        // Create custom video player that doesn't look like YouTube
+        // Create custom video player with 3D effect
         const videoFrame = document.getElementById('video-frame');
         videoFrame.innerHTML = `
-            <div style="width:100%;height:100%;background:#000;position:relative;border-radius:14px;overflow:hidden;">
+            <div style="width:100%;height:100%;background:#000;position:relative;border-radius:14px;overflow:hidden;box-shadow: inset 0 0 30px rgba(0,0,0,0.8);">
                 <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(45deg,#000,#111);display:flex;align-items:center;justify-content:center;">
                     <div style="text-align:center;padding:20px;">
-                        <div style="width:70px;height:70px;background:${getCategoryColor(exercise.category)};border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 15px;box-shadow:0 0 20px ${getCategoryColor(exercise.category)}80;">
-                            <i class="fas fa-dumbbell" style="color:#000;font-size:28px;"></i>
+                        <div style="width:80px;height:80px;background:${getCategoryColor(exercise.category)};border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 0 30px ${getCategoryColor(exercise.category)}80, inset 0 4px 0 rgba(255,255,255,0.2);">
+                            <i class="fas fa-dumbbell" style="color:#000;font-size:32px;"></i>
                         </div>
-                        <div style="color:#D4AF37;font-weight:bold;font-size:16px;margin-bottom:8px;letter-spacing:0.5px;">PELVIC TRAINING SYSTEM</div>
-                        <div style="color:#fff;font-size:13px;margin-bottom:5px;">Professional Exercise Demonstration</div>
-                        <div style="color:#888;font-size:11px;">Loading training video...</div>
+                        <div style="color:#D4AF37;font-weight:bold;font-size:18px;margin-bottom:10px;letter-spacing:0.5px;text-shadow:0 2px 0 rgba(0,0,0,0.5);">PELVIC TRAINING SYSTEM</div>
+                        <div style="color:#fff;font-size:14px;margin-bottom:8px;text-shadow:0 1px 0 rgba(0,0,0,0.5);">Professional Exercise Demonstration</div>
+                        <div style="color:#888;font-size:12px;text-shadow:0 1px 0 rgba(0,0,0,0.5);">Loading training video...</div>
                     </div>
                 </div>
                 <iframe 
@@ -2008,35 +2582,43 @@
     }
 
     function repeatCurrentVideo() {
-        const currentExercise = appState.selectedExercises[appState.currentVideoIndex];
+        const currentExercise = appState.dayExercises[appState.currentDay][appState.currentVideoIndex];
         openExerciseVideo(currentExercise, appState.currentVideoIndex);
     }
 
     function nextVideo() {
-        // Mark current exercise as completed
-        const currentExercise = appState.selectedExercises[appState.currentVideoIndex];
-        if (!appState.completedExercises.includes(currentExercise.id)) {
-            appState.completedExercises.push(currentExercise.id);
+        // Mark current exercise as completed for current day
+        const currentExercise = appState.dayExercises[appState.currentDay][appState.currentVideoIndex];
+        if (!appState.dayProgress[appState.currentDay]) {
+            appState.dayProgress[appState.currentDay] = [];
+        }
+        
+        if (!appState.dayProgress[appState.currentDay].includes(currentExercise.id)) {
+            appState.dayProgress[appState.currentDay].push(currentExercise.id);
         }
         
         closeVideoModal();
         
-        // Check if all exercises completed
-        if (appState.completedExercises.length === appState.selectedExercises.length) {
+        // Check if all exercises completed for current day
+        const completedExercises = appState.dayProgress[appState.currentDay] || [];
+        const totalExercises = appState.dayExercises[appState.currentDay].length;
+        
+        if (completedExercises.length === totalExercises) {
+            // Day completed, move to next day
             if (appState.currentDay < 30) {
                 appState.currentDay++;
-                appState.completedExercises = [];
                 setTimeout(() => {
                     alert(`✅ Excellent! Day ${appState.currentDay-1} completed. Starting Day ${appState.currentDay}`);
+                    renderExercisePlan();
                 }, 300);
             } else {
                 setTimeout(() => {
                     alert(`🏆 Congratulations! You've completed the entire 30-day program!`);
                 }, 300);
             }
+        } else {
+            renderExercisePlan();
         }
-        
-        renderExercisePlan();
     }
 
     function closeVideoModal() {
@@ -2061,7 +2643,9 @@
             selectedCategory: null,
             selectedExercises: [],
             currentVideoIndex: 0,
-            userProfile: {}
+            userProfile: {},
+            dayProgress: {},
+            dayExercises: {}
         };
         
         showQuestion();
@@ -2108,6 +2692,22 @@
         return colors[category] || "#D4AF37";
     }
 
+    function updateBackground(section) {
+        // Hide all backgrounds first
+        document.getElementById('quiz-bg').classList.add('hidden');
+        document.getElementById('analysis-bg').classList.add('hidden');
+        document.getElementById('exercise-bg').classList.add('hidden');
+        
+        // Show appropriate background
+        if (section === 'quiz') {
+            document.getElementById('quiz-bg').classList.remove('hidden');
+        } else if (section === 'analysis') {
+            document.getElementById('analysis-bg').classList.remove('hidden');
+        } else if (section === 'exercise') {
+            document.getElementById('exercise-bg').classList.remove('hidden');
+        }
+    }
+
     function setupEventListeners() {
         // Escape key closes modal
         document.addEventListener('keydown', (e) => {
@@ -2115,17 +2715,32 @@
                 if (!document.getElementById('video-modal').classList.contains('hidden')) {
                     closeVideoModal();
                 }
+                if (!document.getElementById('question-popup-modal').classList.contains('hidden')) {
+                    closeQuestionPopup();
+                }
             }
         });
         
         // Touch feedback
         document.querySelectorAll('button').forEach(btn => {
             btn.addEventListener('touchstart', () => {
-                btn.style.opacity = '0.8';
+                btn.style.transform = 'translateY(1px)';
             });
             btn.addEventListener('touchend', () => {
-                btn.style.opacity = '1';
+                btn.style.transform = '';
             });
+        });
+        
+        // Handle back button for WebView
+        window.addEventListener('popstate', function(event) {
+            if (!document.getElementById('video-modal').classList.contains('hidden')) {
+                closeVideoModal();
+                history.pushState(null, null, window.location.href);
+            }
+            if (!document.getElementById('question-popup-modal').classList.contains('hidden')) {
+                closeQuestionPopup();
+                history.pushState(null, null, window.location.href);
+            }
         });
     }
 
