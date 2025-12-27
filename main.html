@@ -1,1 +1,592 @@
 
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Fitness Partner - Gym & Yoga</title>
+    
+    <!-- Tailwind CSS aur Font Awesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&family=Noto+Sans+Devanagari:wght@700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #FFD700; 
+            --primary-rgb: 255, 215, 0; 
+            --bg-dark: #050401; 
+            --card-glass: rgba(15, 12, 5, 0.95);
+            --header-offset: calc(15px + env(safe-area-inset-top));
+            --header-height: 64px;
+            --footer-offset: calc(25px + env(safe-area-inset-bottom));
+            --footer-height: 70px;
+            --text-light: #ffffff;
+            --dark-green: #013220; 
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding-top: calc(var(--header-offset) + var(--header-height) + 20px);
+            padding-bottom: calc(var(--footer-offset) + var(--footer-height) + 40px);
+            margin: 0;
+            font-weight: 900; 
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- BACKGROUND --- */
+        #fixed-media-background {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -10; background-size: cover; background-position: center;
+            opacity: 0.7; background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop');
+            filter: contrast(125%) brightness(40%) sepia(20%);
+        }
+
+        /* --- GOLDEN FLOATING HEADER --- */
+        .iphone-header {
+            position: fixed; top: var(--header-offset); left: 50%; transform: translateX(-50%);
+            width: 92%; max-width: 600px; height: var(--header-height);
+            background: rgba(5, 4, 1, 0.96); backdrop-filter: blur(30px);
+            border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 24px;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 20px; z-index: 2000; box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
+        }
+
+        /* Header content layout */
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .header-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* --- GOLDEN DOCK --- */
+        .iphone-dock-wrapper { 
+            position: fixed; bottom: var(--footer-offset); 
+            left: 0; width: 100%; display: flex; justify-content: center; z-index: 2000; padding: 0 15px; 
+        }
+        .iphone-dock { 
+            width: 100%; 
+            max-width: 500px; 
+            height: var(--footer-height); 
+            background: rgba(5, 4, 1, 0.98); 
+            backdrop-filter: blur(35px); 
+            border-radius: 28px; 
+            border: 2px solid rgba(255, 215, 0, 0.2); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; /* Changed to center for no upward movement */
+            box-shadow: 0 15px 40px rgba(0,0,0,0.9); 
+            padding: 0 10px; 
+            overflow: visible; 
+        }
+        
+        /* Nav Item Styles - UPDATED: No upward movement */
+        .nav-item { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 12px 0; /* Changed padding */
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            color: #8892a0; 
+            cursor: pointer; 
+            position: relative; 
+            height: 100%;
+        }
+        .nav-item i { 
+            font-size: 1.2rem; 
+            margin-bottom: 4px; 
+            transition: 0.3s; 
+        }
+        .nav-item span { 
+            font-size: 0.55rem; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+            transition: 0.3s; 
+        }
+        
+        /* ACTIVE STATE - UPDATED: No transform translateY */
+        .nav-item.active { 
+            /* REMOVED: transform: translateY(-25px); */
+            color: var(--primary); 
+        }
+        .nav-item.active .icon-box {
+            width: 50px; 
+            height: 50px; 
+            background: rgba(255, 215, 0, 0.15); 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            border: 2px solid var(--primary); 
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            /* REMOVED: margin-bottom: -5px; */
+        }
+        .nav-item.active i { 
+            font-size: 1.4rem; 
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
+        .nav-item.active span { 
+            color: var(--primary); 
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.5); 
+            /* REMOVED: position: absolute; bottom: -20px; */
+        }
+
+        /* --- MAIN CONTENT CARDS --- */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        @media (min-width: 768px) {
+            .content-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .content-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+            }
+        }
+        
+        .content-card {
+            background: rgba(5, 4, 1, 0.85);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 24px;
+            padding: 25px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 180px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+        
+        .content-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .content-card h3 {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 8px;
+        }
+        
+        .content-card p {
+            font-size: 0.8rem;
+            color: #aaa;
+            line-height: 1.4;
+        }
+
+        /* --- MODAL STYLES --- */
+        .modal-overlay { 
+            position: fixed; 
+            inset: 0; 
+            background: rgba(0,0,0,0.96); 
+            backdrop-filter: blur(25px); 
+            display: none; 
+            z-index: 2500; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 25px; 
+        }
+        .modal-box { 
+            background: #0a0802; 
+            border: 2.5px solid var(--primary); 
+            border-radius: 40px; 
+            width: 100%; 
+            max-width: 900px; 
+            padding: 30px; 
+            box-shadow: 0 0 90px rgba(var(--primary-rgb), 0.7); 
+            position: relative; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            max-height: 85vh; 
+        }
+        .modal-bg-img { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.25; z-index: 0; filter: brightness(25%); }
+        
+        /* Language Grid Layout */
+        .lang-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px; 
+            position: relative; 
+            z-index: 10; 
+            overflow-y: auto; 
+            padding: 5px;
+        }
+        @media (min-width: 640px) { 
+            .lang-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        }
+        @media (min-width: 1024px) { 
+            .lang-grid { grid-template-columns: repeat(5, 1fr); gap: 15px; }
+        }
+
+        /* Language Button */
+        .lang-btn {
+            background: rgba(255, 215, 0, 0.1); 
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 16px;
+            padding: 12px 8px;
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+            cursor: pointer; 
+            transition: all 0.3s ease;
+            text-align: center;
+            min-height: 50px;
+            height: auto;
+        }
+        .lang-btn:hover { 
+            background: var(--primary); 
+            border-color: #fff; 
+            transform: scale(1.03); 
+        }
+        .lang-btn:hover span { 
+            color: #000; 
+        }
+        .lang-btn span { 
+            font-size: 0.9rem; 
+            font-weight: 800; 
+            color: #fff; 
+            line-height: 1.2;
+        }
+
+        * { font-style: normal !important; }
+        h1, h2, h3, span, p, a, button { font-weight: 900 !important; }
+    </style>
+</head>
+<body>
+    
+    <div id="fixed-media-background"></div>
+
+    <!-- FLOATING HEADER -->
+    <header class="iphone-header">
+        <!-- Left Logo -->
+        <div class="header-left">
+            <img src="blessingsssl.png" alt="Logo" class="w-9 h-9 rounded-xl border-2 border-primary shadow-lg" onerror="this.src='https://via.placeholder.com/50/FFD700/000000?text=L'">
+        </div>
+        
+        <!-- Center Name Image -->
+        <div class="header-center">
+            <img src="blessingsss.png" alt="Blessingsss" class="h-[22px] max-w-[180px]" onerror="this.src='https://via.placeholder.com/180x22/FFD700/000000?text=BLESSINGSSS'">
+        </div>
+        
+        <!-- Right Logo -->
+        <div class="header-right">
+            <img src="blessingsssl.png" alt="Logo" class="w-9 h-9 rounded-xl border-2 border-primary shadow-lg" onerror="this.src='https://via.placeholder.com/50/FFD700/000000?text=R'">
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT WITH 5 CARDS -->
+    <main class="container mx-auto px-4 sm:px-6">
+        <h1 class="text-3xl sm:text-4xl text-center text-primary mb-2 mt-6"></h1>
+        <p class="text-gray-400 text-center mb-10 text-sm"></p>
+        
+        <div class="content-grid">
+            <!-- Gym Card -->
+            <div class="content-card" onclick="openCategoryPopup('gym')">
+                <i class="fas fa-dumbbell"></i>
+                <h3>GYM WORKOUT</h3>
+                <p>Strength training & bodybuilding exercises with professional guidance</p>
+            </div>
+            
+            <!-- Calisthenics Card -->
+            <div class="content-card" onclick="openCategoryPopup('calisthenics')">
+                <i class="fas fa-person-running"></i>
+                <h3>CALISTHENICS</h3>
+                <p>Bodyweight exercises for functional strength and mobility</p>
+            </div>
+            
+            <!-- Kegel Card -->
+            <div class="content-card" onclick="openCategoryPopup('kegel')">
+                <i class="fas fa-heart-pulse"></i>
+                <h3>KEGEL EXERCISES</h3>
+                <p>Pelvic floor strengthening for better health and wellness</p>
+            </div>
+            
+            <!-- Yoga Card -->
+            <div class="content-card" onclick="openCategoryPopup('yoga')">
+                <i class="fas fa-om"></i>
+                <h3>YOGA FLOW</h3>
+                <p>Traditional yoga poses for mind-body harmony and flexibility</p>
+            </div>
+            
+            <!-- Desi Card -->
+            <div class="content-card" onclick="openCategoryPopup('desi')">
+                <i class="fas fa-hand-fist"></i>
+                <h3>DESI AKHADA</h3>
+                <p>Traditional Indian workout techniques for ultimate strength</p>
+            </div>
+            
+            <!-- Bonus Card -->
+            <div class="content-card bg-gradient-to-br from-[#050401] to-[#013220] border-green-500/30" onclick="openCategoryPopup('gym')">
+                <i class="fas fa-fire text-green-400"></i>
+                <h3 class="text-green-400">ALL WORKOUTS</h3>
+                <p>Complete fitness program combining all exercise styles</p>
+            </div>
+        </div>
+    </main>
+    
+    <!-- DOCK NAV -->
+    <div class="iphone-dock-wrapper">
+        <nav class="iphone-dock">
+            <!-- All items now stay in place when active -->
+            <div class="nav-item" onclick="activateTab(this, 'gym')">
+                <div class="icon-box"><i class="fas fa-dumbbell"></i></div>
+                <span>Gym</span>
+            </div>
+            
+            <div class="nav-item" onclick="activateTab(this, 'calisthenics')">
+                <div class="icon-box"><i class="fas fa-person-running"></i></div>
+                <span>Calisthenic</span>
+            </div>
+            
+            <!-- Default Active: Kegel (no upward movement) -->
+            <div class="nav-item active" onclick="activateTab(this, 'kegel')">
+                <div class="icon-box"><i class="fas fa-heart-pulse"></i></div>
+                <span>Kegel</span>
+            </div>
+            
+            <div class="nav-item" onclick="activateTab(this, 'yoga')">
+                <div class="icon-box"><i class="fas fa-om"></i></div>
+                <span>Yoga</span>
+            </div>
+
+            <div class="nav-item" onclick="activateTab(this, 'desi')">
+                <div class="icon-box"><i class="fas fa-hand-fist"></i></div>
+                <span>Desi</span>
+            </div>
+        </nav>
+    </div>
+
+    <!-- MODAL -->
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal-box">
+            <div id="modalBg" class="modal-bg-img"></div>
+            <div class="flex justify-between items-center mb-6 px-2 relative z-10 w-full border-b border-primary/20 pb-4">
+                <div>
+                    <h2 id="modalTitle" class="text-xl sm:text-3xl font-black text-primary uppercase">Select Language</h2>
+                    <p id="modalSubtitle" class="text-[10px] text-gray-300 uppercase tracking-[3px] mt-1">Choose your preference</p>
+                </div>
+                <button onclick="closePopup()" class="w-10 h-10 rounded-xl bg-white/10 border border-primary/30 text-primary flex items-center justify-center hover:bg-primary hover:text-black transition"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <!-- Language Grid -->
+            <div id="langGrid" class="lang-grid">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Different languages for each category
+        const categoryLanguages = {
+            gym: [
+                { name: "English", code: "en", page: "gym_english.html" },
+                { name: "Hindi", code: "hi", page: "gym_hindi.html" },
+                { name: "Spanish", code: "es", page: "gym_spanish.html" },
+                { name: "Arabic", code: "ar", page: "gym_arabic.html" },
+                { name: "Russian", code: "ru", page: "gym_russian.html" },
+                { name: "Chinese", code: "zh", page: "gym_chinese.html" },
+                { name: "Japanese", code: "ja", page: "gym_japanese.html" },
+                { name: "Korean", code: "ko", page: "gym_korean.html" }
+            ],
+            calisthenics: [
+                { name: "English", code: "en", page: "calisthenics_english.html" },
+                { name: "Hindi", code: "hi", page: "calisthenics_hindi.html" },
+                { name: "Bengali", code: "bn", page: "calisthenics_bengali.html" },
+                { name: "Tamil", code: "ta", page: "calisthenics_tamil.html" },
+                { name: "Telugu", code: "te", page: "calisthenics_telugu.html" },
+                { name: "Marathi", code: "mr", page: "calisthenics_marathi.html" },
+                { name: "Gujarati", code: "gu", page: "calisthenics_gujarati.html" }
+            ],
+            kegel: [
+                { name: "English", code: "en", page: "kegel_english.html" },
+                { name: "Hindi", code: "hi", page: "kegel_hindi.html" },
+                { name: "Urdu", code: "ur", page: "kegel_urdu.html" },
+                { name: "Punjabi", code: "pa", page: "kegel_punjabi.html" },
+                { name: "Malayalam", code: "ml", page: "kegel_malayalam.html" },
+                { name: "Kannada", code: "kn", page: "kegel_kannada.html" },
+                { name: "Odia", code: "or", page: "kegel_odia.html" },
+                { name: "Assamese", code: "as", page: "kegel_assamese.html" }
+            ],
+            yoga: [
+                { name: "Sanskrit", code: "sa", page: "yoga_sanskrit.html" },
+                { name: "Hindi", code: "hi", page: "yoga_hindi.html" },
+                { name: "English", code: "en", page: "yoga_english.html" },
+                { name: "Tamil", code: "ta", page: "yoga_tamil.html" },
+                { name: "Bengali", code: "bn", page: "yoga_bengali.html" },
+                { name: "Marathi", code: "mr", page: "yoga_marathi.html" },
+                { name: "Gujarati", code: "gu", page: "yoga_gujarati.html" },
+                { name: "Punjabi", code: "pa", page: "yoga_punjabi.html" }
+            ],
+            desi: [
+                { name: "Hindi", code: "hi", page: "desi_hindi.html" },
+                { name: "Punjabi", code: "pa", page: "desi_punjabi.html" },
+                { name: "Haryanvi", code: "hr", page: "desi_haryanvi.html" },
+                { name: "Rajasthani", code: "rj", page: "desi_rajasthani.html" },
+                { name: "Bhojpuri", code: "bh", page: "desi_bhojpuri.html" },
+                { name: "Awadhi", code: "aw", page: "desi_awadhi.html" },
+                { name: "Marwari", code: "mw", page: "desi_marwari.html" },
+                { name: "Kashmiri", code: "ks", page: "desi_kashmiri.html" }
+            ]
+        };
+
+        // Different background images for each category
+        const categoryData = {
+            gym: { 
+                title: "GYM WORKOUT", 
+                subtitle: "Strength & Bodybuilding",
+                bg: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop"
+            },
+            calisthenics: { 
+                title: "CALISTHENICS", 
+                subtitle: "Bodyweight Training",
+                bg: "https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?q=80&w=1000&auto=format&fit=crop"
+            },
+            kegel: { 
+                title: "KEGEL EXERCISES", 
+                subtitle: "Pelvic Floor Training",
+                bg: "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1000&auto=format&fit=crop"
+            },
+            yoga: { 
+                title: "YOGA FLOW", 
+                subtitle: "Mind & Body Harmony",
+                bg: "https://images.unsplash.com/photo-1544367563-12123d896889?q=80&w=1000&auto=format&fit=crop"
+            },
+            desi: { 
+                title: "DESI AKHADA", 
+                subtitle: "Traditional Indian Workout",
+                bg: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1000&auto=format&fit=crop"
+            }
+        };
+
+        let currentCategory = 'kegel';
+
+        // Function to activate tab (for footer items)
+        function activateTab(element, category) {
+            // 1. Highlight Logic - only change styles, no movement
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+            
+            // 2. Open Popup Logic
+            currentCategory = category;
+            openPopup(category);
+        }
+
+        // Function to open category popup (for both cards and footer items)
+        function openCategoryPopup(category) {
+            // Also update footer highlighting
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            
+            // Find and highlight the corresponding footer item
+            const footerItems = document.querySelectorAll('.nav-item');
+            const categoryMap = {
+                'gym': 0,
+                'calisthenics': 1,
+                'kegel': 2,
+                'yoga': 3,
+                'desi': 4
+            };
+            
+            if (footerItems[categoryMap[category]]) {
+                footerItems[categoryMap[category]].classList.add('active');
+            }
+            
+            currentCategory = category;
+            openPopup(category);
+        }
+
+        function openPopup(category) {
+            const data = categoryData[category];
+            const languages = categoryLanguages[category];
+            
+            if(!data || !languages) return;
+
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalSubtitle').innerText = data.subtitle;
+            document.getElementById('modalBg').style.backgroundImage = `url('${data.bg}')`;
+
+            const grid = document.getElementById('langGrid');
+            grid.innerHTML = languages.map(lang => `
+                <div class="lang-btn" onclick="goToPage('${lang.page}')">
+                    <span>${lang.name}</span>
+                </div>
+            `).join('');
+
+            document.getElementById('modalOverlay').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('modalOverlay').style.display = 'none';
+        }
+
+        function goToPage(pageUrl) {
+            // Navigate to the specific HTML page
+            alert(`Redirecting to: ${pageUrl}\n\n(In actual implementation, this would open: ${pageUrl})`);
+            
+            // Uncomment below line for actual navigation
+            // window.location.href = pageUrl;
+            
+            // Close popup after selection
+            closePopup();
+        }
+
+        // Show default popup (Kegel) when page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                openPopup(currentCategory);
+            }, 300);
+        });
+
+        // Close popup when clicking outside
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if(e.target === this) {
+                closePopup();
+            }
+        });
+    </script>
+</body>
+</html>
