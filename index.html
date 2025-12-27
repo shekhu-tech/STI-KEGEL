@@ -6,10 +6,6 @@
     <title>Pelvic Health Pro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Premium Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&family=Noto+Sans+Devanagari:wght@700;900&display=swap" rel="stylesheet">
-    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
@@ -20,84 +16,8 @@
             --gold-dark: #996515;
             --black-deep: #0A0A0A;
             --black-surface: #121212;
-            --primary: #FFD700; 
-            --primary-rgb: 255, 215, 0; 
-            --bg-dark: #050401; 
-            --card-glass: rgba(15, 12, 5, 0.95);
-            --header-offset: calc(15px + env(safe-area-inset-top));
-            --header-height: 64px;
-            --footer-offset: calc(25px + env(safe-area-inset-bottom));
-            --footer-height: 64px; 
-            --text-light: #ffffff;
-            --dark-green: #013220; 
         }
 
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            padding-top: calc(var(--header-offset) + var(--header-height) + 20px);
-            padding-bottom: calc(var(--footer-offset) + var(--footer-height) + 40px);
-            margin: 0;
-            font-weight: 900; 
-            overflow-x: hidden;
-        }
-
-        /* --- BACKGROUND --- */
-        #fixed-media-background {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            z-index: -10; background-size: cover; background-position: center;
-            opacity: 0.7; background-image: url('bridal.png');
-            filter: contrast(125%) brightness(50%) sepia(40%);
-        }
-
-        /* --- GOLDEN FLOATING HEADER --- */
-        .iphone-header {
-            position: fixed; top: var(--header-offset); left: 50%; transform: translateX(-50%);
-            width: 92%; max-width: 600px; height: var(--header-height);
-            background: rgba(5, 4, 1, 0.96); backdrop-filter: blur(30px);
-            border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 24px;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 20px; z-index: 2000; box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
-        }
-
-        /* --- SIDEBAR --- */
-        .mobile-panel {
-            position: fixed; 
-            top: calc(var(--header-offset) + var(--header-height) + 10px); 
-            bottom: calc(var(--footer-offset) + var(--footer-height) + 10px);
-            right: 15px; width: 85%; max-width: 340px;
-            background: rgba(8, 7, 2, 0.98); backdrop-filter: blur(45px); z-index: 1500; 
-            transform: translateX(120%); transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            border: 2.5px solid var(--primary); border-radius: 35px; overflow: hidden;
-            box-shadow: -30px 0 80px rgba(0,0,0,1);
-        }
-        .mobile-panel.open { transform: translateX(0); }
-        .sidebar-bg-image { position: absolute; inset: 0; background-image: url('bridal.png'); background-size: cover; background-position: center; opacity: 0.55; z-index: 0; filter: grayscale(40%) brightness(30%); }
-        .mandala-bg { position: absolute; top: 50%; left: 50%; width: 500px; height: 500px; margin-top: -250px; margin-left: -250px; opacity: 0.1; pointer-events: none; animation: spin 100s linear infinite; z-index: 1; }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .sidebar-inner { height: 100%; overflow-y: auto; padding: 40px 20px; position: relative; z-index: 10; }
-        .sidebar-close-btn { position: absolute; top: 15px; right: 15px; width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: #000; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; border: 2px solid #000; box-shadow: 0 0 20px var(--primary); }
-        
-        .accordion-btn { width: 100%; padding: 18px 22px; margin-bottom: 10px; border-radius: 18px; background: rgba(0, 0, 0, 0.5); font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: #fff; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255, 215, 0, 0.2); }
-        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
-        .side-sub-link { display: block; padding: 14px 35px; font-size: 0.8rem; color: #eee; background: rgba(0,0,0,0.4); border-left: 2px solid rgba(255, 215, 0, 0.15); text-decoration: none; border-bottom: 1px solid rgba(255,215,0,0.05); }
-
-        /* --- GOLDEN DOCK --- */
-        .iphone-dock-wrapper { 
-            position: fixed; bottom: var(--footer-offset); 
-            left: 0; width: 100%; display: flex; justify-content: center; z-index: 2000; padding: 0 15px; 
-        }
-        .iphone-dock { width: 100%; max-width: 500px; height: var(--footer-height); background: rgba(5, 4, 1, 0.98); backdrop-filter: blur(35px); border-radius: 28px; border: 2px solid rgba(255, 215, 0, 0.2); display: flex; justify-content: space-around; align-items: center; box-shadow: 0 15px 40px rgba(0,0,0,0.9); }
-        
-        .nav-link { color: #8892a0; font-size: 0.55rem; font-weight: 800; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; transition: 0.3s; padding: 6px; }
-        .nav-link i { font-size: 1.0rem; margin-bottom: 2px; }
-        .nav-link.active { color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
-        
-        .dock-fab { width: 60px; height: 60px; background: radial-gradient(circle at center, #fff 0%, var(--primary) 70%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-size: 1.5rem; transform: translateY(-20px); border: 4px solid #050401; box-shadow: 0 12px 25px rgba(0,0,0,0.8), 0 0 35px rgba(var(--primary-rgb), 0.6); }
-
-        /* ================ ORIGINAL roll.html STYLES ================ */
         * {
             margin: 0;
             padding: 0;
@@ -686,104 +606,22 @@
             -webkit-backdrop-filter: blur(10px);
             border-radius: 16px;
         }
-
-        * { font-style: normal !important; }
-        h1, h2, h3, span, p, a, button { font-weight: 900 !important; }
     </style>
 </head>
-<body>
-    
-    <!-- FIXED BACKGROUND (from main.html) -->
-    <div id="fixed-media-background"></div>
-
-    <!-- FLOATING HEADER (from main.html) -->
-    <header class="iphone-header">
-        <div class="flex items-center gap-3">
-            <img src="blessingsssl.png" alt="Icon" class="w-9 h-9 rounded-xl border-2 border-primary shadow-lg">
-            <img src="blessingsss.png" alt="Blessingsss" class="h-[18px]">
-        </div>
-        <button id="menuBtn" class="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary text-xl shadow-lg">
-            <i class="fas fa-bars-staggered"></i>
-        </button>
-    </header>
-
-    <!-- SIDEBAR (from main.html) -->
-    <div id="sidebar" class="mobile-panel">
-        <div class="sidebar-bg-image"></div>
-        <svg class="mandala-bg" viewBox="0 0 100 100" fill="none" stroke="currentColor">
-            <circle cx="50" cy="50" r="45" stroke-width="0.2" stroke-dasharray="1 1" />
-            <path d="M50 0 L53 47 L100 50 L53 53 L50 100 L47 53 L0 50 L47 47 Z" stroke-width="0.2" />
-        </svg>
-
-        <div class="sidebar-inner">
-            <div class="sidebar-close-btn" id="closeSidebar"><i class="fas fa-times"></i></div>
-            <div class="text-center mb-8 border-b border-primary/20 pb-6">
-                <img src="blessingsssl.png" alt="Icon" class="w-10 h-10 mx-auto rounded-full border border-primary mb-3">
-                <img src="blessingsss.png" alt="Blessingsss" class="h-[20px] mx-auto">
-                <p class="text-[9px] text-gray-400 uppercase tracking-[4px] mt-3">Your Mehndi Partner</p>
-            </div>
-
-            <div class="space-y-4 relative z-10">
-                <div>
-                    <button class="accordion-btn" onclick="toggleAccordion('side-bridal')">
-                        <span>BRIDAL STUDIO</span> <i class="fas fa-chevron-down text-[10px]" id="icon-side-bridal"></i>
-                    </button>
-                    <div id="side-bridal" class="accordion-content">
-                        <a href="bridal_traditional.html" class="side-sub-link">Royal Traditional</a>
-                        <a href="bridal_arabic.html" class="side-sub-link">Modern Arabic</a>
-                        <a href="bridal_indowestern.html" class="side-sub-link">Fusion Luxe</a>
-                    </div>
-                </div>
-
-                <div>
-                    <button class="accordion-btn" onclick="toggleAccordion('side-festive')">
-                        <span>FESTIVE ART</span> <i class="fas fa-chevron-down text-[10px]" id="icon-side-festive"></i>
-                    </button>
-                    <div id="side-festive" class="accordion-content">
-                        <a href="festive_arabic.html" class="side-sub-link">Festive Arabic Art</a>
-                        <a href="festive_indian.html" class="side-sub-link">Indian Festive Best</a>
-                        <a href="festive_indoarabic.html" class="side-sub-link">Indo-Arabic Fusion</a>
-                        <a href="festive_geometric.html" class="side-sub-link">Moroccan Trends</a>
-                        <a href="festive_minimal_art.html" class="side-sub-link">Minimalist Elegance</a>
-                    </div>
-                </div>
-
-                <a href="custom_mehndi.html" class="accordion-btn"><span>CUSTOM CONCEPT</span><i class="fas fa-arrow-right text-[10px]"></i></a>
-                <a href="meet_me.html" class="accordion-btn"><span>MEET MASTER</span><i class="fas fa-arrow-right text-[10px]"></i></a>
-
-                <div>
-                    <button class="accordion-btn" onclick="toggleAccordion('side-gallery')">
-                        <span>GALLERY</span> <i class="fas fa-chevron-down text-[10px]" id="icon-side-gallery"></i>
-                    </button>
-                    <div id="side-gallery" class="accordion-content">
-                        <a href="bridal_traditional.html" class="side-sub-link">Royal Traditional</a>
-                        <a href="bridal_arabic.html" class="side-sub-link">Modern Arabic</a>
-                        <a href="bridal_indowestern.html" class="side-sub-link">Fusion Luxe</a>
-                        <a href="festive_arabic.html" class="side-sub-link">Festive Arabic Art</a>
-                        <a href="festive_indian.html" class="side-sub-link">Indian Festive Best</a>
-                        <a href="festive_indioarabic.html" class="side-sub-link">Indo-Arabic Fusion</a>
-                        <a href="festive_geometric.html" class="side-sub-link">Moroccan Trends</a>
-                        <a href="festive_minimal_art.html" class="side-sub-link">Minimalist Elegance</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- BACKGROUND LAYERS for Kegel App -->
+<body class="flex items-center justify-center p-0">
+    <!-- Background Layers - All with 70% opacity -->
     <div class="background-layer"></div>
     <div class="quiz-background" id="quiz-bg"></div>
     <div class="analysis-background hidden" id="analysis-bg"></div>
     <div class="exercise-background hidden" id="exercise-bg"></div>
-
-    <!-- MAIN CONTENT - ORIGINAL roll.html CONTENT AS IT IS -->
+    
     <div class="w-full min-h-screen safe-area-top safe-area-bottom flex items-center justify-center px-3 text-on-bg">
         <div class="w-full max-w-md main-container rounded-xl p-4 fade-in">
             
             <!-- Header -->
             <header class="text-center mb-6">
                 <div class="flex justify-center mb-4">
-                    <!-- Logo removed as per original -->
+                    
                 </div>
                 <h1 class="text-2xl font-black text-3d-gold mb-2 tracking-tight">S.T.I-KEGAL</h1>
                 <p class="text-xs text-gold-light/80 font-bold uppercase tracking-wider text-3d-secondary">PELVIC HEALTH PARTNER</p>
@@ -891,19 +729,6 @@
         </div>
     </div>
 
-    <!-- DOCK NAV (from main.html) -->
-    <div class="iphone-dock-wrapper">
-        <nav class="iphone-dock">
-            <a href="javascript:void(0)" class="nav-link" onclick="handleNavClick(this, 'bridal')"><i class="fas fa-wand-magic-sparkles"></i><span>Studio</span></a>
-            <a href="javascript:void(0)" class="nav-link" onclick="handleNavClick(this, 'festive')"><i class="fas fa-fire"></i><span>Festive</span></a>
-            
-            <a href="main.html" class="dock-fab"><i class="fas fa-house-chimney"></i></a>
-            
-            <a href="javascript:void(0)" class="nav-link" onclick="handleNavClick(this, 'gallery')"><i class="fas fa-images"></i><span>Gallery</span></a>
-            <a href="javascript:void(0)" class="nav-link" onclick="handleNavClick(this)"><i class="fas fa-user-circle"></i><span>Profile</span></a>
-        </nav>
-    </div>
-
     <!-- Question Popup Modal -->
     <div id="question-popup-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3">
         <!-- Question Popup Background -->
@@ -987,7 +812,6 @@
         </div>
     </div>
 
-<!-- ================ ORIGINAL roll.html SCRIPT AS IT IS ================ -->
 <script>
     // ==================== STATE MANAGEMENT ====================
     let appState = {
@@ -1010,9 +834,9 @@
         dayExercises: {}
     };
 
-    // ==================== COMPLETE 60+ EXERCISE LIBRARY ====================
+    // ==================== COMPLETE 70+ EXERCISE LIBRARY (EXPANDED) ====================
     const exerciseLibrary = {
-        // 1️⃣ BASIC / FOUNDATIONAL KEGELS (10 exercises)
+        // 1️⃣ BASIC / FOUNDATIONAL KEGELS (12 exercises)
         foundational: [
             {
                 id: "F1",
@@ -1025,7 +849,8 @@
                 reps: "10 holds × 5s",
                 videoCode: "9X5_U4D1uDk",
                 benefit: "Identifies pelvic floor muscles. Essential starting point.",
-                solution: "Teaches muscle awareness. Foundation for all exercises."
+                solution: "Teaches muscle awareness. Foundation for all exercises.",
+                gender: "both"
             },
             {
                 id: "F2",
@@ -1038,7 +863,8 @@
                 reps: "8 progressions",
                 videoCode: "fD3XitN08nQ",
                 benefit: "Builds endurance gradually. Prevents fatigue.",
-                solution: "Progressive overload principle for safe strength building."
+                solution: "Progressive overload principle for safe strength building.",
+                gender: "both"
             },
             {
                 id: "F3",
@@ -1051,7 +877,8 @@
                 reps: "20 quick flicks",
                 videoCode: "ub3X7mC-7i4",
                 benefit: "Improves reaction time. Good for urge control.",
-                solution: "Trains fast-twitch muscle fibers for quick response."
+                solution: "Trains fast-twitch muscle fibers for quick response.",
+                gender: "both"
             },
             {
                 id: "F4",
@@ -1064,7 +891,8 @@
                 reps: "15 pulse cycles",
                 videoCode: "bQ8p8pL2eH4",
                 benefit: "Enhances muscle tone. Improves blood circulation.",
-                solution: "Pumping action increases blood flow and oxygenation."
+                solution: "Pumping action increases blood flow and oxygenation.",
+                gender: "both"
             },
             {
                 id: "F5",
@@ -1077,7 +905,8 @@
                 reps: "25 micro reps",
                 videoCode: "zQpGZfWqWw4",
                 benefit: "Precision training. Isolates specific fibers.",
-                solution: "Develops fine motor control in pelvic muscles."
+                solution: "Develops fine motor control in pelvic muscles.",
+                gender: "both"
             },
             {
                 id: "F6",
@@ -1090,7 +919,8 @@
                 reps: "6 × 15s holds",
                 videoCode: "Lx7p6Y2qJq4",
                 benefit: "Builds endurance capacity. Increases stamina.",
-                solution: "Extended holds build type-1 muscle fibers for endurance."
+                solution: "Extended holds build type-1 muscle fibers for endurance.",
+                gender: "both"
             },
             {
                 id: "F7",
@@ -1103,7 +933,8 @@
                 reps: "3 sets progressive",
                 videoCode: "mN3p7q4VvT4",
                 benefit: "Structured progression. Measurable improvement.",
-                solution: "Step-by-step progression prevents plateaus."
+                solution: "Step-by-step progression prevents plateaus.",
+                gender: "both"
             },
             {
                 id: "F8",
@@ -1116,7 +947,8 @@
                 reps: "30 rapid reps",
                 videoCode: "pQrR7qRqRq4",
                 benefit: "Speed development. Muscle reactivity.",
-                solution: "Improves neural drive to pelvic muscles."
+                solution: "Improves neural drive to pelvic muscles.",
+                gender: "both"
             },
             {
                 id: "F9",
@@ -1129,7 +961,8 @@
                 reps: "10 awareness reps",
                 videoCode: "qWrR7qRqRq4",
                 benefit: "Mind-muscle connection. Sensory awareness.",
-                solution: "Critical for proper technique and progress."
+                solution: "Critical for proper technique and progress.",
+                gender: "both"
             },
             {
                 id: "F10",
@@ -1142,11 +975,272 @@
                 reps: "20 rhythm reps",
                 videoCode: "rWrR7qRqRq4",
                 benefit: "Consistent timing. Predictable patterns.",
-                solution: "Establishes consistent contraction rhythm."
+                solution: "Establishes consistent contraction rhythm.",
+                gender: "both"
+            },
+            {
+                id: "F11",
+                name: "Morning Activation Routine",
+                description: "Wake up your pelvic muscles",
+                category: "foundational",
+                subcategory: "morning",
+                difficulty: "beginner",
+                duration: "4:00",
+                reps: "Morning activation set",
+                videoCode: "sWrR7qRqRq4",
+                benefit: "Starts your day with pelvic awareness.",
+                solution: "Daily routine for consistent practice.",
+                gender: "both"
+            },
+            {
+                id: "F12",
+                name: "Evening Relaxation Set",
+                description: "Gentle evening pelvic routine",
+                category: "foundational",
+                subcategory: "evening",
+                difficulty: "beginner",
+                duration: "3:45",
+                reps: "Evening relaxation reps",
+                videoCode: "tWrR7qRqRq4",
+                benefit: "Promotes relaxation and recovery.",
+                solution: "Ends your day with pelvic mindfulness.",
+                gender: "both"
             }
         ],
 
-        // 2️⃣ STRENGTH-FOCUSED KEGELS (8 exercises)
+        // 2️⃣ MALE-SPECIFIC EXERCISES (8 exercises)
+        male_specific: [
+            {
+                id: "M1",
+                name: "PC Muscle Isolation (Male)",
+                description: "Specifically targets male pelvic floor between anus and scrotum",
+                category: "male_specific",
+                subcategory: "anatomy",
+                difficulty: "beginner",
+                duration: "3:30",
+                reps: "10 isolation reps",
+                videoCode: "uWrR7qRqRq4",
+                benefit: "Correct muscle identification. Precise targeting.",
+                solution: "Teaches male-specific pelvic muscle location.",
+                gender: "male"
+            },
+            {
+                id: "M2",
+                name: "Bulbocavernosus Activation",
+                description: "Targets erection-related muscles",
+                category: "male_specific",
+                subcategory: "erection",
+                difficulty: "intermediate",
+                duration: "4:15",
+                reps: "8 bulbocavernosus reps",
+                videoCode: "vWrR7qRqRq4",
+                benefit: "Directly improves erection quality.",
+                solution: "Strengthens muscles responsible for erections.",
+                gender: "male"
+            },
+            {
+                id: "M3",
+                name: "Prostate Massage Kegel",
+                description: "Gentle prostate stimulation technique",
+                category: "male_specific",
+                subcategory: "prostate",
+                difficulty: "intermediate",
+                duration: "4:30",
+                reps: "6 prostate massage reps",
+                videoCode: "wWrR7qRqRq4",
+                benefit: "Prostate health improvement. Circulation.",
+                solution: "Promotes prostate health through exercise.",
+                gender: "male"
+            },
+            {
+                id: "M4",
+                name: "Male Stress Control",
+                description: "Control during physical stress",
+                category: "male_specific",
+                subcategory: "stress",
+                difficulty: "intermediate",
+                duration: "3:45",
+                reps: "8 stress control reps",
+                videoCode: "xWrR7qRqRq4",
+                benefit: "Prevents leakage during heavy lifting.",
+                solution: "Trains control during physical exertion.",
+                gender: "male"
+            },
+            {
+                id: "M5",
+                name: "Male Post-Micturition Dribble",
+                description: "Prevents after-urination dribbling",
+                category: "male_specific",
+                subcategory: "dribble",
+                difficulty: "beginner",
+                duration: "3:15",
+                reps: "10 dribble prevention reps",
+                videoCode: "yWrR7qRqRq4",
+                benefit: "Eliminates post-urination dribble.",
+                solution: "Specifically targets post-void dribbling.",
+                gender: "male"
+            },
+            {
+                id: "M6",
+                name: "Male Core-Pelvic Connection",
+                description: "Connects pelvic floor with core muscles",
+                category: "male_specific",
+                subcategory: "core",
+                difficulty: "intermediate",
+                duration: "4:45",
+                reps: "6 connection reps",
+                videoCode: "zWrR7qRqRq4",
+                benefit: "Whole-body integration. Better stability.",
+                solution: "Integrates pelvic floor with entire core.",
+                gender: "male"
+            },
+            {
+                id: "M7",
+                name: "Male Athletic Pelvic Control",
+                description: "For sports and physical activities",
+                category: "male_specific",
+                subcategory: "athletic",
+                difficulty: "advanced",
+                duration: "5:15",
+                reps: "8 athletic control reps",
+                videoCode: "aXrR7qRqRq4",
+                benefit: "Sports performance. Athletic stability.",
+                solution: "Enhances performance in sports activities.",
+                gender: "male"
+            },
+            {
+                id: "M8",
+                name: "Male Age-Related Maintenance",
+                description: "Pelvic health maintenance with aging",
+                category: "male_specific",
+                subcategory: "aging",
+                difficulty: "beginner",
+                duration: "4:30",
+                reps: "10 maintenance reps",
+                videoCode: "bXrR7qRqRq4",
+                benefit: "Age-proof your pelvic health.",
+                solution: "Maintains pelvic function as you age.",
+                gender: "male"
+            }
+        ],
+
+        // 3️⃣ FEMALE-SPECIFIC EXERCISES (8 exercises)
+        female_specific: [
+            {
+                id: "FEM1",
+                name: "Vaginal Muscle Isolation (Female)",
+                description: "Specifically targets vaginal canal muscles",
+                category: "female_specific",
+                subcategory: "anatomy",
+                difficulty: "beginner",
+                duration: "3:45",
+                reps: "10 vaginal isolation reps",
+                videoCode: "cXrR7qRqRq4",
+                benefit: "Correct vaginal muscle identification.",
+                solution: "Teaches female-specific pelvic muscle location.",
+                gender: "female"
+            },
+            {
+                id: "FEM2",
+                name: "Three Layer Contraction",
+                description: "Engages superficial, middle, and deep layers",
+                category: "female_specific",
+                subcategory: "layers",
+                difficulty: "intermediate",
+                duration: "4:20",
+                reps: "6 three-layer reps",
+                videoCode: "dXrR7qRqRq4",
+                benefit: "Complete vaginal muscle engagement.",
+                solution: "Trains all layers of vaginal muscles.",
+                gender: "female"
+            },
+            {
+                id: "FEM3",
+                name: "Urethral Sphincter Focus",
+                description: "Targets urine control specifically",
+                category: "female_specific",
+                subcategory: "urethral",
+                difficulty: "intermediate",
+                duration: "3:55",
+                reps: "8 urethral focus reps",
+                videoCode: "eXrR7qRqRq4",
+                benefit: "Direct urinary control improvement.",
+                solution: "Specifically strengthens urethral sphincter.",
+                gender: "female"
+            },
+            {
+                id: "FEM4",
+                name: "Postpartum Recovery Series",
+                description: "Gentle recovery after childbirth",
+                category: "female_specific",
+                subcategory: "postpartum",
+                difficulty: "beginner",
+                duration: "5:00",
+                reps: "8 postpartum recovery reps",
+                videoCode: "fXrR7qRqRq4",
+                benefit: "Safe postpartum recovery. Tissue healing.",
+                solution: "Specifically designed for post-delivery recovery.",
+                gender: "female"
+            },
+            {
+                id: "FEM5",
+                name: "Menopause Support Kegels",
+                description: "Addresses hormonal changes",
+                category: "female_specific",
+                subcategory: "menopause",
+                difficulty: "beginner",
+                duration: "4:15",
+                reps: "10 menopause support reps",
+                videoCode: "gXrR7qRqRq4",
+                benefit: "Supports pelvic health during menopause.",
+                solution: "Addresses hormonal-related pelvic changes.",
+                gender: "female"
+            },
+            {
+                id: "FEM6",
+                name: "C-Section Recovery Protocol",
+                description: "Post-C-section pelvic recovery",
+                category: "female_specific",
+                subcategory: "c-section",
+                difficulty: "beginner",
+                duration: "4:45",
+                reps: "8 C-section recovery reps",
+                videoCode: "hXrR7qRqRq4",
+                benefit: "Safe recovery after C-section.",
+                solution: "Gentle approach after surgical delivery.",
+                gender: "female"
+            },
+            {
+                id: "FEM7",
+                name: "Menstrual Cycle Adaptation",
+                description: "Adjusts to menstrual cycle changes",
+                category: "female_specific",
+                subcategory: "menstrual",
+                difficulty: "beginner",
+                duration: "3:30",
+                reps: "10 menstrual adaptation reps",
+                videoCode: "iXrR7qRqRq4",
+                benefit: "Cycle-aware pelvic training.",
+                solution: "Adapts to hormonal fluctuations.",
+                gender: "female"
+            },
+            {
+                id: "FEM8",
+                name: "Female Core-Pelvic Harmony",
+                description: "Connects pelvic floor with female core",
+                category: "female_specific",
+                subcategory: "core",
+                difficulty: "intermediate",
+                duration: "4:30",
+                reps: "6 harmony reps",
+                videoCode: "jXrR7qRqRq4",
+                benefit: "Female-specific core integration.",
+                solution: "Integrates with female abdominal anatomy.",
+                gender: "female"
+            }
+        ],
+
+        // 4️⃣ STRENGTH-FOCUSED KEGELS (10 exercises)
         strength: [
             {
                 id: "S1",
@@ -1157,9 +1251,10 @@
                 difficulty: "intermediate",
                 duration: "3:45",
                 reps: "8 max squeezes",
-                videoCode: "sWrR7qRqRq4",
+                videoCode: "kXrR7qRqRq4",
                 benefit: "Maximum strength development. Peak power.",
-                solution: "Builds type-2 muscle fibers for strength."
+                solution: "Builds type-2 muscle fibers for strength.",
+                gender: "both"
             },
             {
                 id: "S2",
@@ -1170,9 +1265,10 @@
                 difficulty: "intermediate",
                 duration: "4:20",
                 reps: "5 peak holds",
-                videoCode: "tWrR7qRqRq4",
+                videoCode: "lXrR7qRqRq4",
                 benefit: "Sustained strength. Endurance at peak.",
-                solution: "Improves ability to maintain maximum contraction."
+                solution: "Improves ability to maintain maximum contraction.",
+                gender: "both"
             },
             {
                 id: "S3",
@@ -1183,9 +1279,10 @@
                 difficulty: "intermediate",
                 duration: "3:30",
                 reps: "10 explosive reps",
-                videoCode: "uWrR7qRqRq4",
+                videoCode: "mXrR7qRqRq4",
                 benefit: "Power development. Fast strength.",
-                solution: "Trains explosive power for sudden needs."
+                solution: "Trains explosive power for sudden needs.",
+                gender: "both"
             },
             {
                 id: "S4",
@@ -1196,9 +1293,10 @@
                 difficulty: "intermediate",
                 duration: "4:45",
                 reps: "3 sets of 10",
-                videoCode: "vWrR7qRqRq4",
+                videoCode: "nXrR7qRqRq4",
                 benefit: "Progressive resistance. Measurable strength gains.",
-                solution: "Adds external resistance for strength progression."
+                solution: "Adds external resistance for strength progression.",
+                gender: "female"
             },
             {
                 id: "S5",
@@ -1209,12 +1307,27 @@
                 difficulty: "advanced",
                 duration: "5:10",
                 reps: "8 weighted reps",
-                videoCode: "wWrR7qRqRq4",
+                videoCode: "oXrR7qRqRq4",
                 benefit: "Targeted strength. Measurable progress.",
-                solution: "Specifically for vaginal muscle strengthening."
+                solution: "Specifically for vaginal muscle strengthening.",
+                gender: "female"
             },
             {
                 id: "S6",
+                name: "Male Weighted Resistance",
+                description: "Resistance training for men",
+                category: "strength",
+                subcategory: "resistance",
+                difficulty: "advanced",
+                duration: "4:45",
+                reps: "8 weighted reps",
+                videoCode: "pXrR7qRqRq4",
+                benefit: "Male-specific resistance training.",
+                solution: "Builds strength with progressive resistance.",
+                gender: "male"
+            },
+            {
+                id: "S7",
                 name: "Progressive Resistance",
                 description: "Increasing resistance over time",
                 category: "strength",
@@ -1222,12 +1335,13 @@
                 difficulty: "intermediate",
                 duration: "4:30",
                 reps: "Progressive sets",
-                videoCode: "xWrR7qRqRq4",
+                videoCode: "qXrR7qRqRq4",
                 benefit: "Continuous strength gains. Avoids plateaus.",
-                solution: "Systematic overload principle application."
+                solution: "Systematic overload principle application.",
+                gender: "both"
             },
             {
-                id: "S7",
+                id: "S8",
                 name: "Strength Endurance Combo",
                 description: "Combines strength and endurance",
                 category: "strength",
@@ -1235,12 +1349,13 @@
                 difficulty: "advanced",
                 duration: "5:30",
                 reps: "6 combo reps",
-                videoCode: "yWrR7qRqRq4",
+                videoCode: "rXrR7qRqRq4",
                 benefit: "Balanced development. Functional strength.",
-                solution: "Combines strength and endurance training."
+                solution: "Combines strength and endurance training.",
+                gender: "both"
             },
             {
-                id: "S8",
+                id: "S9",
                 name: "Isometric Strength Hold",
                 description: "Static hold at 80% maximum",
                 category: "strength",
@@ -1248,13 +1363,28 @@
                 difficulty: "intermediate",
                 duration: "4:00",
                 reps: "5 isometric holds",
-                videoCode: "zWrR7qRqRq4",
+                videoCode: "sXrR7qRqRq4",
                 benefit: "Sustained strength. Muscle density.",
-                solution: "Builds isometric strength capacity."
+                solution: "Builds isometric strength capacity.",
+                gender: "both"
+            },
+            {
+                id: "S10",
+                name: "Pyramid Strength Sets",
+                description: "Pyramid-style strength training",
+                category: "strength",
+                subcategory: "max-contraction",
+                difficulty: "advanced",
+                duration: "5:15",
+                reps: "Pyramid sets",
+                videoCode: "tXrR7qRqRq4",
+                benefit: "Comprehensive strength development.",
+                solution: "Pyramid method for maximal strength gains.",
+                gender: "both"
             }
         ],
 
-        // 3️⃣ CONTROL & COORDINATION KEGELS (6 exercises)
+        // 5️⃣ CONTROL & COORDINATION KEGELS (8 exercises)
         control: [
             {
                 id: "C1",
@@ -1265,9 +1395,10 @@
                 difficulty: "intermediate",
                 duration: "4:10",
                 reps: "6 full waves",
-                videoCode: "aXrR7qRqRq4",
+                videoCode: "uXrR7qRqRq4",
                 benefit: "Precise intensity control. Fine motor skills.",
-                solution: "Teaches graded muscle contraction control."
+                solution: "Teaches graded muscle contraction control.",
+                gender: "both"
             },
             {
                 id: "C2",
@@ -1278,9 +1409,10 @@
                 difficulty: "intermediate",
                 duration: "4:30",
                 reps: "8 sequences",
-                videoCode: "bXrR7qRqRq4",
+                videoCode: "vXrR7qRqRq4",
                 benefit: "Muscle isolation. Selective control.",
-                solution: "Trains separate control of different pelvic areas."
+                solution: "Trains separate control of different pelvic areas.",
+                gender: "both"
             },
             {
                 id: "C3",
@@ -1291,9 +1423,10 @@
                 difficulty: "advanced",
                 duration: "4:45",
                 reps: "6 rolling waves",
-                videoCode: "cXrR7qRqRq4",
+                videoCode: "wXrR7qRqRq4",
                 benefit: "Complete muscle control. 360° engagement.",
-                solution: "Comprehensive pelvic muscle coordination."
+                solution: "Comprehensive pelvic muscle coordination.",
+                gender: "both"
             },
             {
                 id: "C4",
@@ -1304,9 +1437,10 @@
                 difficulty: "intermediate",
                 duration: "3:45",
                 reps: "12 precision reps",
-                videoCode: "dXrR7qRqRq4",
+                videoCode: "xXrR7qRqRq4",
                 benefit: "Immediate control. Quick response.",
-                solution: "Trains rapid muscle activation/deactivation."
+                solution: "Trains rapid muscle activation/deactivation.",
+                gender: "both"
             },
             {
                 id: "C5",
@@ -1317,9 +1451,10 @@
                 difficulty: "intermediate",
                 duration: "4:15",
                 reps: "8 interruptions",
-                videoCode: "eXrR7qRqRq4",
+                videoCode: "yXrR7qRqRq4",
                 benefit: "Practical bladder control. Real-world application.",
-                solution: "Direct training for urinary control."
+                solution: "Direct training for urinary control.",
+                gender: "both"
             },
             {
                 id: "C6",
@@ -1330,13 +1465,42 @@
                 difficulty: "advanced",
                 duration: "5:00",
                 reps: "5 patterns",
-                videoCode: "fXrR7qRqRq4",
+                videoCode: "zXrR7qRqRq4",
                 benefit: "Advanced coordination. Master-level control.",
-                solution: "Develops sophisticated muscle coordination."
+                solution: "Develops sophisticated muscle coordination.",
+                gender: "both"
+            },
+            {
+                id: "C7",
+                name: "Rhythmic Breathing Control",
+                description: "Coordinates with breathing patterns",
+                category: "control",
+                subcategory: "breath-control",
+                difficulty: "intermediate",
+                duration: "4:30",
+                reps: "10 breath-control reps",
+                videoCode: "aYrR7qRqRq4",
+                benefit: "Breath-muscle synchronization.",
+                solution: "Integrates breathing with pelvic control.",
+                gender: "both"
+            },
+            {
+                id: "C8",
+                name: "Variable Speed Control",
+                description: "Different contraction speeds",
+                category: "control",
+                subcategory: "speed",
+                difficulty: "intermediate",
+                duration: "4:15",
+                reps: "8 variable speed reps",
+                videoCode: "bYrR7qRqRq4",
+                benefit: "Speed control mastery.",
+                solution: "Trains control at different contraction speeds.",
+                gender: "both"
             }
         ],
 
-        // 4️⃣ FUNCTIONAL / DAILY-LIFE KEGELS (6 exercises)
+        // 6️⃣ FUNCTIONAL / DAILY-LIFE KEGELS (8 exercises)
         functional: [
             {
                 id: "FU1",
@@ -1347,9 +1511,10 @@
                 difficulty: "beginner",
                 duration: "3:30",
                 reps: "During 5-min walk",
-                videoCode: "gXrR7qRqRq4",
+                videoCode: "cYrR7qRqRq4",
                 benefit: "Real-world application. Daily life integration.",
-                solution: "Trains pelvic control during movement."
+                solution: "Trains pelvic control during movement.",
+                gender: "both"
             },
             {
                 id: "FU2",
@@ -1360,9 +1525,10 @@
                 difficulty: "beginner",
                 duration: "3:15",
                 reps: "10 sitting reps",
-                videoCode: "hXrR7qRqRq4",
+                videoCode: "dYrR7qRqRq4",
                 benefit: "Posture correction. Desk job solution.",
-                solution: "Combines pelvic health with posture correction."
+                solution: "Combines pelvic health with posture correction.",
+                gender: "both"
             },
             {
                 id: "FU3",
@@ -1373,9 +1539,10 @@
                 difficulty: "beginner",
                 duration: "3:00",
                 reps: "8 standing reps",
-                videoCode: "iXrR7qRqRq4",
+                videoCode: "eYrR7qRqRq4",
                 benefit: "Standing stability. Core integration.",
-                solution: "Improves stability during standing activities."
+                solution: "Improves stability during standing activities.",
+                gender: "both"
             },
             {
                 id: "FU4",
@@ -1386,9 +1553,10 @@
                 difficulty: "beginner",
                 duration: "2:45",
                 reps: "10 reflex reps",
-                videoCode: "jXrR7qRqRq4",
+                videoCode: "fYrR7qRqRq4",
                 benefit: "Leakage prevention. Stress incontinence solution.",
-                solution: "Trains protective reflex for cough/sneeze."
+                solution: "Trains protective reflex for cough/sneeze.",
+                gender: "both"
             },
             {
                 id: "FU5",
@@ -1399,9 +1567,10 @@
                 difficulty: "intermediate",
                 duration: "3:20",
                 reps: "8 laugh reps",
-                videoCode: "kXrR7qRqRq4",
+                videoCode: "gYrR7qRqRq4",
                 benefit: "Social confidence. Laughter control.",
-                solution: "Prevents leakage during laughter."
+                solution: "Prevents leakage during laughter.",
+                gender: "both"
             },
             {
                 id: "FU6",
@@ -1412,13 +1581,42 @@
                 difficulty: "intermediate",
                 duration: "3:45",
                 reps: "6 lift reps",
-                videoCode: "lXrR7qRqRq4",
+                videoCode: "hYrR7qRqRq4",
                 benefit: "Heavy load protection. Core stability.",
-                solution: "Protects pelvic floor during heavy lifting."
+                solution: "Protects pelvic floor during heavy lifting.",
+                gender: "both"
+            },
+            {
+                id: "FU7",
+                name: "Car Driving Support",
+                description: "Pelvic engagement while driving",
+                category: "functional",
+                subcategory: "activity-linked",
+                difficulty: "beginner",
+                duration: "3:30",
+                reps: "During drive",
+                videoCode: "iYrR7qRqRq4",
+                benefit: "Commute-time training. Practical application.",
+                solution: "Utilizes driving time for pelvic training.",
+                gender: "both"
+            },
+            {
+                id: "FU8",
+                name: "Stair Climbing Integration",
+                description: "Engage during stair climbing",
+                category: "functional",
+                subcategory: "activity-linked",
+                difficulty: "intermediate",
+                duration: "4:00",
+                reps: "Stair climbing reps",
+                videoCode: "jYrR7qRqRq4",
+                benefit: "Exercise integration. Daily activity.",
+                solution: "Combines pelvic training with stair climbing.",
+                gender: "both"
             }
         ],
 
-        // 5️⃣ BREATHING-INTEGRATED KEGELS (5 exercises)
+        // 7️⃣ BREATHING-INTEGRATED KEGELS (6 exercises)
         breathing: [
             {
                 id: "B1",
@@ -1429,9 +1627,10 @@
                 difficulty: "intermediate",
                 duration: "4:15",
                 reps: "10 breath cycles",
-                videoCode: "mXrR7qRqRq4",
+                videoCode: "kYrR7qRqRq4",
                 benefit: "Breath-muscle harmony. Stress reduction.",
-                solution: "Integrates pelvic health with breathing patterns."
+                solution: "Integrates pelvic health with breathing patterns.",
+                gender: "both"
             },
             {
                 id: "B2",
@@ -1442,9 +1641,10 @@
                 difficulty: "beginner",
                 duration: "3:30",
                 reps: "12 natural cycles",
-                videoCode: "nXrR7qRqRq4",
+                videoCode: "lYrR7qRqRq4",
                 benefit: "Automatic integration. Relaxation response.",
-                solution: "Makes pelvic exercises natural and automatic."
+                solution: "Makes pelvic exercises natural and automatic.",
+                gender: "both"
             },
             {
                 id: "B3",
@@ -1455,9 +1655,10 @@
                 difficulty: "advanced",
                 duration: "5:00",
                 reps: "8 yogic holds",
-                videoCode: "oXrR7qRqRq4",
+                videoCode: "mYrR7qRqRq4",
                 benefit: "Energy control. Deep mind-body connection.",
-                solution: "Traditional yogic technique for pelvic health."
+                solution: "Traditional yogic technique for pelvic health.",
+                gender: "both"
             },
             {
                 id: "B4",
@@ -1468,9 +1669,10 @@
                 difficulty: "advanced",
                 duration: "4:45",
                 reps: "6 energy flows",
-                videoCode: "pXrR7qRqRq4",
+                videoCode: "nYrR7qRqRq4",
                 benefit: "Energetic awareness. Vitality enhancement.",
-                solution: "Combines physical and energetic aspects."
+                solution: "Combines physical and energetic aspects.",
+                gender: "both"
             },
             {
                 id: "B5",
@@ -1481,13 +1683,28 @@
                 difficulty: "intermediate",
                 duration: "4:30",
                 reps: "5 breathing patterns",
-                videoCode: "qXrR7qRqRq4",
+                videoCode: "oYrR7qRqRq4",
                 benefit: "Anxiety reduction. Deep relaxation.",
-                solution: "Therapeutic breathing for pelvic relaxation."
+                solution: "Therapeutic breathing for pelvic relaxation.",
+                gender: "both"
+            },
+            {
+                id: "B6",
+                name: "Box Breathing Integration",
+                description: "Box breathing with kegels",
+                category: "breathing",
+                subcategory: "breath-sync",
+                difficulty: "intermediate",
+                duration: "4:15",
+                reps: "8 box breathing reps",
+                videoCode: "pYrR7qRqRq4",
+                benefit: "Stress management. Focus enhancement.",
+                solution: "Combines box breathing with pelvic training.",
+                gender: "both"
             }
         ],
 
-        // 6️⃣ SEXUAL PERFORMANCE KEGELS (6 exercises)
+        // 8️⃣ SEXUAL PERFORMANCE KEGELS (8 exercises)
         sexual: [
             {
                 id: "SP1",
@@ -1498,9 +1715,10 @@
                 difficulty: "intermediate",
                 duration: "4:00",
                 reps: "10 erectile reps",
-                videoCode: "rXrR7qRqRq4",
+                videoCode: "qYrR7qRqRq4",
                 benefit: "Improved erection quality. Enhanced stiffness.",
-                solution: "Specifically targets erectile muscle groups."
+                solution: "Specifically targets erectile muscle groups.",
+                gender: "male"
             },
             {
                 id: "SP2",
@@ -1511,9 +1729,10 @@
                 difficulty: "advanced",
                 duration: "4:30",
                 reps: "8 control reps",
-                videoCode: "sXrR7qRqRq4",
+                videoCode: "rYrR7qRqRq4",
                 benefit: "Extended duration. Better control.",
-                solution: "Trains control over ejaculation reflex."
+                solution: "Trains control over ejaculation reflex.",
+                gender: "male"
             },
             {
                 id: "SP3",
@@ -1524,9 +1743,10 @@
                 difficulty: "intermediate",
                 duration: "4:15",
                 reps: "12 tightening reps",
-                videoCode: "tXrR7qRqRq4",
+                videoCode: "sYrR7qRqRq4",
                 benefit: "Increased sensation. Enhanced tightness.",
-                solution: "Specifically for vaginal muscle tone."
+                solution: "Specifically for vaginal muscle tone.",
+                gender: "female"
             },
             {
                 id: "SP4",
@@ -1537,9 +1757,10 @@
                 difficulty: "advanced",
                 duration: "4:45",
                 reps: "6 intensity reps",
-                videoCode: "uXrR7qRqRq4",
+                videoCode: "tYrR7qRqRq4",
                 benefit: "Stronger orgasms. Better control.",
-                solution: "Trains muscles involved in orgasm."
+                solution: "Trains muscles involved in orgasm.",
+                gender: "female"
             },
             {
                 id: "SP5",
@@ -1550,9 +1771,10 @@
                 difficulty: "intermediate",
                 duration: "3:45",
                 reps: "10 prostate reps",
-                videoCode: "vXrR7qRqRq4",
+                videoCode: "uYrR7qRqRq4",
                 benefit: "Prostate health. Improved circulation.",
-                solution: "Promotes prostate health through exercise."
+                solution: "Promotes prostate health through exercise.",
+                gender: "male"
             },
             {
                 id: "SP6",
@@ -1563,13 +1785,42 @@
                 difficulty: "intermediate",
                 duration: "4:20",
                 reps: "8 sensation reps",
-                videoCode: "wXrR7qRqRq4",
+                videoCode: "vYrR7qRqRq4",
                 benefit: "Enhanced pleasure. Better sensitivity.",
-                solution: "Improves nerve sensitivity in pelvic area."
+                solution: "Improves nerve sensitivity in pelvic area.",
+                gender: "both"
+            },
+            {
+                id: "SP7",
+                name: "Sexual Confidence Building",
+                description: "Builds confidence in sexual performance",
+                category: "sexual",
+                subcategory: "confidence",
+                difficulty: "intermediate",
+                duration: "4:10",
+                reps: "8 confidence reps",
+                videoCode: "wYrR7qRqRq4",
+                benefit: "Increased sexual confidence.",
+                solution: "Builds psychological aspect of sexual health.",
+                gender: "both"
+            },
+            {
+                id: "SP8",
+                name: "Intimacy Enhancement",
+                description: "Improves intimate connection",
+                category: "sexual",
+                subcategory: "intimacy",
+                difficulty: "intermediate",
+                duration: "4:30",
+                reps: "6 intimacy reps",
+                videoCode: "xYrR7qRqRq4",
+                benefit: "Better intimate connection. Enhanced closeness.",
+                solution: "Improves overall intimate experience.",
+                gender: "both"
             }
         ],
 
-        // 7️⃣ REHAB & MEDICAL KEGELS (6 exercises)
+        // 9️⃣ REHAB & MEDICAL KEGELS (8 exercises)
         rehab: [
             {
                 id: "R1",
@@ -1580,9 +1831,10 @@
                 difficulty: "beginner",
                 duration: "3:30",
                 reps: "8 gentle reps",
-                videoCode: "xXrR7qRqRq4",
+                videoCode: "yYrR7qRqRq4",
                 benefit: "Safe recovery. Gradual rebuilding.",
-                solution: "Specifically designed for postpartum recovery."
+                solution: "Specifically designed for postpartum recovery.",
+                gender: "female"
             },
             {
                 id: "R2",
@@ -1593,9 +1845,10 @@
                 difficulty: "beginner",
                 duration: "4:00",
                 reps: "10 recovery reps",
-                videoCode: "yXrR7qRqRq4",
+                videoCode: "zYrR7qRqRq4",
                 benefit: "Surgical recovery. Function restoration.",
-                solution: "Tailored for post-prostate surgery recovery."
+                solution: "Tailored for post-prostate surgery recovery.",
+                gender: "male"
             },
             {
                 id: "R3",
@@ -1606,9 +1859,10 @@
                 difficulty: "intermediate",
                 duration: "4:15",
                 reps: "10 suppression holds",
-                videoCode: "zXrR7qRqRq4",
+                videoCode: "aZrR7qRqRq4",
                 benefit: "Reduces urgency. Better control.",
-                solution: "Specifically for urge incontinence."
+                solution: "Specifically for urge incontinence.",
+                gender: "both"
             },
             {
                 id: "R4",
@@ -1619,9 +1873,10 @@
                 difficulty: "intermediate",
                 duration: "3:45",
                 reps: "8 stress reps",
-                videoCode: "aYrR7qRqRq4",
+                videoCode: "bZrR7qRqRq4",
                 benefit: "Confidence in movement. No more leaks.",
-                solution: "Targets stress incontinence specifically."
+                solution: "Targets stress incontinence specifically.",
+                gender: "both"
             },
             {
                 id: "R5",
@@ -1632,9 +1887,10 @@
                 difficulty: "intermediate",
                 duration: "4:30",
                 reps: "10 bowel reps",
-                videoCode: "bYrR7qRqRq4",
+                videoCode: "cZrR7qRqRq4",
                 benefit: "Better bowel control. Reduced accidents.",
-                solution: "Specifically for fecal incontinence."
+                solution: "Specifically for fecal incontinence.",
+                gender: "both"
             },
             {
                 id: "R6",
@@ -1645,13 +1901,42 @@
                 difficulty: "beginner",
                 duration: "4:00",
                 reps: "8 rehab reps",
-                videoCode: "cYrR7qRqRq4",
+                videoCode: "dZrR7qRqRq4",
                 benefit: "Injury recovery. Function restoration.",
-                solution: "General protocol for pelvic injury recovery."
+                solution: "General protocol for pelvic injury recovery.",
+                gender: "both"
+            },
+            {
+                id: "R7",
+                name: "Chronic Pain Management",
+                description: "For chronic pelvic pain",
+                category: "rehab",
+                subcategory: "pain",
+                difficulty: "beginner",
+                duration: "4:45",
+                reps: "6 pain management reps",
+                videoCode: "eZrR7qRqRq4",
+                benefit: "Pain reduction. Improved comfort.",
+                solution: "Specifically for chronic pelvic pain.",
+                gender: "both"
+            },
+            {
+                id: "R8",
+                name: "Medical Condition Adaptation",
+                description: "Adapts to specific medical conditions",
+                category: "rehab",
+                subcategory: "medical",
+                difficulty: "beginner",
+                duration: "4:15",
+                reps: "8 adaptation reps",
+                videoCode: "fZrR7qRqRq4",
+                benefit: "Condition-specific approach.",
+                solution: "Tailored for specific medical conditions.",
+                gender: "both"
             }
         ],
 
-        // 8️⃣ ENDURANCE & TIME-BASED KEGELS (5 exercises)
+        // 🔟 ENDURANCE & TIME-BASED KEGELS (6 exercises)
         endurance: [
             {
                 id: "E1",
@@ -1662,9 +1947,10 @@
                 difficulty: "intermediate",
                 duration: "5:30",
                 reps: "4 × 30s holds",
-                videoCode: "dYrR7qRqRq4",
+                videoCode: "gZrR7qRqRq4",
                 benefit: "Extended endurance. Muscle stamina.",
-                solution: "Builds capacity for sustained contraction."
+                solution: "Builds capacity for sustained contraction.",
+                gender: "both"
             },
             {
                 id: "E2",
@@ -1675,9 +1961,10 @@
                 difficulty: "advanced",
                 duration: "6:45",
                 reps: "3 × 60s holds",
-                videoCode: "eYrR7qRqRq4",
+                videoCode: "hZrR7qRqRq4",
                 benefit: "Maximum endurance. Peak stamina.",
-                solution: "Ultimate endurance building exercise."
+                solution: "Ultimate endurance building exercise.",
+                gender: "both"
             },
             {
                 id: "E3",
@@ -1688,9 +1975,10 @@
                 difficulty: "advanced",
                 duration: "7:00",
                 reps: "50+ reps",
-                videoCode: "fYrR7qRqRq4",
+                videoCode: "iZrR7qRqRq4",
                 benefit: "Repetition endurance. Fatigue resistance.",
-                solution: "Builds resistance to muscle fatigue."
+                solution: "Builds resistance to muscle fatigue.",
+                gender: "both"
             },
             {
                 id: "E4",
@@ -1701,9 +1989,10 @@
                 difficulty: "intermediate",
                 duration: "5:15",
                 reps: "Ladder sets",
-                videoCode: "gYrR7qRqRq4",
+                videoCode: "jZrR7qRqRq4",
                 benefit: "Structured progression. Measurable gains.",
-                solution: "Systematic approach to endurance building."
+                solution: "Systematic approach to endurance building.",
+                gender: "both"
             },
             {
                 id: "E5",
@@ -1714,13 +2003,28 @@
                 difficulty: "advanced",
                 duration: "6:30",
                 reps: "5 combo reps",
-                videoCode: "hYrR7qRqRq4",
+                videoCode: "kZrR7qRqRq4",
                 benefit: "Complete development. Balanced capacity.",
-                solution: "Combines endurance and strength training."
+                solution: "Combines endurance and strength training.",
+                gender: "both"
+            },
+            {
+                id: "E6",
+                name: "Time Trial Challenge",
+                description: "Timed endurance test",
+                category: "endurance",
+                subcategory: "long-duration",
+                difficulty: "intermediate",
+                duration: "5:45",
+                reps: "Time trial set",
+                videoCode: "lZrR7qRqRq4",
+                benefit: "Measurable progress. Benchmark testing.",
+                solution: "Provides measurable endurance benchmarks.",
+                gender: "both"
             }
         ],
 
-        // 9️⃣ MINDFULNESS & VISUALIZATION (5 exercises)
+        // 1️⃣1️⃣ MINDFULNESS & VISUALIZATION (6 exercises)
         mindfulness: [
             {
                 id: "M1",
@@ -1731,9 +2035,10 @@
                 difficulty: "beginner",
                 duration: "3:45",
                 reps: "8 visualizations",
-                videoCode: "iYrR7qRqRq4",
+                videoCode: "mZrR7qRqRq4",
                 benefit: "Mental imagery. Deep connection.",
-                solution: "Uses visualization for better muscle connection."
+                solution: "Uses visualization for better muscle connection.",
+                gender: "both"
             },
             {
                 id: "M2",
@@ -1744,9 +2049,10 @@
                 difficulty: "intermediate",
                 duration: "4:15",
                 reps: "6 elevator rides",
-                videoCode: "jYrR7qRqRq4",
+                videoCode: "nZrR7qRqRq4",
                 benefit: "Mental control. Precision imagery.",
-                solution: "Mental rehearsal for precise control."
+                solution: "Mental rehearsal for precise control.",
+                gender: "both"
             },
             {
                 id: "M3",
@@ -1757,9 +2063,10 @@
                 difficulty: "advanced",
                 duration: "4:45",
                 reps: "5 energy flows",
-                videoCode: "kYrR7qRqRq4",
+                videoCode: "oZrR7qRqRq4",
                 benefit: "Energetic awareness. Vitality.",
-                solution: "Combines physical and energetic awareness."
+                solution: "Combines physical and energetic awareness.",
+                gender: "both"
             },
             {
                 id: "M4",
@@ -1770,9 +2077,10 @@
                 difficulty: "beginner",
                 duration: "4:00",
                 reps: "5 min focus",
-                videoCode: "lYrR7qRqRq4",
+                videoCode: "pZrR7qRqRq4",
                 benefit: "Sensory awareness. Mindful connection.",
-                solution: "Develops sensory awareness of pelvic area."
+                solution: "Develops sensory awareness of pelvic area.",
+                gender: "both"
             },
             {
                 id: "M5",
@@ -1783,13 +2091,28 @@
                 difficulty: "intermediate",
                 duration: "5:15",
                 reps: "1 full scan",
-                videoCode: "mYrR7qRqRq4",
+                videoCode: "qZrR7qRqRq4",
                 benefit: "Whole-body integration. Complete awareness.",
-                solution: "Integrates pelvic awareness with whole body."
+                solution: "Integrates pelvic awareness with whole body.",
+                gender: "both"
+            },
+            {
+                id: "M6",
+                name: "Mindful Release Practice",
+                description: "Conscious muscle relaxation",
+                category: "mindfulness",
+                subcategory: "meditative",
+                difficulty: "beginner",
+                duration: "4:30",
+                reps: "8 mindful releases",
+                videoCode: "rZrR7qRqRq4",
+                benefit: "Conscious relaxation. Stress relief.",
+                solution: "Teaches mindful muscle relaxation.",
+                gender: "both"
             }
         ],
 
-        // 🔟 ADVANCED HYBRID KEGELS (5 exercises)
+        // 1️⃣2️⃣ ADVANCED HYBRID KEGELS (6 exercises)
         hybrid: [
             {
                 id: "H1",
@@ -1800,9 +2123,10 @@
                 difficulty: "advanced",
                 duration: "5:00",
                 reps: "3 × 30s fusions",
-                videoCode: "nYrR7qRqRq4",
+                videoCode: "sZrR7qRqRq4",
                 benefit: "Core integration. Whole-body strength.",
-                solution: "Integrates pelvic and core strength."
+                solution: "Integrates pelvic and core strength.",
+                gender: "both"
             },
             {
                 id: "H2",
@@ -1813,9 +2137,10 @@
                 difficulty: "intermediate",
                 duration: "4:30",
                 reps: "10 combo reps",
-                videoCode: "oYrR7qRqRq4",
+                videoCode: "tZrR7qRqRq4",
                 benefit: "Functional strength. Real-world application.",
-                solution: "Combines pelvic strength with leg movement."
+                solution: "Combines pelvic strength with leg movement.",
+                gender: "both"
             },
             {
                 id: "H3",
@@ -1826,9 +2151,10 @@
                 difficulty: "intermediate",
                 duration: "4:45",
                 reps: "8 bridge reps",
-                videoCode: "pYrR7qRqRq4",
+                videoCode: "uZrR7qRqRq4",
                 benefit: "Glute-pelvic coordination. Posterior chain.",
-                solution: "Coordinates pelvic and glute muscles."
+                solution: "Coordinates pelvic and glute muscles.",
+                gender: "both"
             },
             {
                 id: "H4",
@@ -1839,9 +2165,10 @@
                 difficulty: "advanced",
                 duration: "5:30",
                 reps: "8 jump sequences",
-                videoCode: "qYrR7qRqRq4",
+                videoCode: "vZrR7qRqRq4",
                 benefit: "Impact control. Athletic stability.",
-                solution: "Trains pelvic control during impact."
+                solution: "Trains pelvic control during impact.",
+                gender: "both"
             },
             {
                 id: "H5",
@@ -1852,13 +2179,28 @@
                 difficulty: "advanced",
                 duration: "6:00",
                 reps: "6 athletic reps",
-                videoCode: "rYrR7qRqRq4",
+                videoCode: "wZrR7qRqRq4",
                 benefit: "Sports performance. Athletic control.",
-                solution: "Specifically for athletic performance."
+                solution: "Specifically for athletic performance.",
+                gender: "both"
+            },
+            {
+                id: "H6",
+                name: "Multi-Muscle Integration",
+                description: "Integrates multiple muscle groups",
+                category: "hybrid",
+                subcategory: "core-integrated",
+                difficulty: "advanced",
+                duration: "5:45",
+                reps: "5 integration reps",
+                videoCode: "xZrR7qRqRq4",
+                benefit: "Complete body integration. Systemic approach.",
+                solution: "Integrates pelvic floor with entire body.",
+                gender: "both"
             }
         ],
 
-        // 1️⃣1️⃣ NEGATIVE / RELAXATION KEGELS (5 exercises)
+        // 1️⃣3️⃣ NEGATIVE / RELAXATION KEGELS (6 exercises)
         relaxation: [
             {
                 id: "RL1",
@@ -1869,9 +2211,10 @@
                 difficulty: "beginner",
                 duration: "3:30",
                 reps: "8 release cycles",
-                videoCode: "sYrR7qRqRq4",
+                videoCode: "yZrR7qRqRq4",
                 benefit: "Muscle relaxation. Tension release.",
-                solution: "Essential for overactive pelvic floor."
+                solution: "Essential for overactive pelvic floor.",
+                gender: "both"
             },
             {
                 id: "RL2",
@@ -1882,9 +2225,10 @@
                 difficulty: "intermediate",
                 duration: "4:00",
                 reps: "10 reverse pushes",
-                videoCode: "tYrR7qRqRq4",
+                videoCode: "zZrR7qRqRq4",
                 benefit: "Balance training. Relaxation skill.",
-                solution: "Trains relaxation response in pelvic muscles."
+                solution: "Trains relaxation response in pelvic muscles.",
+                gender: "both"
             },
             {
                 id: "RL3",
@@ -1895,9 +2239,10 @@
                 difficulty: "beginner",
                 duration: "4:30",
                 reps: "6 stretch-holds",
-                videoCode: "uYrR7qRqRq4",
+                videoCode: "aArR7qRqRq4",
                 benefit: "Muscle lengthening. Flexibility.",
-                solution: "Combines stretching with pelvic relaxation."
+                solution: "Combines stretching with pelvic relaxation.",
+                gender: "both"
             },
             {
                 id: "RL4",
@@ -1908,9 +2253,10 @@
                 difficulty: "intermediate",
                 duration: "5:15",
                 reps: "Massage routine",
-                videoCode: "vYrR7qRqRq4",
+                videoCode: "bArR7qRqRq4",
                 benefit: "Muscle release. Tension relief.",
-                solution: "Self-massage for pelvic tension."
+                solution: "Self-massage for pelvic tension.",
+                gender: "both"
             },
             {
                 id: "RL5",
@@ -1921,9 +2267,24 @@
                 difficulty: "beginner",
                 duration: "4:45",
                 reps: "5 let-go cycles",
-                videoCode: "wYrR7qRqRq4",
+                videoCode: "cArR7qRqRq4",
                 benefit: "Deep relaxation. Stress relief.",
-                solution: "Complete protocol for pelvic relaxation."
+                solution: "Complete protocol for pelvic relaxation.",
+                gender: "both"
+            },
+            {
+                id: "RL6",
+                name: "Tension-Release Cycling",
+                description: "Cycles between tension and release",
+                category: "relaxation",
+                subcategory: "reverse",
+                difficulty: "intermediate",
+                duration: "5:00",
+                reps: "8 tension-release cycles",
+                videoCode: "dArR7qRqRq4",
+                benefit: "Neuromuscular re-education. Balance.",
+                solution: "Teaches proper tension-release patterns.",
+                gender: "both"
             }
         ]
     };
@@ -1947,7 +2308,8 @@
             id: 3,
             text: "Have you been pregnant? (Females only)",
             options: ["Never", "1 pregnancy", "2 pregnancies", "3+ pregnancies", "Currently pregnant"],
-            category: "demographic"
+            category: "demographic",
+            skipFor: "Male"
         },
         {
             id: 4,
@@ -2097,13 +2459,15 @@
             id: 27,
             text: "Erection quality (Males)?",
             options: ["Excellent", "Good", "Fair", "Poor", "No erection"],
-            category: "sexual"
+            category: "sexual",
+            skipFor: "Female"
         },
         {
             id: 28,
             text: "Vaginal dryness (Females)?",
             options: ["Never", "Occasionally", "Sometimes", "Often", "Always"],
-            category: "sexual"
+            category: "sexual",
+            skipFor: "Male"
         },
         {
             id: 29,
@@ -2145,7 +2509,9 @@
         },
         {
             id: 35,
-            text: "Awareness of pelvic floor muscles?",
+            text: appState.gender === "Female" ? 
+                "Awareness of vaginal muscle control?" : 
+                "Awareness of PC muscle (between anus and scrotum)?",
             options: ["No idea", "Vague idea", "Some awareness", "Good awareness", "Excellent awareness"],
             category: "experience"
         },
@@ -2197,13 +2563,15 @@
             id: 43,
             text: "Prostate issues (Males)?",
             options: ["None", "Mild enlargement", "Moderate enlargement", "Severe enlargement", "Cancer history"],
-            category: "medical"
+            category: "medical",
+            skipFor: "Female"
         },
         {
             id: 44,
             text: "Menstrual issues (Females)?",
             options: ["None", "Mild cramps", "Moderate pain", "Severe pain", "Endometriosis"],
-            category: "medical"
+            category: "medical",
+            skipFor: "Male"
         },
         {
             id: 45,
@@ -2253,6 +2621,26 @@
     }
 
     function showQuestion() {
+        // Handle gender-specific question skipping
+        while (appState.currentQuestion < appState.totalQuestions) {
+            const question = questions[appState.currentQuestion];
+            
+            // Skip gender-specific questions that don't apply
+            if (question.skipFor === appState.gender) {
+                appState.currentQuestion++;
+                continue;
+            }
+            
+            // Update question text for gender-specific question 35
+            if (question.id === 35) {
+                question.text = appState.gender === "Female" ? 
+                    "Awareness of vaginal muscle control?" : 
+                    "Awareness of PC muscle (between anus and scrotum)?";
+            }
+            
+            break;
+        }
+        
         if (appState.currentQuestion >= appState.totalQuestions) {
             generatePersonalizedProgram();
             return;
@@ -2332,6 +2720,13 @@
     function openQuestionPopup() {
         const question = questions[appState.currentQuestion];
         if (!question) return;
+        
+        // Update question text for gender-specific question 35
+        if (question.id === 35) {
+            question.text = appState.gender === "Female" ? 
+                "Awareness of vaginal muscle control?" : 
+                "Awareness of PC muscle (between anus and scrotum)?";
+        }
         
         // Update popup content
         document.getElementById('popup-question-number').textContent = appState.currentQuestion + 1;
@@ -2444,7 +2839,7 @@
         
         if (question.id === 34 || question.id === 35) {
             // Experience questions
-            const experienceLevel = ["None", "Tried few times", "Occasional practice", "Regular practice", "Expert"].indexOf(answer);
+            const experienceLevel = ["No idea", "Vague idea", "Some awareness", "Good awareness", "Excellent awareness"].indexOf(answer);
             appState.scores.control += experienceLevel * 3;
         }
     }
@@ -2483,19 +2878,26 @@
         if (appState.scores.pain > 50) issues.push("pelvic pain");
         if (appState.scores.sexual > 50) issues.push("sexual dysfunction");
         
-        // Select appropriate exercise categories
+        // Select appropriate exercise categories based on gender and needs
         let primaryCategory = "foundational";
         
-        if (appState.scores.leakage > 70) {
-            primaryCategory = "rehab";
-        } else if (appState.scores.sexual > 60) {
-            primaryCategory = appState.gender === "Male" ? "sexual" : "sexual";
-        } else if (appState.scores.pain > 60) {
-            primaryCategory = "relaxation";
-        } else if (appState.userProfile.q34 && appState.userProfile.q34.includes("Expert")) {
-            primaryCategory = "hybrid";
-        } else if (appState.userProfile.q18 && appState.userProfile.q18.includes("Athlete")) {
-            primaryCategory = "endurance";
+        // Gender-specific category selection
+        if (appState.gender === "Male") {
+            if (appState.scores.sexual > 60) {
+                primaryCategory = "male_specific";
+            } else if (appState.userProfile.q43 && appState.userProfile.q43.includes("enlargement")) {
+                primaryCategory = "rehab";
+            } else if (appState.scores.leakage > 70) {
+                primaryCategory = "rehab";
+            }
+        } else if (appState.gender === "Female") {
+            if (appState.userProfile.q3 && appState.userProfile.q3.includes("pregnant")) {
+                primaryCategory = "female_specific";
+            } else if (appState.scores.sexual > 60) {
+                primaryCategory = "female_specific";
+            } else if (appState.scores.leakage > 70) {
+                primaryCategory = "rehab";
+            }
         }
         
         // Generate exercises for all 30 days
@@ -2518,50 +2920,87 @@
 
     function generateDayExercises(day, primaryCategory, issues) {
         let dayExercises = [];
+        const gender = appState.gender;
+        
+        // Filter exercises by gender
+        const filterByGender = (exercises) => {
+            return exercises.filter(ex => 
+                ex.gender === "both" || ex.gender === gender
+            );
+        };
         
         // Day-specific progression
         if (day <= 7) {
-            // Week 1: Foundational exercises
-            dayExercises.push(...exerciseLibrary.foundational.slice(0, 3));
-            dayExercises.push(...exerciseLibrary.control.slice(0, 2));
-            dayExercises.push(...exerciseLibrary.breathing.slice(0, 1));
+            // Week 1: Foundational exercises + gender-specific basics
+            dayExercises.push(...filterByGender(exerciseLibrary.foundational).slice(0, 2));
+            
+            // Add gender-specific basic exercises
+            if (gender === "Male") {
+                dayExercises.push(...exerciseLibrary.male_specific.slice(0, 1));
+            } else if (gender === "Female") {
+                dayExercises.push(...exerciseLibrary.female_specific.slice(0, 1));
+            }
+            
+            dayExercises.push(...filterByGender(exerciseLibrary.control).slice(0, 1));
+            dayExercises.push(...filterByGender(exerciseLibrary.breathing).slice(0, 1));
+            dayExercises.push(...filterByGender(exerciseLibrary.foundational).slice(2, 3));
+            
         } else if (day <= 14) {
             // Week 2: Add primary category exercises
-            dayExercises.push(...exerciseLibrary.foundational.slice(2, 4));
+            dayExercises.push(...filterByGender(exerciseLibrary.foundational).slice(1, 2));
+            
             const primaryExercises = exerciseLibrary[primaryCategory];
             if (primaryExercises) {
-                dayExercises.push(...primaryExercises.slice(0, 2));
+                dayExercises.push(...filterByGender(primaryExercises).slice(0, 2));
             }
-            dayExercises.push(...exerciseLibrary.control.slice(1, 2));
-            dayExercises.push(...exerciseLibrary.functional.slice(0, 1));
+            
+            dayExercises.push(...filterByGender(exerciseLibrary.control).slice(1, 2));
+            dayExercises.push(...filterByGender(exerciseLibrary.functional).slice(0, 1));
+            
+            // Add gender-specific intermediate exercises
+            if (gender === "Male") {
+                dayExercises.push(...exerciseLibrary.male_specific.slice(1, 2));
+            } else if (gender === "Female") {
+                dayExercises.push(...exerciseLibrary.female_specific.slice(1, 2));
+            }
+            
         } else if (day <= 21) {
             // Week 3: Add specific issue exercises
-            dayExercises.push(...exerciseLibrary[primaryCategory].slice(2, 4));
+            dayExercises.push(...filterByGender(exerciseLibrary[primaryCategory]).slice(2, 4));
             
             if (issues.includes("urinary leakage")) {
-                dayExercises.push(...exerciseLibrary.functional.filter(e => 
+                dayExercises.push(...filterByGender(exerciseLibrary.functional).filter(e => 
                     e.subcategory === "stress-response"
                 ).slice(0, 1));
             }
             
             if (issues.includes("pelvic pain")) {
-                dayExercises.push(...exerciseLibrary.relaxation.slice(0, 1));
+                dayExercises.push(...filterByGender(exerciseLibrary.relaxation).slice(0, 1));
             }
             
             if (issues.includes("sexual dysfunction")) {
-                const genderSpecific = appState.gender === "Male" ? 
-                    exerciseLibrary.sexual.filter(e => e.subcategory === "male") :
-                    exerciseLibrary.sexual.filter(e => e.subcategory === "female");
-                dayExercises.push(...genderSpecific.slice(0, 1));
+                if (gender === "Male") {
+                    dayExercises.push(...exerciseLibrary.sexual.filter(e => e.gender === "male").slice(0, 1));
+                } else {
+                    dayExercises.push(...exerciseLibrary.sexual.filter(e => e.gender === "female").slice(0, 1));
+                }
             }
             
-            dayExercises.push(...exerciseLibrary.mindfulness.slice(0, 1));
+            dayExercises.push(...filterByGender(exerciseLibrary.mindfulness).slice(0, 1));
+            
         } else {
             // Week 4: Advanced and hybrid exercises
-            dayExercises.push(...exerciseLibrary[primaryCategory].slice(3, 5));
-            dayExercises.push(...exerciseLibrary.hybrid.slice(0, 1));
-            dayExercises.push(...exerciseLibrary.endurance.slice(0, 1));
-            dayExercises.push(...exerciseLibrary.mindfulness.slice(1, 2));
+            dayExercises.push(...filterByGender(exerciseLibrary[primaryCategory]).slice(3, 5));
+            dayExercises.push(...filterByGender(exerciseLibrary.hybrid).slice(0, 1));
+            dayExercises.push(...filterByGender(exerciseLibrary.endurance).slice(0, 1));
+            dayExercises.push(...filterByGender(exerciseLibrary.mindfulness).slice(1, 2));
+            
+            // Add gender-specific advanced exercises
+            if (gender === "Male") {
+                dayExercises.push(...exerciseLibrary.male_specific.slice(2, 3));
+            } else if (gender === "Female") {
+                dayExercises.push(...exerciseLibrary.female_specific.slice(2, 3));
+            }
         }
         
         // Ensure exactly 6 exercises per day
@@ -2580,8 +3019,14 @@
         const analysisText = document.getElementById('analysis-text');
         const solutionPoints = document.getElementById('solution-points');
         
-        // Generate analysis based on scores
-        let analysis = "Based on your comprehensive 50-point assessment, ";
+        // Generate analysis based on scores and gender
+        let analysis = "Based on your comprehensive 50-point assessment";
+        
+        if (appState.gender) {
+            analysis += ` (${appState.gender}), `;
+        } else {
+            analysis += ", ";
+        }
         
         if (appState.scores.leakage > 70) {
             analysis += "you have significant urinary leakage issues that require immediate attention. ";
@@ -2601,6 +3046,13 @@
             analysis += "Sexual function improvements are a key focus area. ";
         }
         
+        // Add gender-specific note
+        if (appState.gender === "Male") {
+            analysis += "Your program includes male-specific exercises targeting PC muscle awareness and prostate health. ";
+        } else if (appState.gender === "Female") {
+            analysis += "Your program includes female-specific exercises for vaginal muscle control and reproductive health. ";
+        }
+        
         analysis += `Your personalized 30-day program includes ${appState.dayExercises[1].length} carefully selected exercises each day.`;
         
         analysisText.textContent = analysis;
@@ -2609,7 +3061,8 @@
         solutionPoints.innerHTML = '';
         
         const solutions = [
-            "🎯 <span class='text-gold-light font-bold'>Targeted Approach:</span> Exercises specifically chosen for your symptoms",
+            "🎯 <span class='text-gold-light font-bold'>Gender-Targeted:</span> Exercises specifically chosen for your biological gender",
+            "🎯 <span class='text-gold-light font-bold'>Anatomy-Specific:</span> " + (appState.gender === "Male" ? "Focuses on PC muscle location" : "Focuses on vaginal muscle control"),
             "📊 <span class='text-gold-light font-bold'>Progressive Plan:</span> Gradually increases difficulty over 30 days",
             "🔄 <span class='text-gold-light font-bold'>Sequential Learning:</span> Each exercise builds on previous ones",
             "⏱️ <span class='text-gold-light font-bold'>Time-Efficient:</span> 10-15 minutes daily commitment",
@@ -2661,6 +3114,14 @@
             card.className = `exercise-card p-3.5 rounded-lg ${isLocked ? 'locked' : ''} ${isCurrent ? 'current' : ''} ${isCompleted ? 'completed' : ''} fade-in`;
             card.style.animationDelay = `${index * 0.08}s`;
             
+            // Add gender-specific icon
+            let genderIcon = "";
+            if (exercise.gender === "male") {
+                genderIcon = '<i class="fas fa-mars text-blue-400 ml-1" title="Male-specific"></i>';
+            } else if (exercise.gender === "female") {
+                genderIcon = '<i class="fas fa-venus text-pink-400 ml-1" title="Female-specific"></i>';
+            }
+            
             card.innerHTML = `
                 <div class="flex items-center gap-3.5">
                     <div class="number-indicator ${isCurrent ? 'number-current' : isCompleted ? 'number-completed' : 'number-locked'}">
@@ -2668,7 +3129,7 @@
                     </div>
                     <div class="flex-1 min-w-0">
                         <div class="flex items-center gap-2 mb-1.5">
-                            <span class="category-tag">${exercise.category}</span>
+                            <span class="category-tag">${exercise.category}${genderIcon}</span>
                             <span class="text-xs text-gray-400 font-bold">${exercise.difficulty}</span>
                         </div>
                         <h3 class="text-sm font-bold text-white mb-1.5 truncate text-3d-white">${exercise.name}</h3>
@@ -2849,16 +3310,18 @@
     function getCategoryColor(category) {
         const colors = {
             "foundational": "#FFD700",
+            "male_specific": "#4ECDC4",
+            "female_specific": "#FF9FF3",
             "strength": "#FF6B6B",
-            "control": "#4ECDC4",
+            "control": "#54A0FF",
             "functional": "#FF9F43",
-            "breathing": "#54A0FF",
-            "sexual": "#FF9FF3",
-            "rehab": "#00D2D3",
-            "endurance": "#5F27CD",
-            "mindfulness": "#1DD1A1",
-            "hybrid": "#F368E0",
-            "relaxation": "#8395A7"
+            "breathing": "#00D2D3",
+            "sexual": "#F368E0",
+            "rehab": "#5F27CD",
+            "endurance": "#1DD1A1",
+            "mindfulness": "#8395A7",
+            "hybrid": "#FF9F43",
+            "relaxation": "#54A0FF"
         };
         return colors[category] || "#D4AF37";
     }
@@ -2917,74 +3380,6 @@
 
     // Initialize
     document.addEventListener('DOMContentLoaded', initApp);
-
-    // ==================== HEADER/SIDEBAR/FUNCTIONS from main.html ====================
-    const menuBtn = document.getElementById('menuBtn');
-    const sidebar = document.getElementById('sidebar');
-    const closeSidebarBtn = document.getElementById('closeSidebar');
-
-    if (menuBtn && sidebar && closeSidebarBtn) {
-        menuBtn.onclick = () => sidebar.classList.add('open');
-        closeSidebarBtn.onclick = () => sidebar.classList.remove('open');
-    }
-
-    function toggleAccordion(id) {
-        const content = document.getElementById(id);
-        const icon = document.getElementById('icon-' + id);
-        if (content.style.maxHeight) {
-            content.style.maxHeight = null;
-            icon.style.transform = 'rotate(0deg)';
-        } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-            icon.style.transform = 'rotate(180deg)'; 
-        }
-    }
-
-    function handleNavClick(element, popupKey = null) {
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.classList.remove('active');
-        });
-        element.classList.add('active');
-        
-        if (popupKey) {
-            openPopup(popupKey);
-        }
-    }
-
-    const lists = {
-        bridal: { title: "Bridal Suite", bg: "blessingsssl.png", items: [{ name: "Traditional Royal", link: "bridal_traditional.html" }, { name: "Arabic Premium", link: "bridal_arabic.html" }, { name: "Indo-Western", link: "bridal_indowestern.html" }] },
-        festive: { title: "Festive Art", bg: "blessingsssl.png", items: [ { name: "Indo Arebic", link: "festive_indoarabic.html" },{ name: "Moroccan Trends", link: "festive_geometric.html" },{ name: "Arabic Festive", link: "festive_arabic.html" }, { name: "Indian Classic", link: "festive_indian.html" }, { name: "Minimal Style", link: "festive_minimal.html" }] },
-        gallery: { 
-            title: "Gallery", 
-            bg: "blessingsssl.png", 
-            items: [
-                { name: "Royal Traditional", link: "bridal_traditional.html" }, 
-                { name: "Modern Arabic", link: "bridal_arabic.html" },
-                { name: "Fusion Luxe", link: "bridal_indowestern.html" },
-                { name: "Festive Arabic Art", link: "festive_arabic.html" },
-                { name: "Indian Festive Best", link: "festive_indian.html" },
-                { name: "Indo-Arabic Fusion", link: "festive_indoarabic.html" },
-                { name: "Moroccan Trends", link: "festive_geometric.html" },
-                { name: "Minimalist Elegance", link: "festive_minimal.html" }
-            ] 
-        }
-    };
-
-    function openPopup(key) {
-        const data = lists[key];
-        if (!data) return;
-        
-        // You might want to create a modal for these or redirect to appropriate pages
-        // For now, I'll just alert the first item
-        if (data.items && data.items.length > 0) {
-            // Redirect to first item or handle as needed
-            // window.location.href = data.items[0].link;
-        }
-    }
-
-    function closePopup() {
-        // Implement if you add a modal
-    }
 </script>
 </body>
 </html>
