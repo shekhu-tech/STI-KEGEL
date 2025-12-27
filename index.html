@@ -801,48 +801,51 @@
         </div>
     </div>
 
-    <!-- Video Modal with Next Button - UPDATED TO 16:9 -->
-    <div id="video-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3">
+    <!-- Video Modal with Next Button - VERTICALLY CENTERED -->
+    <div id="video-modal" class="fixed inset-0 z-50 hidden flex flex-col items-center justify-center p-3">
         <!-- Modal Background -->
         <div class="modal-background"></div>
         
-        <div class="w-full max-w-md z-10 text-on-bg">
-            <div class="video-container">
-                <div class="relative">
-                    <button onclick="closeVideoModal()" class="absolute top-3 right-3 z-20 bg-black/90 p-2.5 rounded-full border border-gold-primary/20">
-                        <i class="fas fa-times text-white text-sm"></i>
-                    </button>
-                    <!-- 16:9 Aspect Ratio Container -->
-                    <div class="aspect-ratio-16-9" id="video-frame">
-                        <!-- YouTube iframe will be inserted here -->
+        <!-- Vertical Centering Container -->
+        <div class="flex-1 flex flex-col items-center justify-center w-full">
+            <div class="w-full max-w-md z-10 text-on-bg">
+                <div class="video-container">
+                    <div class="relative">
+                        <button onclick="closeVideoModal()" class="absolute top-3 right-3 z-20 bg-black/90 p-2.5 rounded-full border border-gold-primary/20">
+                            <i class="fas fa-times text-white text-sm"></i>
+                        </button>
+                        <!-- 16:9 Aspect Ratio Container -->
+                        <div class="aspect-ratio-16-9" id="video-frame">
+                            <!-- YouTube iframe will be inserted here -->
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="mt-4 p-4 bg-black/95 rounded-lg border border-gold-primary/20 glass-effect">
-                <h3 id="video-title" class="text-sm font-bold text-white mb-2 text-3d-white"></h3>
-                <p id="video-description" class="text-xs text-gray-300 mb-3 text-3d-secondary"></p>
-                <div class="flex items-center justify-between text-xs text-gray-400 mb-4">
-                    <span class="flex items-center"><i class="fas fa-clock mr-1.5"></i> Duration: <span id="video-duration" class="font-bold ml-1">2:30</span></span>
-                    <span class="flex items-center"><i class="fas fa-redo mr-1.5"></i> Reps: <span id="video-reps" class="font-bold ml-1">10x</span></span>
-                    <span class="category-tag" id="video-category"></span>
-                </div>
                 
-                <div id="solution-benefit" class="mb-4 p-3 rounded bg-black/60 border border-gold-primary/15">
-                    <div class="flex items-center mb-1.5">
-                        <i class="fas fa-lightbulb text-gold-primary mr-2"></i>
-                        <span class="text-xs font-bold text-gold-light text-3d-secondary">Solution Benefit:</span>
+                <div class="mt-4 p-4 bg-black/95 rounded-lg border border-gold-primary/20 glass-effect">
+                    <h3 id="video-title" class="text-sm font-bold text-white mb-2 text-3d-white"></h3>
+                    <p id="video-description" class="text-xs text-gray-300 mb-3 text-3d-secondary"></p>
+                    <div class="flex items-center justify-between text-xs text-gray-400 mb-4">
+                        <span class="flex items-center"><i class="fas fa-clock mr-1.5"></i> Duration: <span id="video-duration" class="font-bold ml-1">2:30</span></span>
+                        <span class="flex items-center"><i class="fas fa-redo mr-1.5"></i> Reps: <span id="video-reps" class="font-bold ml-1">10x</span></span>
+                        <span class="category-tag" id="video-category"></span>
                     </div>
-                    <p id="solution-text" class="text-xs text-gray-300 text-3d-secondary"></p>
-                </div>
-                
-                <div class="flex gap-3">
-                    <button onclick="repeatCurrentVideo()" class="flex-1 secondary-btn py-3 rounded-lg text-sm font-bold">
-                        <i class="fas fa-redo mr-1.5"></i> Repeat
-                    </button>
-                    <button onclick="nextVideo()" class="flex-1 gold-btn py-3 rounded-lg text-sm font-bold">
-                        Next <i class="fas fa-arrow-right ml-1.5"></i>
-                    </button>
+                    
+                    <div id="solution-benefit" class="mb-4 p-3 rounded bg-black/60 border border-gold-primary/15">
+                        <div class="flex items-center mb-1.5">
+                            <i class="fas fa-lightbulb text-gold-primary mr-2"></i>
+                            <span class="text-xs font-bold text-gold-light text-3d-secondary">Solution Benefit:</span>
+                        </div>
+                        <p id="solution-text" class="text-xs text-gray-300 text-3d-secondary"></p>
+                    </div>
+                    
+                    <div class="flex gap-3">
+                        <button onclick="repeatCurrentVideo()" class="flex-1 secondary-btn py-3 rounded-lg text-sm font-bold">
+                            <i class="fas fa-redo mr-1.5"></i> Repeat
+                        </button>
+                        <button onclick="nextVideo()" class="flex-1 gold-btn py-3 rounded-lg text-sm font-bold">
+                            Next <i class="fas fa-arrow-right ml-1.5"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
