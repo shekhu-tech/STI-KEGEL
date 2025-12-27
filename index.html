@@ -360,7 +360,7 @@
                 0 5px 10px rgba(212, 175, 55, 0.2);
         }
 
-        /* Video Container - Custom Player with 3D */
+        /* Video Container - Custom Player with 3D - 16:9 Aspect Ratio */
         .video-container {
             background: #000;
             border-radius: 16px;
@@ -371,6 +371,22 @@
                 0 8px 0 rgba(0, 0, 0, 0.4),
                 0 15px 30px rgba(0, 0, 0, 0.5),
                 0 0 30px rgba(212, 175, 55, 0.2);
+        }
+
+        /* 16:9 Aspect Ratio Container */
+        .aspect-ratio-16-9 {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio (9/16 = 0.5625) */
+        }
+
+        .aspect-ratio-16-9 iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         /* Category Tags with 3D */
@@ -785,7 +801,7 @@
         </div>
     </div>
 
-    <!-- Video Modal with Next Button -->
+    <!-- Video Modal with Next Button - UPDATED TO 16:9 -->
     <div id="video-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3">
         <!-- Modal Background -->
         <div class="modal-background"></div>
@@ -796,7 +812,10 @@
                     <button onclick="closeVideoModal()" class="absolute top-3 right-3 z-20 bg-black/90 p-2.5 rounded-full border border-gold-primary/20">
                         <i class="fas fa-times text-white text-sm"></i>
                     </button>
-                    <div id="video-frame" class="w-full h-[60vh]"></div>
+                    <!-- 16:9 Aspect Ratio Container -->
+                    <div class="aspect-ratio-16-9" id="video-frame">
+                        <!-- YouTube iframe will be inserted here -->
+                    </div>
                 </div>
             </div>
             
@@ -3005,29 +3024,18 @@
     function openExerciseVideo(exercise, index) {
         appState.currentVideoIndex = index;
         
-        // Create custom video player with 3D effect
+        // Clear previous content
         const videoFrame = document.getElementById('video-frame');
-        videoFrame.innerHTML = `
-            <div style="width:100%;height:100%;background:#000;position:relative;border-radius:14px;overflow:hidden;box-shadow: inset 0 0 30px rgba(0,0,0,0.8);">
-                <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(45deg,#000,#111);display:flex;align-items:center;justify-content:center;">
-                    <div style="text-align:center;padding:20px;">
-                        <div style="width:80px;height:80px;background:${getCategoryColor(exercise.category)};border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 0 30px ${getCategoryColor(exercise.category)}80, inset 0 4px 0 rgba(255,255,255,0.2);">
-                            <i class="fas fa-dumbbell" style="color:#000;font-size:32px;"></i>
-                        </div>
-                        <div style="color:#D4AF37;font-weight:bold;font-size:18px;margin-bottom:10px;letter-spacing:0.5px;text-shadow:0 2px 0 rgba(0,0,0,0.5);">PELVIC TRAINING SYSTEM</div>
-                        <div style="color:#fff;font-size:14px;margin-bottom:8px;text-shadow:0 1px 0 rgba(0,0,0,0.5);">Professional Exercise Demonstration</div>
-                        <div style="color:#888;font-size:12px;text-shadow:0 1px 0 rgba(0,0,0,0.5);">Loading training video...</div>
-                    </div>
-                </div>
-                <iframe 
-                    src="https://www.youtube.com/embed/${exercise.videoCode}?autoplay=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3"
-                    style="width:100%;height:100%;border:none;opacity:0;position:absolute;top:0;left:0;"
-                    allow="autoplay; encrypted-media"
-                    allowfullscreen
-                    id="hidden-iframe"
-                ></iframe>
-            </div>
-        `;
+        videoFrame.innerHTML = '';
+        
+        // Create 16:9 YouTube iframe
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube.com/embed/${exercise.videoCode}?autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3`;
+        iframe.allow = "autoplay; encrypted-media";
+        iframe.allowFullscreen = true;
+        iframe.className = "aspect-ratio-16-9";
+        
+        videoFrame.appendChild(iframe);
         
         // Update modal info
         document.getElementById('video-title').textContent = exercise.name;
@@ -3040,14 +3048,6 @@
         // Show modal
         document.getElementById('video-modal').classList.remove('hidden');
         document.body.style.overflow = 'hidden';
-        
-        // Auto-play after a delay
-        setTimeout(() => {
-            const iframe = document.getElementById('hidden-iframe');
-            if (iframe) {
-                iframe.style.opacity = '1';
-            }
-        }, 1000);
     }
 
     function repeatCurrentVideo() {
