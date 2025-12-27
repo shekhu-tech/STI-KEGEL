@@ -6,6 +6,10 @@
     <title>Pelvic Health Pro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&family=Noto+Sans+Devanagari:wght@700;900&display=swap" rel="stylesheet">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
@@ -16,8 +20,84 @@
             --gold-dark: #996515;
             --black-deep: #0A0A0A;
             --black-surface: #121212;
+            --primary: #FFD700; 
+            --primary-rgb: 255, 215, 0; 
+            --bg-dark: #050401; 
+            --card-glass: rgba(15, 12, 5, 0.95);
+            --header-offset: calc(15px + env(safe-area-inset-top));
+            --header-height: 64px;
+            --footer-offset: calc(25px + env(safe-area-inset-bottom));
+            --footer-height: 64px; 
+            --text-light: #ffffff;
+            --dark-green: #013220; 
         }
 
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding-top: calc(var(--header-offset) + var(--header-height) + 20px);
+            padding-bottom: calc(var(--footer-offset) + var(--footer-height) + 40px);
+            margin: 0;
+            font-weight: 900; 
+            overflow-x: hidden;
+        }
+
+        /* --- BACKGROUND --- */
+        #fixed-media-background {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -10; background-size: cover; background-position: center;
+            opacity: 0.7; background-image: url('bridal.png');
+            filter: contrast(125%) brightness(50%) sepia(40%);
+        }
+
+        /* --- GOLDEN FLOATING HEADER --- */
+        .iphone-header {
+            position: fixed; top: var(--header-offset); left: 50%; transform: translateX(-50%);
+            width: 92%; max-width: 600px; height: var(--header-height);
+            background: rgba(5, 4, 1, 0.96); backdrop-filter: blur(30px);
+            border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 24px;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 20px; z-index: 2000; box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
+        }
+
+        /* --- SIDEBAR --- */
+        .mobile-panel {
+            position: fixed; 
+            top: calc(var(--header-offset) + var(--header-height) + 10px); 
+            bottom: calc(var(--footer-offset) + var(--footer-height) + 10px);
+            right: 15px; width: 85%; max-width: 340px;
+            background: rgba(8, 7, 2, 0.98); backdrop-filter: blur(45px); z-index: 1500; 
+            transform: translateX(120%); transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 2.5px solid var(--primary); border-radius: 35px; overflow: hidden;
+            box-shadow: -30px 0 80px rgba(0,0,0,1);
+        }
+        .mobile-panel.open { transform: translateX(0); }
+        .sidebar-bg-image { position: absolute; inset: 0; background-image: url('bridal.png'); background-size: cover; background-position: center; opacity: 0.55; z-index: 0; filter: grayscale(40%) brightness(30%); }
+        .mandala-bg { position: absolute; top: 50%; left: 50%; width: 500px; height: 500px; margin-top: -250px; margin-left: -250px; opacity: 0.1; pointer-events: none; animation: spin 100s linear infinite; z-index: 1; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .sidebar-inner { height: 100%; overflow-y: auto; padding: 40px 20px; position: relative; z-index: 10; }
+        .sidebar-close-btn { position: absolute; top: 15px; right: 15px; width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: #000; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; border: 2px solid #000; box-shadow: 0 0 20px var(--primary); }
+        
+        .accordion-btn { width: 100%; padding: 18px 22px; margin-bottom: 10px; border-radius: 18px; background: rgba(0, 0, 0, 0.5); font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: #fff; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255, 215, 0, 0.2); }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .side-sub-link { display: block; padding: 14px 35px; font-size: 0.8rem; color: #eee; background: rgba(0,0,0,0.4); border-left: 2px solid rgba(255, 215, 0, 0.15); text-decoration: none; border-bottom: 1px solid rgba(255,215,0,0.05); }
+
+        /* --- GOLDEN DOCK --- */
+        .iphone-dock-wrapper { 
+            position: fixed; bottom: var(--footer-offset); 
+            left: 0; width: 100%; display: flex; justify-content: center; z-index: 2000; padding: 0 15px; 
+        }
+        .iphone-dock { width: 100%; max-width: 500px; height: var(--footer-height); background: rgba(5, 4, 1, 0.98); backdrop-filter: blur(35px); border-radius: 28px; border: 2px solid rgba(255, 215, 0, 0.2); display: flex; justify-content: space-around; align-items: center; box-shadow: 0 15px 40px rgba(0,0,0,0.9); }
+        
+        .nav-link { color: #8892a0; font-size: 0.55rem; font-weight: 800; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; transition: 0.3s; padding: 6px; }
+        .nav-link i { font-size: 1.0rem; margin-bottom: 2px; }
+        .nav-link.active { color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        
+        .dock-fab { width: 60px; height: 60px; background: radial-gradient(circle at center, #fff 0%, var(--primary) 70%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-size: 1.5rem; transform: translateY(-20px); border: 4px solid #050401; box-shadow: 0 12px 25px rgba(0,0,0,0.8), 0 0 35px rgba(var(--primary-rgb), 0.6); }
+
+        /* ================ ORIGINAL roll.html STYLES ================ */
         * {
             margin: 0;
             padding: 0;
@@ -52,7 +132,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('kegel.png');
+            background-image: url('');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -66,7 +146,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('kegel.png');
+            background-image: url('');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -80,7 +160,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('kegel.png');
+            background-image: url('');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -94,7 +174,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('kegel.png');
+            background-image: url('');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -109,7 +189,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('kegel.png');
+            background-image: url('');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -606,27 +686,104 @@
             -webkit-backdrop-filter: blur(10px);
             border-radius: 16px;
         }
+
+        * { font-style: normal !important; }
+        h1, h2, h3, span, p, a, button { font-weight: 900 !important; }
     </style>
 </head>
-<body class="flex items-center justify-center p-0">
-    <!-- Background Layers - All with 70% opacity -->
+<body>
+    
+    <!-- FIXED BACKGROUND (from main.html) -->
+    <div id="fixed-media-background"></div>
+
+    <!-- FLOATING HEADER (from main.html) -->
+    <header class="iphone-header">
+        <div class="flex items-center gap-3">
+            <img src="blessingsssl.png" alt="Icon" class="w-9 h-9 rounded-xl border-2 border-primary shadow-lg">
+            <img src="blessingsss.png" alt="Blessingsss" class="h-[18px]">
+        </div>
+        <button id="menuBtn" class="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary text-xl shadow-lg">
+            <i class="fas fa-bars-staggered"></i>
+        </button>
+    </header>
+
+    <!-- SIDEBAR (from main.html) -->
+    <div id="sidebar" class="mobile-panel">
+        <div class="sidebar-bg-image"></div>
+        <svg class="mandala-bg" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+            <circle cx="50" cy="50" r="45" stroke-width="0.2" stroke-dasharray="1 1" />
+            <path d="M50 0 L53 47 L100 50 L53 53 L50 100 L47 53 L0 50 L47 47 Z" stroke-width="0.2" />
+        </svg>
+
+        <div class="sidebar-inner">
+            <div class="sidebar-close-btn" id="closeSidebar"><i class="fas fa-times"></i></div>
+            <div class="text-center mb-8 border-b border-primary/20 pb-6">
+                <img src="blessingsssl.png" alt="Icon" class="w-10 h-10 mx-auto rounded-full border border-primary mb-3">
+                <img src="blessingsss.png" alt="Blessingsss" class="h-[20px] mx-auto">
+                <p class="text-[9px] text-gray-400 uppercase tracking-[4px] mt-3">Your Mehndi Partner</p>
+            </div>
+
+            <div class="space-y-4 relative z-10">
+                <div>
+                    <button class="accordion-btn" onclick="toggleAccordion('side-bridal')">
+                        <span>BRIDAL STUDIO</span> <i class="fas fa-chevron-down text-[10px]" id="icon-side-bridal"></i>
+                    </button>
+                    <div id="side-bridal" class="accordion-content">
+                        <a href="bridal_traditional.html" class="side-sub-link">Royal Traditional</a>
+                        <a href="bridal_arabic.html" class="side-sub-link">Modern Arabic</a>
+                        <a href="bridal_indowestern.html" class="side-sub-link">Fusion Luxe</a>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="accordion-btn" onclick="toggleAccordion('side-festive')">
+                        <span>FESTIVE ART</span> <i class="fas fa-chevron-down text-[10px]" id="icon-side-festive"></i>
+                    </button>
+                    <div id="side-festive" class="accordion-content">
+                        <a href="festive_arabic.html" class="side-sub-link">Festive Arabic Art</a>
+                        <a href="festive_indian.html" class="side-sub-link">Indian Festive Best</a>
+                        <a href="festive_indoarabic.html" class="side-sub-link">Indo-Arabic Fusion</a>
+                        <a href="festive_geometric.html" class="side-sub-link">Moroccan Trends</a>
+                        <a href="festive_minimal_art.html" class="side-sub-link">Minimalist Elegance</a>
+                    </div>
+                </div>
+
+                <a href="custom_mehndi.html" class="accordion-btn"><span>CUSTOM CONCEPT</span><i class="fas fa-arrow-right text-[10px]"></i></a>
+                <a href="meet_me.html" class="accordion-btn"><span>MEET MASTER</span><i class="fas fa-arrow-right text-[10px]"></i></a>
+
+                <div>
+                    <button class="accordion-btn" onclick="toggleAccordion('side-gallery')">
+                        <span>GALLERY</span> <i class="fas fa-chevron-down text-[10px]" id="icon-side-gallery"></i>
+                    </button>
+                    <div id="side-gallery" class="accordion-content">
+                        <a href="bridal_traditional.html" class="side-sub-link">Royal Traditional</a>
+                        <a href="bridal_arabic.html" class="side-sub-link">Modern Arabic</a>
+                        <a href="bridal_indowestern.html" class="side-sub-link">Fusion Luxe</a>
+                        <a href="festive_arabic.html" class="side-sub-link">Festive Arabic Art</a>
+                        <a href="festive_indian.html" class="side-sub-link">Indian Festive Best</a>
+                        <a href="festive_indioarabic.html" class="side-sub-link">Indo-Arabic Fusion</a>
+                        <a href="festive_geometric.html" class="side-sub-link">Moroccan Trends</a>
+                        <a href="festive_minimal_art.html" class="side-sub-link">Minimalist Elegance</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BACKGROUND LAYERS for Kegel App -->
     <div class="background-layer"></div>
     <div class="quiz-background" id="quiz-bg"></div>
     <div class="analysis-background hidden" id="analysis-bg"></div>
     <div class="exercise-background hidden" id="exercise-bg"></div>
-    
+
+    <!-- MAIN CONTENT - ORIGINAL roll.html CONTENT AS IT IS -->
     <div class="w-full min-h-screen safe-area-top safe-area-bottom flex items-center justify-center px-3 text-on-bg">
         <div class="w-full max-w-md main-container rounded-xl p-4 fade-in">
             
             <!-- Header -->
             <header class="text-center mb-6">
                 <div class="flex justify-center mb-4">
-                    <div class="relative logo-glow">
-                        <div class="absolute inset-0 bg-gradient-to-r from-gold-primary to-gold-light blur-xl opacity-30"></div>
-                        <div class="w-18 h-18 bg-gradient-to-br from-gold-primary to-gold-secondary rounded-full flex items-center justify-center relative z-10" style="width: 72px; height: 72px;">
-                            <i class="fas fa-heartbeat text-black text-3xl"></i>
-                        </div>
-                    </div>
+                    <!-- Logo removed as per original -->
                 </div>
                 <h1 class="text-2xl font-black text-3d-gold mb-2 tracking-tight">S.T.I-KEGAL</h1>
                 <p class="text-xs text-gold-light/80 font-bold uppercase tracking-wider text-3d-secondary">PELVIC HEALTH PARTNER</p>
@@ -734,6 +891,19 @@
         </div>
     </div>
 
+    <!-- DOCK NAV (from main.html) -->
+    <div class="iphone-dock-wrapper">
+        <nav class="iphone-dock">
+            <a href="javascript:void(0)" class="nav-link" onclick="handleNavClick(this, 'bridal')"><i class="fas fa-wand-magic-sparkles"></i><span>Studio</span></a>
+            <a href="javascript:void(0)" class="nav-link" onclick="handleNavClick(this, 'festive')"><i class="fas fa-fire"></i><span>Festive</span></a>
+            
+            <a href="main.html" class="dock-fab"><i class="fas fa-house-chimney"></i></a>
+            
+            <a href="javascript:void(0)" class="nav-link" onclick="handleNavClick(this, 'gallery')"><i class="fas fa-images"></i><span>Gallery</span></a>
+            <a href="javascript:void(0)" class="nav-link" onclick="handleNavClick(this)"><i class="fas fa-user-circle"></i><span>Profile</span></a>
+        </nav>
+    </div>
+
     <!-- Question Popup Modal -->
     <div id="question-popup-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3">
         <!-- Question Popup Background -->
@@ -817,6 +987,7 @@
         </div>
     </div>
 
+<!-- ================ ORIGINAL roll.html SCRIPT AS IT IS ================ -->
 <script>
     // ==================== STATE MANAGEMENT ====================
     let appState = {
@@ -2746,6 +2917,74 @@
 
     // Initialize
     document.addEventListener('DOMContentLoaded', initApp);
+
+    // ==================== HEADER/SIDEBAR/FUNCTIONS from main.html ====================
+    const menuBtn = document.getElementById('menuBtn');
+    const sidebar = document.getElementById('sidebar');
+    const closeSidebarBtn = document.getElementById('closeSidebar');
+
+    if (menuBtn && sidebar && closeSidebarBtn) {
+        menuBtn.onclick = () => sidebar.classList.add('open');
+        closeSidebarBtn.onclick = () => sidebar.classList.remove('open');
+    }
+
+    function toggleAccordion(id) {
+        const content = document.getElementById(id);
+        const icon = document.getElementById('icon-' + id);
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+            icon.style.transform = 'rotate(0deg)';
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            icon.style.transform = 'rotate(180deg)'; 
+        }
+    }
+
+    function handleNavClick(element, popupKey = null) {
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+        });
+        element.classList.add('active');
+        
+        if (popupKey) {
+            openPopup(popupKey);
+        }
+    }
+
+    const lists = {
+        bridal: { title: "Bridal Suite", bg: "blessingsssl.png", items: [{ name: "Traditional Royal", link: "bridal_traditional.html" }, { name: "Arabic Premium", link: "bridal_arabic.html" }, { name: "Indo-Western", link: "bridal_indowestern.html" }] },
+        festive: { title: "Festive Art", bg: "blessingsssl.png", items: [ { name: "Indo Arebic", link: "festive_indoarabic.html" },{ name: "Moroccan Trends", link: "festive_geometric.html" },{ name: "Arabic Festive", link: "festive_arabic.html" }, { name: "Indian Classic", link: "festive_indian.html" }, { name: "Minimal Style", link: "festive_minimal.html" }] },
+        gallery: { 
+            title: "Gallery", 
+            bg: "blessingsssl.png", 
+            items: [
+                { name: "Royal Traditional", link: "bridal_traditional.html" }, 
+                { name: "Modern Arabic", link: "bridal_arabic.html" },
+                { name: "Fusion Luxe", link: "bridal_indowestern.html" },
+                { name: "Festive Arabic Art", link: "festive_arabic.html" },
+                { name: "Indian Festive Best", link: "festive_indian.html" },
+                { name: "Indo-Arabic Fusion", link: "festive_indoarabic.html" },
+                { name: "Moroccan Trends", link: "festive_geometric.html" },
+                { name: "Minimalist Elegance", link: "festive_minimal.html" }
+            ] 
+        }
+    };
+
+    function openPopup(key) {
+        const data = lists[key];
+        if (!data) return;
+        
+        // You might want to create a modal for these or redirect to appropriate pages
+        // For now, I'll just alert the first item
+        if (data.items && data.items.length > 0) {
+            // Redirect to first item or handle as needed
+            // window.location.href = data.items[0].link;
+        }
+    }
+
+    function closePopup() {
+        // Implement if you add a modal
+    }
 </script>
 </body>
 </html>
