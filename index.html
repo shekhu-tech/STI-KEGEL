@@ -1,546 +1,300 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Fitness Partner | Splash Screen</title>
-    
-    <!-- Tailwind CSS -->
+    <title>Tamanna Sharma | Premium Splash</title>
+    <!-- Tailwind for modern utilities -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&family=Noto+Sans+Devanagari:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Professional Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #FFD700;
-            --primary-dark: #FFC107;
-            --dark-bg: #050401;
-            --gradient-gold: linear-gradient(135deg, #FFD700 0%, #FFC107 50%, #FF9800 100%);
+            /* Dark Golden Shining Theme */
+            --brand-gold: #D4AF37; /* Metallic Gold */
+            --dark-bronze: #4a3701;
+            --surface-black: #080808;
+            --text-muted: #a1a1aa;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
-            background: var(--dark-bg);
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            background-color: var(--surface-black);
+            font-family: 'Inter', sans-serif;
             color: white;
-            height: 100vh;
             overflow: hidden;
-            position: relative;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Animated Background */
-        .splash-bg {
+        /* --- 1. Background Image with Professional Overlay (35% Visibility) --- */
+        .bg-layer {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(255, 193, 7, 0.08) 0%, transparent 40%),
-                linear-gradient(135deg, #050401 0%, #0a0802 100%);
+            inset: 0;
             z-index: -2;
+            background-image: url('bridal.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
-        /* Animated Particles */
-        .particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
+        .ambient-bg {
+            position: fixed;
+            inset: 0;
             z-index: -1;
+            /* Dark Gradient for readability + Soft Golden Glow */
+            background: linear-gradient(
+                rgba(8, 8, 8, 0.65), 
+                rgba(8, 8, 8, 0.85)
+            ),
+            radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
         }
 
-        .particle {
-            position: absolute;
-            background: var(--primary);
-            border-radius: 50%;
-            animation: float 15s infinite linear;
-        }
-
-        /* Gold Rings Animation */
-        .rings {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        .ring {
-            position: absolute;
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 50%;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            animation: pulse 3s infinite ease-in-out;
-        }
-
-        .ring:nth-child(1) { width: 300px; height: 300px; animation-delay: 0s; }
-        .ring:nth-child(2) { width: 450px; height: 450px; animation-delay: 0.5s; }
-        .ring:nth-child(3) { width: 600px; height: 600px; animation-delay: 1s; }
-
-        /* Main Container */
-        .splash-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            padding: 20px;
-            text-align: center;
+        /* --- 2. Clean Container --- */
+        .container-box {
             position: relative;
             z-index: 10;
-        }
-
-        /* Logo Animation */
-        .logo-container {
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .main-logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 4px solid var(--primary);
-            padding: 10px;
-            background: rgba(5, 4, 1, 0.9);
-            box-shadow: 
-                0 0 40px rgba(255, 215, 0, 0.4),
-                0 0 80px rgba(255, 215, 0, 0.2),
-                inset 0 0 20px rgba(255, 215, 0, 0.1);
-            animation: logoGlow 3s infinite alternate;
-        }
-
-        /* Brand Text */
-        .brand-text {
-            font-size: 3.5rem;
-            font-weight: 900;
-            background: var(--gradient-gold);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-            text-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
-            letter-spacing: 2px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .brand-text::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 10%;
-            width: 80%;
-            height: 3px;
-            background: var(--gradient-gold);
-            border-radius: 3px;
-            animation: widthGrow 2s infinite alternate;
-        }
-
-        /* Tagline */
-        .tagline {
-            font-size: 1.1rem;
-            color: #ccc;
-            margin-bottom: 50px;
-            max-width: 500px;
-            line-height: 1.6;
-            font-weight: 500;
-        }
-
-        /* Fitness Stats */
-        .stats-container {
             display: flex;
-            gap: 30px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
+            align-items: center;
             justify-content: center;
+            height: 100vh;
+            padding: 2rem;
         }
 
-        .stat-item {
+        .content-card {
             display: flex;
             flex-direction: column;
             align-items: center;
-            animation: fadeInUp 1s ease forwards;
+            text-align: center;
+            width: 100%;
+            max-width: 320px;
             opacity: 0;
+            transform: translateY(15px);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        .stat-item:nth-child(1) { animation-delay: 0.5s; }
-        .stat-item:nth-child(2) { animation-delay: 0.7s; }
-        .stat-item:nth-child(3) { animation-delay: 0.9s; }
-
-        .stat-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            color: var(--primary);
-            font-size: 1.5rem;
+        @media (min-width: 1024px) {
+            .content-card {
+                max-width: 950px;
+                flex-direction: row;
+                text-align: left;
+                gap: 6rem;
+            }
         }
 
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 800;
-            background: var(--gradient-gold);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        /* --- 3. Refined Branding --- */
+        .logo-container {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            flex-shrink: 0;
+            margin-bottom: 2rem;
         }
 
-        .stat-label {
+        @media (min-width: 1024px) {
+            .logo-container {
+                width: 180px;
+                height: 180px;
+                margin-bottom: 0;
+            }
+        }
+
+        .logo-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 100%; /* Circle for Mehndi branding */
+            object-fit: cover;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(212, 175, 55, 0.1);
+            transition: transform 0.8s cubic-bezier(0.2, 0, 0.2, 1);
+        }
+
+        .logo-container:hover .logo-image {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        /* Title Image / Text Styling */
+        .title-img {
+            max-width: 280px;
+            height: auto;
+            margin-bottom: 0.5rem;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+        }
+
+        @media (min-width: 1024px) {
+            .title-img {
+                max-width: 400px;
+            }
+        }
+
+        .tagline {
             font-size: 0.8rem;
-            color: #aaa;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.4em;
+            color: var(--brand-gold);
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+            opacity: 1;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.6);
         }
 
-        /* Progress Bar */
-        .progress-container {
+        /* --- 4. Sophisticated Gold Loader --- */
+        .progress-wrapper {
             width: 100%;
-            max-width: 500px;
-            margin: 40px auto;
+            max-width: 240px;
         }
 
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            color: #ccc;
-            font-size: 0.9rem;
+        @media (min-width: 1024px) {
+            .progress-wrapper {
+                max-width: 380px;
+            }
         }
 
-        .progress-bar {
+        .progress-track {
+            height: 2px;
             width: 100%;
-            height: 6px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 3px;
+            border-radius: 4px;
             overflow: hidden;
             position: relative;
         }
 
         .progress-fill {
+            height: 100%;
             width: 0%;
-            height: 100%;
-            background: var(--gradient-gold);
-            border-radius: 3px;
-            position: relative;
-            transition: width 0.3s ease;
+            background: linear-gradient(90deg, var(--dark-bronze), var(--brand-gold), #fff);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            transition: width 0.4s ease-out;
         }
 
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            animation: shimmer 2s infinite;
+        .status-msg {
+            font-size: 0.75rem;
+            color: #d1d5db;
+            margin-top: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+            font-style: italic;
         }
 
-        /* Loading Text */
-        .loading-text {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: var(--primary);
-            min-height: 24px;
-            font-weight: 600;
+        /* Reveal Effect */
+        .is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* Keyframe Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.2; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); }
-        }
-
-        @keyframes logoGlow {
-            0% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.4), 0 0 80px rgba(255, 215, 0, 0.2); }
-            100% { box-shadow: 0 0 60px rgba(255, 215, 0, 0.6), 0 0 120px rgba(255, 215, 0, 0.3); }
-        }
-
-        @keyframes widthGrow {
-            0% { width: 80%; }
-            100% { width: 90%; }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .brand-text {
-                font-size: 2.5rem;
-            }
-            
-            .tagline {
-                font-size: 1rem;
-                padding: 0 20px;
-            }
-            
-            .stats-container {
-                gap: 20px;
-            }
-            
-            .stat-item {
-                min-width: 100px;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="splash-bg"></div>
-    
-    <!-- Animated Rings -->
-    <div class="rings">
-        <div class="ring"></div>
-        <div class="ring"></div>
-        <div class="ring"></div>
-    </div>
-    
-    <!-- Animated Particles -->
-    <div class="particles" id="particles"></div>
 
-    <!-- Main Content -->
-    <div class="splash-container">
-        <!-- Logo -->
-        <div class="logo-container">
-            <img src="blessingsssl.png" alt="Fitness Partner Logo" class="main-logo" 
-                 onerror="this.src='https://via.placeholder.com/120/FFD700/050401?text=FP'">
-        </div>
-        
-        <!-- Brand Name -->
-        <h1 class="brand-text">STI-FITNESS</h1>
-        
-        <!-- Tagline -->
-        <p class="tagline">
-            Your complete guide to fitness, wellness, and strength. 
-            From Gym Workouts to Kegel Exercises - Transform your body & mind.
-        </p>
-        
-        <!-- Stats -->
-        <div class="stats-container">
-            <div class="stat-item">
-                <div class="stat-icon">
-                    <i class="fas fa-dumbbell"></i>
-                </div>
-                <div class="stat-number" id="workouts">500+</div>
-                <div class="stat-label">Workouts</div>
-            </div>
+    <!-- Background Layers -->
+    <div class="bg-layer"></div>
+    <div class="ambient-bg"></div>
+
+    <main class="container-box">
+        <div id="content" class="content-card">
             
-            <div class="stat-item">
-                <div class="stat-icon">
-                    <i class="fas fa-heart-pulse"></i>
+            <!-- Logo Section -->
+            <div class="logo-container">
+                <img src="#" alt="Blessingss Logo" class="logo-image" 
+                     onerror="this.src='https://placehold.co/400x400/D4AF37/000000?text=B';">
+            </div>
+
+            <!-- Content Section -->
+            <div class="flex-1">
+                <!-- Title Image () -->
+                <img src="#" alt="STI-World" class="title-img mx-auto lg:mx-0" 
+                     onerror="this.src='https://placehold.co/400x100/000000/D4AF37?text=STI-World';">
+                
+                <p class="tagline">Your Exercise Partaner </p>
+                
+                <div class="progress-wrapper mx-auto lg:mx-0">
+                    <div class="progress-track">
+                        <div id="bar" class="progress-fill"></div>
+                    </div>
+                    <p id="status" class="status-msg">Adorning your experience...</p>
                 </div>
-                <div class="stat-number" id="users">10K+</div>
-                <div class="stat-label">Active Users</div>
             </div>
-            
-            <div class="stat-item">
-                <div class="stat-icon">
-                    <i class="fas fa-language"></i>
-                </div>
-                <div class="stat-number" id="languages">15+</div>
-                <div class="stat-label">Languages</div>
-            </div>
+
         </div>
-        
-        <!-- Progress Bar -->
-        <div class="progress-container">
-            <div class="progress-label">
-                <span>Loading Fitness Modules</span>
-                <span id="progressPercent">0%</span>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-        </div>
-        
-        <!-- Loading Messages -->
-        <div class="loading-text" id="loadingMessage">
-            Initializing your fitness journey...
-        </div>
-    </div>
+    </main>
 
     <script>
-        // Configuration
         const REDIRECT_URL = 'main.html';
-        const LOAD_TIME = 5000; // 5 seconds
-        
-        // Loading messages
-        const loadingMessages = [
-            "Initializing your fitness journey...",
-            "Loading Gym Workout modules...",
-            "Preparing Calisthenics routines...",
-            "Setting up Kegel Exercises...",
-            "Loading Yoga & Desi Akhada...",
-            "Optimizing for your device...",
-            "Ready to transform!",
-            "Redirecting to main app..."
-        ];
-        
-        // Create particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
+        const LOAD_TIME = 4000; 
+
+        window.onload = () => {
+            const content = document.getElementById('content');
+            const bar = document.getElementById('bar');
+            const statusText = document.getElementById('status');
             
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Random properties
-                const size = Math.random() * 4 + 1;
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100;
-                const duration = Math.random() * 20 + 10;
-                const delay = Math.random() * 5;
-                const opacity = Math.random() * 0.5 + 0.1;
-                
-                // Apply styles
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${posX}%`;
-                particle.style.top = `${posY}%`;
-                particle.style.opacity = opacity;
-                particle.style.animationDuration = `${duration}s`;
-                particle.style.animationDelay = `${delay}s`;
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
-        
-        // Animate stats counters
-        function animateStats() {
-            const stats = {
-                workouts: { target: 500, current: 0 },
-                users: { target: 10000, current: 0 },
-                languages: { target: 15, current: 0 }
-            };
-            
-            const duration = 2000;
-            const interval = 50;
-            const steps = duration / interval;
-            
-            const incrementStats = () => {
-                let allComplete = true;
-                
-                for (const [key, stat] of Object.entries(stats)) {
-                    if (stat.current < stat.target) {
-                        stat.current += Math.ceil(stat.target / steps);
-                        if (stat.current > stat.target) stat.current = stat.target;
-                        
-                        const element = document.getElementById(key);
-                        if (element) {
-                            if (key === 'users') {
-                                element.textContent = stat.current.toLocaleString() + '+';
-                            } else {
-                                element.textContent = stat.current + '+';
-                            }
-                        }
-                        
-                        if (stat.current < stat.target) allComplete = false;
-                    }
-                }
-                
-                if (!allComplete) {
-                    setTimeout(incrementStats, interval);
-                }
-            };
-            
-            setTimeout(incrementStats, 1000);
-        }
-        
-        // Main loading animation
-        function startLoading() {
-            const progressFill = document.getElementById('progressFill');
-            const progressPercent = document.getElementById('progressPercent');
-            const loadingMessage = document.getElementById('loadingMessage');
-            
-            let progress = 0;
-            const totalSteps = LOAD_TIME / 100;
-            const increment = 100 / (LOAD_TIME / 100);
-            let messageIndex = 0;
-            
-            const loadingInterval = setInterval(() => {
-                progress += increment;
-                if (progress > 100) progress = 100;
-                
-                // Update progress bar
-                progressFill.style.width = `${progress}%`;
-                progressPercent.textContent = `${Math.round(progress)}%`;
-                
-                // Update loading message
-                if (progress >= (messageIndex + 1) * (100 / loadingMessages.length)) {
-                    if (messageIndex < loadingMessages.length) {
-                        loadingMessage.textContent = loadingMessages[messageIndex];
-                        loadingMessage.style.opacity = '0';
-                        setTimeout(() => {
-                            loadingMessage.style.opacity = '1';
-                            loadingMessage.style.transition = 'opacity 0.5s ease';
-                        }, 200);
-                        messageIndex++;
-                    }
-                }
-                
-                // Complete loading
-                if (progress >= 100) {
-                    clearInterval(loadingInterval);
-                    
-                    // Add final animation before redirect
-                    setTimeout(() => {
-                        document.body.style.opacity = '0.8';
-                        document.body.style.filter = 'blur(10px)';
-                        document.body.style.transition = 'all 0.8s ease';
-                        
-                        setTimeout(() => {
-                            window.location.href = REDIRECT_URL;
-                        }, 500);
-                    }, 1000);
-                }
+            setTimeout(() => {
+                content.classList.add('is-visible');
             }, 100);
-        }
-        
-        // Initialize everything when page loads
-        window.onload = function() {
-            createParticles();
-            animateStats();
-            
-            // Start loading after a brief delay
-            setTimeout(startLoading, 1000);
+
+            const steps = [
+                "Syncing Zym Exercise...",
+                "Activating Calesthenics...",
+                "Preparing Kegel Exercise...",
+                "Geting All Yogasanas ...",
+                "Get Ready For Cardio ...",
+                "Finalizing Your Buffey..."
+            ];
+
+            let start = Date.now();
+
+            function update() {
+                let elapsed = Date.now() - start;
+                let progress = Math.min(100, (elapsed / LOAD_TIME) * 100);
+                
+                bar.style.width = `${progress}%`;
+
+                let index = Math.floor((progress / 100) * steps.length);
+                if (steps[index] && statusText.innerText !== steps[index]) {
+                    statusText.style.opacity = '0';
+                    setTimeout(() => {
+                        statusText.innerText = steps[index];
+                        statusText.style.opacity = '1';
+                        statusText.style.transition = 'opacity 0.5s ease';
+                    }, 200);
+                }
+
+                if (progress < 100) {
+                    requestAnimationFrame(update);
+                } else {
+                    setTimeout(exitAndRedirect, 500);
+                }
+            }
+
+            requestAnimationFrame(update);
         };
+
+        function exitAndRedirect() {
+            const content = document.getElementById('content');
+            content.style.opacity = '0';
+            content.style.filter = 'blur(20px)';
+            content.style.transform = 'scale(1.05)';
+            content.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            setTimeout(() => {
+                // Fixed the error by using a more robust way to navigate relative paths
+                // This ensures that even in restricted environments, it tries to find main.html
+                try {
+                    const currentPath = window.location.pathname;
+                    const pathParts = currentPath.split('/');
+                    pathParts[pathParts.length - 1] = REDIRECT_URL;
+                    const newPath = pathParts.join('/');
+                    
+                    // Fallback to simpler redirect if path manipulation feels risky
+                    window.location.assign(REDIRECT_URL);
+                } catch (e) {
+                    window.location.href = './' + REDIRECT_URL;
+                }
+            }, 800);
+        }
     </script>
 </body>
 </html>
