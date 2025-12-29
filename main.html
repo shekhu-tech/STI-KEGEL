@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -49,13 +48,14 @@
         }
 
         /* --- GOLDEN FLOATING HEADER --- */
+        /* Updated Z-Index to 3000 to stay above modal */
         .iphone-header {
             position: fixed; top: var(--header-offset); left: 50%; transform: translateX(-50%);
             width: 92%; max-width: 600px; height: var(--header-height);
             background: rgba(5, 4, 1, 0.96); backdrop-filter: blur(30px);
             border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 24px;
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 20px; z-index: 2000; box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
+            padding: 0 20px; z-index: 3000; box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
         }
 
         /* Header content layout */
@@ -81,9 +81,10 @@
         }
 
         /* --- GOLDEN DOCK --- */
+        /* Updated Z-Index to 3000 to stay above modal */
         .iphone-dock-wrapper { 
             position: fixed; bottom: var(--footer-offset); 
-            left: 0; width: 100%; display: flex; justify-content: center; z-index: 2000; padding: 0 15px; 
+            left: 0; width: 100%; display: flex; justify-content: center; z-index: 3000; padding: 0 15px; 
         }
         .iphone-dock { 
             width: 100%; 
@@ -95,20 +96,20 @@
             border: 2px solid rgba(255, 215, 0, 0.2); 
             display: flex; 
             justify-content: space-between; 
-            align-items: center; /* Changed to center for no upward movement */
+            align-items: center;
             box-shadow: 0 15px 40px rgba(0,0,0,0.9); 
             padding: 0 10px; 
             overflow: visible; 
         }
         
-        /* Nav Item Styles - UPDATED: No upward movement */
+        /* Nav Item Styles */
         .nav-item { 
             flex: 1; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
             justify-content: center; 
-            padding: 12px 0; /* Changed padding */
+            padding: 12px 0;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             color: #8892a0; 
             cursor: pointer; 
@@ -128,9 +129,8 @@
             transition: 0.3s; 
         }
         
-        /* ACTIVE STATE - UPDATED: No transform translateY */
+        /* ACTIVE STATE */
         .nav-item.active { 
-            /* REMOVED: transform: translateY(-25px); */
             color: var(--primary); 
         }
         .nav-item.active .icon-box {
@@ -143,7 +143,6 @@
             justify-content: center;
             border: 2px solid var(--primary); 
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-            /* REMOVED: margin-bottom: -5px; */
         }
         .nav-item.active i { 
             font-size: 1.4rem; 
@@ -153,7 +152,6 @@
         .nav-item.active span { 
             color: var(--primary); 
             text-shadow: 0 0 8px rgba(255, 215, 0, 0.5); 
-            /* REMOVED: position: absolute; bottom: -20px; */
         }
 
         /* --- MAIN CONTENT CARDS --- */
@@ -219,19 +217,23 @@
         }
 
         /* --- MODAL STYLES --- */
+        /* Updated: Reduced Opacity to 0.4 and blur to 5px so background cards are visible */
         .modal-overlay { 
             position: fixed; 
             inset: 0; 
-            background: rgba(0,0,0,0.96); 
-            backdrop-filter: blur(25px); 
+            background: rgba(0,0,0,0.4); 
+            backdrop-filter: blur(5px); 
             display: none; 
             z-index: 2500; 
             align-items: center; 
             justify-content: center; 
             padding: 25px; 
+            /* Ensure it doesn't block clicks on header/footer if they are above */
         }
+        
+        /* Updated: Modal box slightly transparent too */
         .modal-box { 
-            background: #0a0802; 
+            background: rgba(10, 8, 2, 0.92); 
             border: 2.5px solid var(--primary); 
             border-radius: 40px; 
             width: 100%; 
@@ -242,7 +244,7 @@
             overflow: hidden; 
             display: flex; 
             flex-direction: column; 
-            max-height: 85vh; 
+            max-height: 70vh; /* Reduced height to ensure more background is visible */
         }
         .modal-bg-img { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.25; z-index: 0; filter: brightness(25%); }
         
@@ -391,7 +393,7 @@
             
             <div class="nav-item" onclick="activateTab(this, 'yoga')">
                 <div class="icon-box"><i class="fas fa-om"></i></div>
-                <span>Yogasnas</span>
+                <span>Yoga</span>
             </div>
 
             <div class="nav-item" onclick="activateTab(this, 'desi')">
@@ -424,53 +426,359 @@
         // Different languages for each category
         const categoryLanguages = {
             gym: [
-                { name: "English", code: "en", page: "gym_english.html" },
                 { name: "Hindi", code: "hi", page: "gym_hindi.html" },
-                { name: "Spanish", code: "es", page: "gym_spanish.html" },
-                { name: "Arabic", code: "ar", page: "gym_arabic.html" },
-                { name: "Russian", code: "ru", page: "gym_russian.html" },
-                { name: "Chinese", code: "zh", page: "gym_chinese.html" },
-                { name: "Japanese", code: "ja", page: "gym_japanese.html" },
-                { name: "Korean", code: "ko", page: "gym_korean.html" }
+  { name: "English", code: "en", page: "gym_english.html" },
+  { name: "Punjabi", code: "pa", page: "gym_punjabi.html" },
+  { name: "Bengali", code: "bn", page: "gym_bengali.html" },
+  { name: "Gujarati", code: "gu", page: "gym_gujarati.html" },
+  { name: "Marathi", code: "mr", page: "gym_marathi.html" },
+  { name: "Tamil", code: "ta", page: "gym_tamil.html" },
+  { name: "Telugu", code: "te", page: "gym_telugu.html" },
+  { name: "Kannada", code: "kn", page: "gym_kannada.html" },
+  { name: "Malayalam", code: "ml", page: "gym_malayalam.html" },
+  { name: "Odia", code: "or", page: "gym_odia.html" },
+  { name: "Assamese", code: "as", page: "gym_assamese.html" },
+  { name: "Urdu", code: "ur", page: "gym_urdu.html" },
+  { name: "Sanskrit", code: "sa", page: "gym_sanskrit.html" },
+  { name: "Maithili", code: "mai", page: "gym_maithili.html" },
+  { name: "Bhojpuri", code: "bho", page: "gym_bhojpuri.html" },
+  { name: "Rajasthani", code: "raj", page: "gym_rajasthani.html" },
+  { name: "Haryanvi", code: "hr", page: "gym_haryanvi.html" },
+  { name: "Konkani", code: "kok", page: "gym_konkani.html" },
+  { name: "Sindhi", code: "sd", page: "gym_sindhi.html" },
+  { name: "Dogri", code: "doi", page: "gym_dogri.html" },
+  { name: "Kashmiri", code: "ks", page: "gym_kashmiri.html" },
+  { name: "Manipuri (Meitei)", code: "mni", page: "gym_manipuri.html" },
+  { name: "Nepali", code: "ne", page: "gym_nepali.html" },
+  { name: "Santali", code: "sat", page: "gym_santali.html" },
+  { name: "Spanish", code: "es", page: "gym_spanish.html" },
+  { name: "French", code: "fr", page: "gym_french.html" },
+  { name: "Arabic", code: "ar", page: "gym_arabic.html" },
+  { name: "Portuguese", code: "pt", page: "gym_portuguese.html" },
+  { name: "Russian", code: "ru", page: "gym_russian.html" },
+  { name: "Chinese", code: "zh", page: "gym_chinese.html" },
+  { name: "Japanese", code: "ja", page: "gym_japanese.html" },
+  { name: "Korean", code: "ko", page: "gym_korean.html" },
+  { name: "German", code: "de", page: "gym_german.html" },
+  { name: "Italian", code: "it", page: "gym_italian.html" },
+  { name: "Turkish", code: "tr", page: "gym_turkish.html" },
+  { name: "Persian", code: "fa", page: "gym_persian.html" },
+  { name: "Urdu", code: "ur", page: "gym_urdu.html" },
+  { name: "Bengali", code: "bn", page: "gym_bengali.html" },
+  { name: "Punjabi", code: "pa", page: "gym_punjabi.html" },
+  { name: "Tamil", code: "ta", page: "gym_tamil.html" },
+  { name: "Telugu", code: "te", page: "gym_telugu.html" },
+  { name: "Marathi", code: "mr", page: "gym_marathi.html" },
+  { name: "Gujarati", code: "gu", page: "gym_gujarati.html" },
+  { name: "Kannada", code: "kn", page: "gym_kannada.html" },
+  { name: "Malayalam", code: "ml", page: "gym_malayalam.html" },
+  { name: "Odia", code: "or", page: "gym_odia.html" },
+  { name: "Assamese", code: "as", page: "gym_assamese.html" },
+  { name: "Nepali", code: "ne", page: "gym_nepali.html" },
+  { name: "Sinhala", code: "si", page: "gym_sinhala.html" },
+  { name: "Thai", code: "th", page: "gym_thai.html" },
+  { name: "Vietnamese", code: "vi", page: "gym_vietnamese.html" },
+  { name: "Indonesian", code: "id", page: "gym_indonesian.html" },
+  { name: "Malay", code: "ms", page: "gym_malay.html" },
+  { name: "Filipino", code: "fil", page: "gym_filipino.html" },
+  { name: "Swahili", code: "sw", page: "gym_swahili.html" },
+  { name: "Dutch", code: "nl", page: "gym_dutch.html" },
+  { name: "Polish", code: "pl", page: "gym_polish.html" },
+  { name: "Ukrainian", code: "uk", page: "gym_ukrainian.html" },
+  { name: "Hebrew", code: "he", page: "gym_hebrew.html" },
+  { name: "Greek", code: "el", page: "gym_greek.html" },
+  { name: "Czech", code: "cs", page: "gym_czech.html" },
+  { name: "Hungarian", code: "hu", page: "gym_hungarian.html" },
+  { name: "Romanian", code: "ro", page: "gym_romanian.html" },
+  { name: "Swedish", code: "sv", page: "gym_swedish.html" },
+  { name: "Norwegian", code: "no", page: "gym_norwegian.html" },
+  { name: "Finnish", code: "fi", page: "gym_finnish.html" },
+  { name: "Danish", code: "da", page: "gym_danish.html" }
+  
             ],
             calisthenics: [
-                { name: "English", code: "en", page: "calisthenics_english.html" },
-                { name: "Hindi", code: "hi", page: "calisthenics_hindi.html" },
-                { name: "Bengali", code: "bn", page: "calisthenics_bengali.html" },
-                { name: "Tamil", code: "ta", page: "calisthenics_tamil.html" },
-                { name: "Telugu", code: "te", page: "calisthenics_telugu.html" },
-                { name: "Marathi", code: "mr", page: "calisthenics_marathi.html" },
-                { name: "Gujarati", code: "gu", page: "calisthenics_gujarati.html" }
+                { name: "Hindi", code: "hi", page: "gym_hindi.html" },
+  { name: "English", code: "en", page: "gym_english.html" },
+  { name: "Punjabi", code: "pa", page: "gym_punjabi.html" },
+  { name: "Bengali", code: "bn", page: "gym_bengali.html" },
+  { name: "Gujarati", code: "gu", page: "gym_gujarati.html" },
+  { name: "Marathi", code: "mr", page: "gym_marathi.html" },
+  { name: "Tamil", code: "ta", page: "gym_tamil.html" },
+  { name: "Telugu", code: "te", page: "gym_telugu.html" },
+  { name: "Kannada", code: "kn", page: "gym_kannada.html" },
+  { name: "Malayalam", code: "ml", page: "gym_malayalam.html" },
+  { name: "Odia", code: "or", page: "gym_odia.html" },
+  { name: "Assamese", code: "as", page: "gym_assamese.html" },
+  { name: "Urdu", code: "ur", page: "gym_urdu.html" },
+  { name: "Sanskrit", code: "sa", page: "gym_sanskrit.html" },
+  { name: "Maithili", code: "mai", page: "gym_maithili.html" },
+  { name: "Bhojpuri", code: "bho", page: "gym_bhojpuri.html" },
+  { name: "Rajasthani", code: "raj", page: "gym_rajasthani.html" },
+  { name: "Haryanvi", code: "hr", page: "gym_haryanvi.html" },
+  { name: "Konkani", code: "kok", page: "gym_konkani.html" },
+  { name: "Sindhi", code: "sd", page: "gym_sindhi.html" },
+  { name: "Dogri", code: "doi", page: "gym_dogri.html" },
+  { name: "Kashmiri", code: "ks", page: "gym_kashmiri.html" },
+  { name: "Manipuri (Meitei)", code: "mni", page: "gym_manipuri.html" },
+  { name: "Nepali", code: "ne", page: "gym_nepali.html" },
+  { name: "Santali", code: "sat", page: "gym_santali.html" },
+  { name: "Spanish", code: "es", page: "gym_spanish.html" },
+  { name: "French", code: "fr", page: "gym_french.html" },
+  { name: "Arabic", code: "ar", page: "gym_arabic.html" },
+  { name: "Portuguese", code: "pt", page: "gym_portuguese.html" },
+  { name: "Russian", code: "ru", page: "gym_russian.html" },
+  { name: "Chinese", code: "zh", page: "gym_chinese.html" },
+  { name: "Japanese", code: "ja", page: "gym_japanese.html" },
+  { name: "Korean", code: "ko", page: "gym_korean.html" },
+  { name: "German", code: "de", page: "gym_german.html" },
+  { name: "Italian", code: "it", page: "gym_italian.html" },
+  { name: "Turkish", code: "tr", page: "gym_turkish.html" },
+  { name: "Persian", code: "fa", page: "gym_persian.html" },
+  { name: "Urdu", code: "ur", page: "gym_urdu.html" },
+  { name: "Bengali", code: "bn", page: "gym_bengali.html" },
+  { name: "Punjabi", code: "pa", page: "gym_punjabi.html" },
+  { name: "Tamil", code: "ta", page: "gym_tamil.html" },
+  { name: "Telugu", code: "te", page: "gym_telugu.html" },
+  { name: "Marathi", code: "mr", page: "gym_marathi.html" },
+  { name: "Gujarati", code: "gu", page: "gym_gujarati.html" },
+  { name: "Kannada", code: "kn", page: "gym_kannada.html" },
+  { name: "Malayalam", code: "ml", page: "gym_malayalam.html" },
+  { name: "Odia", code: "or", page: "gym_odia.html" },
+  { name: "Assamese", code: "as", page: "gym_assamese.html" },
+  { name: "Nepali", code: "ne", page: "gym_nepali.html" },
+  { name: "Sinhala", code: "si", page: "gym_sinhala.html" },
+  { name: "Thai", code: "th", page: "gym_thai.html" },
+  { name: "Vietnamese", code: "vi", page: "gym_vietnamese.html" },
+  { name: "Indonesian", code: "id", page: "gym_indonesian.html" },
+  { name: "Malay", code: "ms", page: "gym_malay.html" },
+  { name: "Filipino", code: "fil", page: "gym_filipino.html" },
+  { name: "Swahili", code: "sw", page: "gym_swahili.html" },
+  { name: "Dutch", code: "nl", page: "gym_dutch.html" },
+  { name: "Polish", code: "pl", page: "gym_polish.html" },
+  { name: "Ukrainian", code: "uk", page: "gym_ukrainian.html" },
+  { name: "Hebrew", code: "he", page: "gym_hebrew.html" },
+  { name: "Greek", code: "el", page: "gym_greek.html" },
+  { name: "Czech", code: "cs", page: "gym_czech.html" },
+  { name: "Hungarian", code: "hu", page: "gym_hungarian.html" },
+  { name: "Romanian", code: "ro", page: "gym_romanian.html" },
+  { name: "Swedish", code: "sv", page: "gym_swedish.html" },
+  { name: "Norwegian", code: "no", page: "gym_norwegian.html" },
+  { name: "Finnish", code: "fi", page: "gym_finnish.html" },
+  { name: "Danish", code: "da", page: "gym_danish.html" }
+
             ],
             kegel: [
-                { name: "English", code: "en", page: "kegel_english.html" },
-                { name: "Hindi", code: "hi", page: "kegel_hindi.html" },
-                { name: "Urdu", code: "ur", page: "kegel_urdu.html" },
-                { name: "Punjabi", code: "pa", page: "kegel_punjabi.html" },
-                { name: "Malayalam", code: "ml", page: "kegel_malayalam.html" },
-                { name: "Kannada", code: "kn", page: "kegel_kannada.html" },
-                { name: "Odia", code: "or", page: "kegel_odia.html" },
-                { name: "Assamese", code: "as", page: "kegel_assamese.html" }
+                { name: "Hindi", code: "hi", page: "gym_hindi.html" },
+  { name: "English", code: "en", page: "gym_english.html" },
+  { name: "Punjabi", code: "pa", page: "gym_punjabi.html" },
+  { name: "Bengali", code: "bn", page: "gym_bengali.html" },
+  { name: "Gujarati", code: "gu", page: "gym_gujarati.html" },
+  { name: "Marathi", code: "mr", page: "gym_marathi.html" },
+  { name: "Tamil", code: "ta", page: "gym_tamil.html" },
+  { name: "Telugu", code: "te", page: "gym_telugu.html" },
+  { name: "Kannada", code: "kn", page: "gym_kannada.html" },
+  { name: "Malayalam", code: "ml", page: "gym_malayalam.html" },
+  { name: "Odia", code: "or", page: "gym_odia.html" },
+  { name: "Assamese", code: "as", page: "gym_assamese.html" },
+  { name: "Urdu", code: "ur", page: "gym_urdu.html" },
+  { name: "Sanskrit", code: "sa", page: "gym_sanskrit.html" },
+  { name: "Maithili", code: "mai", page: "gym_maithili.html" },
+  { name: "Bhojpuri", code: "bho", page: "gym_bhojpuri.html" },
+  { name: "Rajasthani", code: "raj", page: "gym_rajasthani.html" },
+  { name: "Haryanvi", code: "hr", page: "gym_haryanvi.html" },
+  { name: "Konkani", code: "kok", page: "gym_konkani.html" },
+  { name: "Sindhi", code: "sd", page: "gym_sindhi.html" },
+  { name: "Dogri", code: "doi", page: "gym_dogri.html" },
+  { name: "Kashmiri", code: "ks", page: "gym_kashmiri.html" },
+  { name: "Manipuri (Meitei)", code: "mni", page: "gym_manipuri.html" },
+  { name: "Nepali", code: "ne", page: "gym_nepali.html" },
+  { name: "Santali", code: "sat", page: "gym_santali.html" },
+  { name: "Spanish", code: "es", page: "gym_spanish.html" },
+  { name: "French", code: "fr", page: "gym_french.html" },
+  { name: "Arabic", code: "ar", page: "gym_arabic.html" },
+  { name: "Portuguese", code: "pt", page: "gym_portuguese.html" },
+  { name: "Russian", code: "ru", page: "gym_russian.html" },
+  { name: "Chinese", code: "zh", page: "gym_chinese.html" },
+  { name: "Japanese", code: "ja", page: "gym_japanese.html" },
+  { name: "Korean", code: "ko", page: "gym_korean.html" },
+  { name: "German", code: "de", page: "gym_german.html" },
+  { name: "Italian", code: "it", page: "gym_italian.html" },
+  { name: "Turkish", code: "tr", page: "gym_turkish.html" },
+  { name: "Persian", code: "fa", page: "gym_persian.html" },
+  { name: "Urdu", code: "ur", page: "gym_urdu.html" },
+  { name: "Bengali", code: "bn", page: "gym_bengali.html" },
+  { name: "Punjabi", code: "pa", page: "gym_punjabi.html" },
+  { name: "Tamil", code: "ta", page: "gym_tamil.html" },
+  { name: "Telugu", code: "te", page: "gym_telugu.html" },
+  { name: "Marathi", code: "mr", page: "gym_marathi.html" },
+  { name: "Gujarati", code: "gu", page: "gym_gujarati.html" },
+  { name: "Kannada", code: "kn", page: "gym_kannada.html" },
+  { name: "Malayalam", code: "ml", page: "gym_malayalam.html" },
+  { name: "Odia", code: "or", page: "gym_odia.html" },
+  { name: "Assamese", code: "as", page: "gym_assamese.html" },
+  { name: "Nepali", code: "ne", page: "gym_nepali.html" },
+  { name: "Sinhala", code: "si", page: "gym_sinhala.html" },
+  { name: "Thai", code: "th", page: "gym_thai.html" },
+  { name: "Vietnamese", code: "vi", page: "gym_vietnamese.html" },
+  { name: "Indonesian", code: "id", page: "gym_indonesian.html" },
+  { name: "Malay", code: "ms", page: "gym_malay.html" },
+  { name: "Filipino", code: "fil", page: "gym_filipino.html" },
+  { name: "Swahili", code: "sw", page: "gym_swahili.html" },
+  { name: "Dutch", code: "nl", page: "gym_dutch.html" },
+  { name: "Polish", code: "pl", page: "gym_polish.html" },
+  { name: "Ukrainian", code: "uk", page: "gym_ukrainian.html" },
+  { name: "Hebrew", code: "he", page: "gym_hebrew.html" },
+  { name: "Greek", code: "el", page: "gym_greek.html" },
+  { name: "Czech", code: "cs", page: "gym_czech.html" },
+  { name: "Hungarian", code: "hu", page: "gym_hungarian.html" },
+  { name: "Romanian", code: "ro", page: "gym_romanian.html" },
+  { name: "Swedish", code: "sv", page: "gym_swedish.html" },
+  { name: "Norwegian", code: "no", page: "gym_norwegian.html" },
+  { name: "Finnish", code: "fi", page: "gym_finnish.html" },
+  { name: "Danish", code: "da", page: "gym_danish.html" }
+  
             ],
             yoga: [
-                { name: "Sanskrit", code: "sa", page: "yoga_sanskrit.html" },
-                { name: "Hindi", code: "hi", page: "yoga_hindi.html" },
-                { name: "English", code: "en", page: "yoga_english.html" },
-                { name: "Tamil", code: "ta", page: "yoga_tamil.html" },
-                { name: "Bengali", code: "bn", page: "yoga_bengali.html" },
-                { name: "Marathi", code: "mr", page: "yoga_marathi.html" },
-                { name: "Gujarati", code: "gu", page: "yoga_gujarati.html" },
-                { name: "Punjabi", code: "pa", page: "yoga_punjabi.html" }
+                { name: "Hindi", code: "hi", page: "gym_hindi.html" },
+  { name: "English", code: "en", page: "gym_english.html" },
+  { name: "Punjabi", code: "pa", page: "gym_punjabi.html" },
+  { name: "Bengali", code: "bn", page: "gym_bengali.html" },
+  { name: "Gujarati", code: "gu", page: "gym_gujarati.html" },
+  { name: "Marathi", code: "mr", page: "gym_marathi.html" },
+  { name: "Tamil", code: "ta", page: "gym_tamil.html" },
+  { name: "Telugu", code: "te", page: "gym_telugu.html" },
+  { name: "Kannada", code: "kn", page: "gym_kannada.html" },
+  { name: "Malayalam", code: "ml", page: "gym_malayalam.html" },
+  { name: "Odia", code: "or", page: "gym_odia.html" },
+  { name: "Assamese", code: "as", page: "gym_assamese.html" },
+  { name: "Urdu", code: "ur", page: "gym_urdu.html" },
+  { name: "Sanskrit", code: "sa", page: "gym_sanskrit.html" },
+  { name: "Maithili", code: "mai", page: "gym_maithili.html" },
+  { name: "Bhojpuri", code: "bho", page: "gym_bhojpuri.html" },
+  { name: "Rajasthani", code: "raj", page: "gym_rajasthani.html" },
+  { name: "Haryanvi", code: "hr", page: "gym_haryanvi.html" },
+  { name: "Konkani", code: "kok", page: "gym_konkani.html" },
+  { name: "Sindhi", code: "sd", page: "gym_sindhi.html" },
+  { name: "Dogri", code: "doi", page: "gym_dogri.html" },
+  { name: "Kashmiri", code: "ks", page: "gym_kashmiri.html" },
+  { name: "Manipuri (Meitei)", code: "mni", page: "gym_manipuri.html" },
+  { name: "Nepali", code: "ne", page: "gym_nepali.html" },
+  { name: "Santali", code: "sat", page: "gym_santali.html" },
+  { name: "Spanish", code: "es", page: "gym_spanish.html" },
+  { name: "French", code: "fr", page: "gym_french.html" },
+  { name: "Arabic", code: "ar", page: "gym_arabic.html" },
+  { name: "Portuguese", code: "pt", page: "gym_portuguese.html" },
+  { name: "Russian", code: "ru", page: "gym_russian.html" },
+  { name: "Chinese", code: "zh", page: "gym_chinese.html" },
+  { name: "Japanese", code: "ja", page: "gym_japanese.html" },
+  { name: "Korean", code: "ko", page: "gym_korean.html" },
+  { name: "German", code: "de", page: "gym_german.html" },
+  { name: "Italian", code: "it", page: "gym_italian.html" },
+  { name: "Turkish", code: "tr", page: "gym_turkish.html" },
+  { name: "Persian", code: "fa", page: "gym_persian.html" },
+  { name: "Urdu", code: "ur", page: "gym_urdu.html" },
+  { name: "Bengali", code: "bn", page: "gym_bengali.html" },
+  { name: "Punjabi", code: "pa", page: "gym_punjabi.html" },
+  { name: "Tamil", code: "ta", page: "gym_tamil.html" },
+  { name: "Telugu", code: "te", page: "gym_telugu.html" },
+  { name: "Marathi", code: "mr", page: "gym_marathi.html" },
+  { name: "Gujarati", code: "gu", page: "gym_gujarati.html" },
+  { name: "Kannada", code: "kn", page: "gym_kannada.html" },
+  { name: "Malayalam", code: "ml", page: "gym_malayalam.html" },
+  { name: "Odia", code: "or", page: "gym_odia.html" },
+  { name: "Assamese", code: "as", page: "gym_assamese.html" },
+  { name: "Nepali", code: "ne", page: "gym_nepali.html" },
+  { name: "Sinhala", code: "si", page: "gym_sinhala.html" },
+  { name: "Thai", code: "th", page: "gym_thai.html" },
+  { name: "Vietnamese", code: "vi", page: "gym_vietnamese.html" },
+  { name: "Indonesian", code: "id", page: "gym_indonesian.html" },
+  { name: "Malay", code: "ms", page: "gym_malay.html" },
+  { name: "Filipino", code: "fil", page: "gym_filipino.html" },
+  { name: "Swahili", code: "sw", page: "gym_swahili.html" },
+  { name: "Dutch", code: "nl", page: "gym_dutch.html" },
+  { name: "Polish", code: "pl", page: "gym_polish.html" },
+  { name: "Ukrainian", code: "uk", page: "gym_ukrainian.html" },
+  { name: "Hebrew", code: "he", page: "gym_hebrew.html" },
+  { name: "Greek", code: "el", page: "gym_greek.html" },
+  { name: "Czech", code: "cs", page: "gym_czech.html" },
+  { name: "Hungarian", code: "hu", page: "gym_hungarian.html" },
+  { name: "Romanian", code: "ro", page: "gym_romanian.html" },
+  { name: "Swedish", code: "sv", page: "gym_swedish.html" },
+  { name: "Norwegian", code: "no", page: "gym_norwegian.html" },
+  { name: "Finnish", code: "fi", page: "gym_finnish.html" },
+  { name: "Danish", code: "da", page: "gym_danish.html" }
+  
             ],
             desi: [
-                { name: "Hindi", code: "hi", page: "desi_hindi.html" },
-                { name: "Punjabi", code: "pa", page: "desi_punjabi.html" },
-                { name: "Haryanvi", code: "hr", page: "desi_haryanvi.html" },
-                { name: "Rajasthani", code: "rj", page: "desi_rajasthani.html" },
-                { name: "Bhojpuri", code: "bh", page: "desi_bhojpuri.html" },
-                { name: "Awadhi", code: "aw", page: "desi_awadhi.html" },
-                { name: "Marwari", code: "mw", page: "desi_marwari.html" },
-                { name: "Kashmiri", code: "ks", page: "desi_kashmiri.html" }
+                { name: "Hindi", code: "hi", page: "gym_hindi.html" },
+  { name: "English", code: "en", page: "gym_english.html" },
+  { name: "Punjabi", code: "pa", page: "gym_punjabi.html" },
+  { name: "Bengali", code: "bn", page: "gym_bengali.html" },
+  { name: "Gujarati", code: "gu", page: "gym_gujarati.html" },
+  { name: "Marathi", code: "mr", page: "gym_marathi.html" },
+  { name: "Tamil", code: "ta", page: "gym_tamil.html" },
+  { name: "Telugu", code: "te", page: "gym_telugu.html" },
+  { name: "Kannada", code: "kn", page: "gym_kannada.html" },
+  { name: "Malayalam", code: "ml", page: "gym_malayalam.html" },
+  { name: "Odia", code: "or", page: "gym_odia.html" },
+  { name: "Assamese", code: "as", page: "gym_assamese.html" },
+  { name: "Urdu", code: "ur", page: "gym_urdu.html" },
+  { name: "Sanskrit", code: "sa", page: "gym_sanskrit.html" },
+  { name: "Maithili", code: "mai", page: "gym_maithili.html" },
+  { name: "Bhojpuri", code: "bho", page: "gym_bhojpuri.html" },
+  { name: "Rajasthani", code: "raj", page: "gym_rajasthani.html" },
+  { name: "Haryanvi", code: "hr", page: "gym_haryanvi.html" },
+  { name: "Konkani", code: "kok", page: "gym_konkani.html" },
+  { name: "Sindhi", code: "sd", page: "gym_sindhi.html" },
+  { name: "Dogri", code: "doi", page: "gym_dogri.html" },
+  { name: "Kashmiri", code: "ks", page: "gym_kashmiri.html" },
+  { name: "Manipuri (Meitei)", code: "mni", page: "gym_manipuri.html" },
+  { name: "Nepali", code: "ne", page: "gym_nepali.html" },
+  { name: "Santali", code: "sat", page: "gym_santali.html" },
+  { name: "Spanish", code: "es", page: "gym_spanish.html" },
+  { name: "French", code: "fr", page: "gym_french.html" },
+  { name: "Arabic", code: "ar", page: "gym_arabic.html" },
+  { name: "Portuguese", code: "pt", page: "gym_portuguese.html" },
+  { name: "Russian", code: "ru", page: "gym_russian.html" },
+  { name: "Chinese", code: "zh", page: "gym_chinese.html" },
+  { name: "Japanese", code: "ja", page: "gym_japanese.html" },
+  { name: "Korean", code: "ko", page: "gym_korean.html" },
+  { name: "German", code: "de", page: "gym_german.html" },
+  { name: "Italian", code: "it", page: "gym_italian.html" },
+  { name: "Turkish", code: "tr", page: "gym_turkish.html" },
+  { name: "Persian", code: "fa", page: "gym_persian.html" },
+  { name: "Urdu", code: "ur", page: "gym_urdu.html" },
+  { name: "Bengali", code: "bn", page: "gym_bengali.html" },
+  { name: "Punjabi", code: "pa", page: "gym_punjabi.html" },
+  { name: "Tamil", code: "ta", page: "gym_tamil.html" },
+  { name: "Telugu", code: "te", page: "gym_telugu.html" },
+  { name: "Marathi", code: "mr", page: "gym_marathi.html" },
+  { name: "Gujarati", code: "gu", page: "gym_gujarati.html" },
+  { name: "Kannada", code: "kn", page: "gym_kannada.html" },
+  { name: "Malayalam", code: "ml", page: "gym_malayalam.html" },
+  { name: "Odia", code: "or", page: "gym_odia.html" },
+  { name: "Assamese", code: "as", page: "gym_assamese.html" },
+  { name: "Nepali", code: "ne", page: "gym_nepali.html" },
+  { name: "Sinhala", code: "si", page: "gym_sinhala.html" },
+  { name: "Thai", code: "th", page: "gym_thai.html" },
+  { name: "Vietnamese", code: "vi", page: "gym_vietnamese.html" },
+  { name: "Indonesian", code: "id", page: "gym_indonesian.html" },
+  { name: "Malay", code: "ms", page: "gym_malay.html" },
+  { name: "Filipino", code: "fil", page: "gym_filipino.html" },
+  { name: "Swahili", code: "sw", page: "gym_swahili.html" },
+  { name: "Dutch", code: "nl", page: "gym_dutch.html" },
+  { name: "Polish", code: "pl", page: "gym_polish.html" },
+  { name: "Ukrainian", code: "uk", page: "gym_ukrainian.html" },
+  { name: "Hebrew", code: "he", page: "gym_hebrew.html" },
+  { name: "Greek", code: "el", page: "gym_greek.html" },
+  { name: "Czech", code: "cs", page: "gym_czech.html" },
+  { name: "Hungarian", code: "hu", page: "gym_hungarian.html" },
+  { name: "Romanian", code: "ro", page: "gym_romanian.html" },
+  { name: "Swedish", code: "sv", page: "gym_swedish.html" },
+  { name: "Norwegian", code: "no", page: "gym_norwegian.html" },
+  { name: "Finnish", code: "fi", page: "gym_finnish.html" },
+  { name: "Danish", code: "da", page: "gym_danish.html" }
+ 
             ]
         };
 
@@ -564,14 +872,8 @@
         }
 
         function goToPage(pageUrl) {
-            // Navigate to the specific HTML page
-            alert(`Redirecting to: ${pageUrl}\n\n(In actual implementation, this would open: ${pageUrl})`);
-            
-            // Uncomment below line for actual navigation
-            // window.location.href = pageUrl;
-            
-            // Close popup after selection
-            closePopup();
+            // Navigate to the specific HTML page (Direct link)
+            window.location.href = pageUrl;
         }
 
         // Show default popup (Kegel) when page loads
