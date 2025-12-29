@@ -2330,31 +2330,36 @@
             id: 1,
             text: "What is your biological gender?",
             options: ["Male", "Female"],
-            category: "demographic"
+            category: "demographic",
+            scoreMap: { "Male": 0, "Female": 0 }
         },
         {
             id: 2,
             text: "What is your current age?",
             options: ["Under 25", "25-34", "35-44", "45-54", "55-64", "65+"],
-            category: "demographic"
+            category: "demographic",
+            scoreMap: { "Under 25": 0, "25-34": 5, "35-44": 10, "45-54": 15, "55-64": 20, "65+": 25 }
         },
         {
             id: 3,
             text: "Have you been pregnant? (Females only)",
             options: ["Never", "1 pregnancy", "2 pregnancies", "3+ pregnancies", "Currently pregnant"],
-            category: "demographic"
+            category: "demographic",
+            scoreMap: { "Never": 0, "1 pregnancy": 10, "2 pregnancies": 15, "3+ pregnancies": 20, "Currently pregnant": 25 }
         },
         {
             id: 4,
             text: "Have you had any pelvic surgeries?",
             options: ["None", "C-section", "Hysterectomy", "Prostate surgery", "Other pelvic surgery"],
-            category: "demographic"
+            category: "demographic",
+            scoreMap: { "None": 0, "C-section": 15, "Hysterectomy": 20, "Prostate surgery": 25, "Other pelvic surgery": 15 }
         },
         {
             id: 5,
             text: "Any chronic health conditions?",
             options: ["None", "Diabetes", "Hypertension", "Back problems", "Multiple conditions"],
-            category: "demographic"
+            category: "demographic",
+            scoreMap: { "None": 0, "Diabetes": 10, "Hypertension": 10, "Back problems": 15, "Multiple conditions": 25 }
         },
 
         // Section 2: Symptoms & Problems (10 questions)
@@ -2362,61 +2367,71 @@
             id: 6,
             text: "Do you experience urine leakage?",
             options: ["Never", "Rarely (few times/year)", "Sometimes (monthly)", "Often (weekly)", "Daily"],
-            category: "symptoms"
+            category: "symptoms",
+            scoreMap: { "Never": 0, "Rarely (few times/year)": 10, "Sometimes (monthly)": 20, "Often (weekly)": 30, "Daily": 40 }
         },
         {
             id: 7,
             text: "When does leakage usually occur?",
             options: ["No leakage", "When coughing/sneezing", "During exercise", "With urgency", "All the time"],
-            category: "symptoms"
+            category: "symptoms",
+            scoreMap: { "No leakage": 0, "When coughing/sneezing": 15, "During exercise": 20, "With urgency": 25, "All the time": 35 }
         },
         {
             id: 8,
             text: "How many times do you urinate at night?",
             options: ["0 times", "1 time", "2 times", "3 times", "4+ times"],
-            category: "symptoms"
+            category: "symptoms",
+            scoreMap: { "0 times": 0, "1 time": 5, "2 times": 10, "3 times": 20, "4+ times": 30 }
         },
         {
             id: 9,
             text: "Do you have sudden strong urges to urinate?",
             options: ["Never", "Rarely", "Sometimes", "Often", "Constantly"],
-            category: "symptoms"
+            category: "symptoms",
+            scoreMap: { "Never": 0, "Rarely": 10, "Sometimes": 20, "Often": 30, "Constantly": 40 }
         },
         {
             id: 10,
             text: "Difficulty starting urine flow?",
             options: ["Never", "Occasionally", "Sometimes", "Often", "Always"],
-            category: "symptoms"
+            category: "symptoms",
+            scoreMap: { "Never": 0, "Occasionally": 5, "Sometimes": 15, "Often": 25, "Always": 35 }
         },
         {
             id: 11,
             text: "Feeling of incomplete emptying?",
             options: ["Never", "Rarely", "Sometimes", "Often", "Always"],
-            category: "symptoms"
+            category: "symptoms",
+            scoreMap: { "Never": 0, "Rarely": 5, "Sometimes": 15, "Often": 25, "Always": 35 }
         },
         {
             id: 12,
             text: "Any pelvic pain or discomfort?",
             options: ["None", "During/after sex", "When sitting", "Lower back pain", "Constant pain"],
-            category: "symptoms"
+            category: "symptoms",
+            scoreMap: { "None": 0, "During/after sex": 15, "When sitting": 20, "Lower back pain": 25, "Constant pain": 35 }
         },
         {
             id: 13,
             text: "Pain during sexual intercourse?",
             options: ["Never", "Occasionally", "Sometimes", "Often", "Always painful"],
-            category: "symptoms"
+            category: "symptoms",
+            scoreMap: { "Never": 0, "Occasionally": 10, "Sometimes": 20, "Often": 30, "Always painful": 40 }
         },
         {
             id: 14,
             text: "Do you experience constipation?",
             options: ["Never", "Occasionally", "Sometimes", "Often", "Chronic"],
-            category: "symptoms"
+            category: "symptoms",
+            scoreMap: { "Never": 0, "Occasionally": 5, "Sometimes": 10, "Often": 20, "Chronic": 30 }
         },
         {
             id: 15,
             text: "Do you strain during bowel movements?",
             options: ["Never", "Occasionally", "Sometimes", "Often", "Always"],
-            category: "symptoms"
+            category: "symptoms",
+            scoreMap: { "Never": 0, "Occasionally": 5, "Sometimes": 10, "Often": 20, "Always": 30 }
         },
 
         // Section 3: Lifestyle & Habits (10 questions)
@@ -2424,61 +2439,71 @@
             id: 16,
             text: "What is your occupation?",
             options: ["Sedentary (desk job)", "Standing job", "Light physical", "Heavy physical", "Athlete"],
-            category: "lifestyle"
+            category: "lifestyle",
+            scoreMap: { "Sedentary (desk job)": 15, "Standing job": 10, "Light physical": 5, "Heavy physical": 20, "Athlete": 25 }
         },
         {
             id: 17,
             text: "Hours sitting per day?",
             options: ["< 4 hours", "4-8 hours", "8-10 hours", "10-12 hours", "> 12 hours"],
-            category: "lifestyle"
+            category: "lifestyle",
+            scoreMap: { "< 4 hours": 0, "4-8 hours": 10, "8-10 hours": 15, "10-12 hours": 20, "> 12 hours": 25 }
         },
         {
             id: 18,
             text: "Regular exercise routine?",
             options: ["None", "1-2 times/week", "3-4 times/week", "5+ times/week", "Athlete training"],
-            category: "lifestyle"
+            category: "lifestyle",
+            scoreMap: { "None": 20, "1-2 times/week": 10, "3-4 times/week": 5, "5+ times/week": 0, "Athlete training": 0 }
         },
         {
             id: 19,
             text: "Type of exercise you do?",
             options: ["None", "Walking", "Running", "Weight training", "High impact sports"],
-            category: "lifestyle"
+            category: "lifestyle",
+            scoreMap: { "None": 20, "Walking": 5, "Running": 15, "Weight training": 20, "High impact sports": 25 }
         },
         {
             id: 20,
             text: "Daily water intake?",
             options: ["< 1 liter", "1-2 liters", "2-3 liters", "3-4 liters", "> 4 liters"],
-            category: "lifestyle"
+            category: "lifestyle",
+            scoreMap: { "< 1 liter": 20, "1-2 liters": 10, "2-3 liters": 0, "3-4 liters": 0, "> 4 liters": 0 }
         },
         {
             id: 21,
             text: "Caffeine consumption?",
             options: ["None", "1 cup/day", "2-3 cups/day", "4-5 cups/day", "> 5 cups/day"],
-            category: "lifestyle"
+            category: "lifestyle",
+            scoreMap: { "None": 0, "1 cup/day": 5, "2-3 cups/day": 10, "4-5 cups/day": 20, "> 5 cups/day": 25 }
         },
         {
             id: 22,
             text: "Alcohol consumption?",
             options: ["None", "Occasionally", "Weekly", "Several times/week", "Daily"],
-            category: "lifestyle"
+            category: "lifestyle",
+            scoreMap: { "None": 0, "Occasionally": 5, "Weekly": 10, "Several times/week": 20, "Daily": 30 }
         },
         {
             id: 23,
             text: "Smoking or vaping?",
             options: ["Never", "Former smoker", "Occasionally", "Regular smoker", "Heavy smoker"],
-            category: "lifestyle"
+            category: "lifestyle",
+            scoreMap: { "Never": 0, "Former smoker": 10, "Occasionally": 15, "Regular smoker": 25, "Heavy smoker": 35 }
         },
         {
             id: 24,
             text: "Quality of sleep?",
             options: ["Excellent", "Good", "Fair", "Poor", "Very poor"],
-            category: "lifestyle"
+            category: "lifestyle",
+            scoreMap: { "Excellent": 0, "Good": 5, "Fair": 10, "Poor": 20, "Very poor": 30 }
         },
         {
             id: 25,
             text: "Stress level in daily life?",
             options: ["Very low", "Low", "Moderate", "High", "Very high"],
-            category: "lifestyle"
+            category: "lifestyle",
+            scoreMap: { "Very low": 0, "Low": 5, "Moderate": 10, "High": 20, "Very high": 30 }
         },
 
         // Section 4: Sexual Health (8 questions)
@@ -2486,49 +2511,57 @@
             id: 26,
             text: "Satisfaction with sexual function?",
             options: ["Very satisfied", "Satisfied", "Neutral", "Dissatisfied", "Very dissatisfied"],
-            category: "sexual"
+            category: "sexual",
+            scoreMap: { "Very satisfied": 0, "Satisfied": 5, "Neutral": 10, "Dissatisfied": 20, "Very dissatisfied": 30 }
         },
         {
             id: 27,
             text: "Erection quality (Males)?",
             options: ["Excellent", "Good", "Fair", "Poor", "No erection"],
-            category: "sexual"
+            category: "sexual",
+            scoreMap: { "Excellent": 0, "Good": 5, "Fair": 15, "Poor": 25, "No erection": 35 }
         },
         {
             id: 28,
             text: "Vaginal dryness (Females)?",
             options: ["Never", "Occasionally", "Sometimes", "Often", "Always"],
-            category: "sexual"
+            category: "sexual",
+            scoreMap: { "Never": 0, "Occasionally": 5, "Sometimes": 15, "Often": 25, "Always": 35 }
         },
         {
             id: 29,
             text: "Orgasm frequency?",
             options: ["Always", "Usually", "Sometimes", "Rarely", "Never"],
-            category: "sexual"
+            category: "sexual",
+            scoreMap: { "Always": 0, "Usually": 5, "Sometimes": 15, "Rarely": 25, "Never": 35 }
         },
         {
             id: 30,
             text: "Orgasm intensity?",
             options: ["Very intense", "Intense", "Moderate", "Mild", "No orgasm"],
-            category: "sexual"
+            category: "sexual",
+            scoreMap: { "Very intense": 0, "Intense": 5, "Moderate": 15, "Mild": 25, "No orgasm": 35 }
         },
         {
             id: 31,
             text: "Sexual desire/libido?",
             options: ["Very high", "High", "Moderate", "Low", "Very low"],
-            category: "sexual"
+            category: "sexual",
+            scoreMap: { "Very high": 0, "High": 5, "Moderate": 10, "Low": 20, "Very low": 30 }
         },
         {
             id: 32,
             text: "Pain after intercourse?",
             options: ["Never", "Rarely", "Sometimes", "Often", "Always"],
-            category: "sexual"
+            category: "sexual",
+            scoreMap: { "Never": 0, "Rarely": 5, "Sometimes": 15, "Often": 25, "Always": 35 }
         },
         {
             id: 33,
             text: "Confidence in sexual performance?",
             options: ["Very confident", "Confident", "Neutral", "Insecure", "Very insecure"],
-            category: "sexual"
+            category: "sexual",
+            scoreMap: { "Very confident": 0, "Confident": 5, "Neutral": 10, "Insecure": 20, "Very insecure": 30 }
         },
 
         // Section 5: Previous Experience & Goals (7 questions)
@@ -2536,43 +2569,50 @@
             id: 34,
             text: "Previous pelvic floor exercise experience?",
             options: ["None", "Tried few times", "Occasional practice", "Regular practice", "Expert"],
-            category: "experience"
+            category: "experience",
+            scoreMap: { "None": 20, "Tried few times": 10, "Occasional practice": 5, "Regular practice": 0, "Expert": 0 }
         },
         {
             id: 35,
             text: "Awareness of pelvic floor muscles?",
             options: ["No idea", "Vague idea", "Some awareness", "Good awareness", "Excellent awareness"],
-            category: "experience"
+            category: "experience",
+            scoreMap: { "No idea": 20, "Vague idea": 10, "Some awareness": 5, "Good awareness": 0, "Excellent awareness": 0 }
         },
         {
             id: 36,
             text: "Primary goal for this program?",
             options: ["Stop leakage", "Improve sexual function", "Reduce pain", "General health", "All of above"],
-            category: "goals"
+            category: "goals",
+            scoreMap: { "Stop leakage": 20, "Improve sexual function": 20, "Reduce pain": 20, "General health": 10, "All of above": 25 }
         },
         {
             id: 37,
             text: "Secondary goals?",
             options: ["Better bladder control", "Improved intimacy", "Pain relief", "Postpartum recovery", "Sports performance"],
-            category: "goals"
+            category: "goals",
+            scoreMap: { "Better bladder control": 15, "Improved intimacy": 15, "Pain relief": 15, "Postpartum recovery": 20, "Sports performance": 10 }
         },
         {
             id: 38,
             text: "Time available daily for exercises?",
             options: ["5-10 minutes", "10-15 minutes", "15-20 minutes", "20-30 minutes", "30+ minutes"],
-            category: "goals"
+            category: "goals",
+            scoreMap: { "5-10 minutes": 10, "10-15 minutes": 5, "15-20 minutes": 0, "20-30 minutes": 0, "30+ minutes": 0 }
         },
         {
             id: 39,
             text: "Willingness to commit to 30 days?",
             options: ["100% committed", "Very willing", "Moderately willing", "Somewhat willing", "Not sure"],
-            category: "goals"
+            category: "goals",
+            scoreMap: { "100% committed": 0, "Very willing": 5, "Moderately willing": 10, "Somewhat willing": 20, "Not sure": 30 }
         },
         {
             id: 40,
             text: "Motivation level?",
             options: ["Extremely motivated", "Very motivated", "Moderately motivated", "Slightly motivated", "Not motivated"],
-            category: "goals"
+            category: "goals",
+            scoreMap: { "Extremely motivated": 0, "Very motivated": 5, "Moderately motivated": 10, "Slightly motivated": 20, "Not motivated": 30 }
         },
 
         // Section 6: Medical & Specific Concerns (10 questions)
@@ -2580,61 +2620,71 @@
             id: 41,
             text: "History of urinary tract infections?",
             options: ["Never", "1-2 times", "3-5 times", "6-10 times", "Frequent"],
-            category: "medical"
+            category: "medical",
+            scoreMap: { "Never": 0, "1-2 times": 5, "3-5 times": 10, "6-10 times": 20, "Frequent": 30 }
         },
         {
             id: 42,
             text: "History of kidney stones?",
             options: ["Never", "Once", "2-3 times", "4+ times", "Chronic"],
-            category: "medical"
+            category: "medical",
+            scoreMap: { "Never": 0, "Once": 5, "2-3 times": 10, "4+ times": 20, "Chronic": 30 }
         },
         {
             id: 43,
             text: "Prostate issues (Males)?",
             options: ["None", "Mild enlargement", "Moderate enlargement", "Severe enlargement", "Cancer history"],
-            category: "medical"
+            category: "medical",
+            scoreMap: { "None": 0, "Mild enlargement": 10, "Moderate enlargement": 20, "Severe enlargement": 30, "Cancer history": 40 }
         },
         {
             id: 44,
             text: "Menstrual issues (Females)?",
             options: ["None", "Mild cramps", "Moderate pain", "Severe pain", "Endometriosis"],
-            category: "medical"
+            category: "medical",
+            scoreMap: { "None": 0, "Mild cramps": 5, "Moderate pain": 15, "Severe pain": 25, "Endometriosis": 35 }
         },
         {
             id: 45,
             text: "History of prolapse?",
             options: ["None", "Mild", "Moderate", "Severe", "Surgery for prolapse"],
-            category: "medical"
+            category: "medical",
+            scoreMap: { "None": 0, "Mild": 10, "Moderate": 20, "Severe": 30, "Surgery for prolapse": 40 }
         },
         {
             id: 46,
             text: "Medications affecting urination?",
             options: ["None", "Diuretics", "Blood pressure meds", "Antidepressants", "Multiple medications"],
-            category: "medical"
+            category: "medical",
+            scoreMap: { "None": 0, "Diuretics": 10, "Blood pressure meds": 15, "Antidepressants": 20, "Multiple medications": 30 }
         },
         {
             id: 47,
             text: "Allergies affecting pelvic area?",
             options: ["None", "Mild", "Moderate", "Severe", "Multiple allergies"],
-            category: "medical"
+            category: "medical",
+            scoreMap: { "None": 0, "Mild": 5, "Moderate": 15, "Severe": 25, "Multiple allergies": 35 }
         },
         {
             id: 48,
             text: "Recent weight changes?",
             options: ["Stable", "Gained 5-10 lbs", "Gained 10+ lbs", "Lost 5-10 lbs", "Lost 10+ lbs"],
-            category: "medical"
+            category: "medical",
+            scoreMap: { "Stable": 0, "Gained 5-10 lbs": 10, "Gained 10+ lbs": 20, "Lost 5-10 lbs": 5, "Lost 10+ lbs": 10 }
         },
         {
             id: 49,
             text: "Family history of pelvic issues?",
             options: ["None", "Mother", "Sister", "Multiple relatives", "Strong family history"],
-            category: "medical"
+            category: "medical",
+            scoreMap: { "None": 0, "Mother": 10, "Sister": 15, "Multiple relatives": 20, "Strong family history": 25 }
         },
         {
             id: 50,
             text: "Previous physical therapy?",
             options: ["Never", "Few sessions", "Completed program", "Multiple programs", "Currently in therapy"],
-            category: "medical"
+            category: "medical",
+            scoreMap: { "Never": 0, "Few sessions": 5, "Completed program": 10, "Multiple programs": 20, "Currently in therapy": 30 }
         }
     ];
 
@@ -2655,6 +2705,33 @@
         
         const question = questions[appState.currentQuestion];
         document.getElementById('question-text').textContent = question.text;
+        
+        // Skip gender-specific questions if not applicable
+        if (question.id === 3 && appState.gender !== "Female") {
+            // Skip pregnancy question for males
+            appState.userProfile[`q${question.id}`] = "Not applicable";
+            appState.currentQuestion++;
+            setTimeout(showQuestion, 100);
+            return;
+        }
+        
+        if ((question.id === 27 && appState.gender !== "Male") || 
+            (question.id === 28 && appState.gender !== "Female")) {
+            // Skip gender-specific questions
+            appState.userProfile[`q${question.id}`] = "Not applicable";
+            appState.currentQuestion++;
+            setTimeout(showQuestion, 100);
+            return;
+        }
+        
+        if ((question.id === 43 && appState.gender !== "Male") || 
+            (question.id === 44 && appState.gender !== "Female")) {
+            // Skip gender-specific medical questions
+            appState.userProfile[`q${question.id}`] = "Not applicable";
+            appState.currentQuestion++;
+            setTimeout(showQuestion, 100);
+            return;
+        }
         
         // Update progress
         const progressPercent = ((appState.currentQuestion + 1) / appState.totalQuestions) * 100;
@@ -2714,6 +2791,7 @@
         if (selectedOption) {
             selectedOption.classList.add('bg-gold-primary/20');
             selectedOption.style.borderColor = 'var(--gold-primary)';
+            selectedOption.querySelector('.w-2.h-2').classList.remove('opacity-0');
         }
         
         // Move to next question
@@ -2724,39 +2802,42 @@
     }
 
     function updateScores(answer, question) {
-        // Update various scores based on answers
-        if (question.category === "symptoms") {
-            if (question.id === 6 || question.id === 7) {
-                // Urine leakage questions
-                const severity = ["Never", "Rarely", "Sometimes", "Often", "Daily"].indexOf(answer);
-                appState.scores.leakage += severity * 5;
+        // Use score map for accurate scoring
+        if (question.scoreMap && question.scoreMap[answer] !== undefined) {
+            const score = question.scoreMap[answer];
+            
+            // Categorize scores based on question type
+            if (question.category === "symptoms") {
+                if (question.id === 6 || question.id === 7 || question.id === 8 || 
+                    question.id === 9 || question.id === 10 || question.id === 11) {
+                    appState.scores.leakage += score;
+                }
+                if (question.id === 12 || question.id === 13 || question.id === 14 || question.id === 15) {
+                    appState.scores.pain += score;
+                }
             }
-            if (question.id === 12 || question.id === 13) {
-                // Pain questions
-                const severity = ["None", "During/after sex", "When sitting", "Lower back pain", "Constant pain"].indexOf(answer);
-                appState.scores.pain += severity * 5;
+            
+            if (question.category === "sexual") {
+                appState.scores.sexual += score;
             }
-        }
-        
-        if (question.category === "sexual") {
-            // Sexual function questions
-            const negativeAnswers = ["Very dissatisfied", "Poor", "Never", "No erection", "Always", "Very low", "Very insecure"];
-            if (negativeAnswers.includes(answer)) {
-                appState.scores.sexual += 10;
+            
+            if (question.category === "lifestyle") {
+                if (question.id === 16 || question.id === 17 || question.id === 18 || question.id === 19) {
+                    appState.scores.strength += score;
+                    appState.scores.endurance += score;
+                }
             }
-        }
-        
-        if (question.id === 18 || question.id === 19) {
-            // Exercise questions - more exercise = better strength/endurance
-            const exerciseLevel = ["None", "1-2 times/week", "3-4 times/week", "5+ times/week", "Athlete training"].indexOf(answer);
-            appState.scores.strength += exerciseLevel * 2;
-            appState.scores.endurance += exerciseLevel * 2;
-        }
-        
-        if (question.id === 34 || question.id === 35) {
-            // Experience questions
-            const experienceLevel = ["None", "Tried few times", "Occasional practice", "Regular practice", "Expert"].indexOf(answer);
-            appState.scores.control += experienceLevel * 3;
+            
+            if (question.category === "experience") {
+                appState.scores.control += (30 - score); // Inverse: less experience = more need for control
+            }
+            
+            if (question.category === "goals") {
+                // Goals influence all scores
+                appState.scores.leakage += score * 0.5;
+                appState.scores.pain += score * 0.5;
+                appState.scores.sexual += score * 0.5;
+            }
         }
     }
 
@@ -2770,12 +2851,15 @@
         // Analyze user profile and select appropriate exercises
         analyzeUserProfile();
         
-        // Calculate scores
-        const focusScore = Math.min(100, Math.max(30, Math.round(appState.scores.leakage)));
-        const urgencyScore = Math.min(100, Math.max(30, Math.round(appState.scores.pain + appState.scores.sexual) / 2));
-        const programScore = Math.min(100, Math.max(30, Math.round(
-            (appState.scores.strength + appState.scores.endurance + appState.scores.control) / 3
-        )));
+        // Calculate scores with normalization
+        const totalPossibleScore = 800; // Approximate maximum score
+        const totalUserScore = Object.values(appState.scores).reduce((a, b) => a + b, 0);
+        const scorePercentage = Math.min(100, Math.round((totalUserScore / totalPossibleScore) * 100));
+        
+        // Calculate individual scores for display
+        const focusScore = Math.min(100, Math.round(appState.scores.leakage / 4));
+        const urgencyScore = Math.min(100, Math.round((appState.scores.pain + appState.scores.sexual) / 8));
+        const programScore = Math.min(100, Math.round(100 - (scorePercentage / 2))); // Lower score = better starting point
         
         // Animate scores
         animateScore('focus-score', focusScore);
@@ -2787,39 +2871,40 @@
     }
 
     function analyzeUserProfile() {
-        // Determine primary issues
-        const issues = [];
+        // Clear any previous selections
+        appState.dayExercises = {};
+        appState.dayProgress = {};
+        appState.selectedExercises = [];
         
-        if (appState.scores.leakage > 50) issues.push("urinary leakage");
-        if (appState.scores.pain > 50) issues.push("pelvic pain");
-        if (appState.scores.sexual > 50) issues.push("sexual dysfunction");
+        // Determine primary focus area based on highest score
+        const scores = appState.scores;
+        const maxScore = Math.max(scores.leakage, scores.pain, scores.sexual);
         
-        // Select appropriate exercise categories based on gender
         let primaryCategory = "foundational";
         
-        if (appState.scores.leakage > 70) {
+        if (maxScore === scores.leakage && scores.leakage > 50) {
             primaryCategory = "rehab";
-        } else if (appState.scores.sexual > 60) {
+        } else if (maxScore === scores.sexual && scores.sexual > 50) {
             primaryCategory = "sexual";
-        } else if (appState.scores.pain > 60) {
+        } else if (maxScore === scores.pain && scores.pain > 50) {
             primaryCategory = "relaxation";
-        } else if (appState.userProfile.q34 && appState.userProfile.q34.includes("Expert")) {
+        } else if (scores.control < 20) { // Good control = advanced exercises
             primaryCategory = "hybrid";
-        } else if (appState.userProfile.q18 && appState.userProfile.q18.includes("Athlete")) {
+        } else if (scores.strength > 30 || scores.endurance > 30) {
             primaryCategory = "endurance";
         }
         
         // Generate exercises for all 30 days with gender-specific filtering
-        generate30DayProgram(primaryCategory, issues);
+        generate30DayProgram(primaryCategory);
     }
 
-    function generate30DayProgram(primaryCategory, issues) {
+    function generate30DayProgram(primaryCategory) {
         appState.dayExercises = {};
         appState.dayProgress = {};
         
         // For each day, select appropriate exercises
         for (let day = 1; day <= 30; day++) {
-            appState.dayExercises[day] = generateDayExercises(day, primaryCategory, issues);
+            appState.dayExercises[day] = generateDayExercises(day, primaryCategory);
             appState.dayProgress[day] = []; // Empty array for completed exercises per day
         }
         
@@ -2827,51 +2912,52 @@
         appState.selectedExercises = appState.dayExercises[1];
     }
 
-    function generateDayExercises(day, primaryCategory, issues) {
+    function generateDayExercises(day, primaryCategory) {
         let dayExercises = [];
+        const userGender = appState.gender;
         
-        // Day-specific progression with gender filtering
+        // Helper function to get filtered exercises
+        const getFilteredExercises = (category, count) => {
+            let exercises = exerciseLibrary[category] || [];
+            // Filter by gender
+            exercises = exercises.filter(ex => 
+                ex.gender === "both" || ex.gender === userGender
+            );
+            // Shuffle and take requested count
+            return shuffleArray(exercises).slice(0, count);
+        };
+        
+        // Day-specific progression
         if (day <= 7) {
-            // Week 1: Foundational exercises (gender filtered)
-            dayExercises.push(...getGenderFilteredExercises("foundational").slice(0, 3));
-            dayExercises.push(...getGenderFilteredExercises("control").slice(0, 2));
-            dayExercises.push(...getGenderFilteredExercises("breathing").slice(0, 1));
+            // Week 1: Foundational exercises
+            dayExercises.push(...getFilteredExercises("foundational", 3));
+            dayExercises.push(...getFilteredExercises("breathing", 1));
+            dayExercises.push(...getFilteredExercises("control", 1));
+            dayExercises.push(...getFilteredExercises("mindfulness", 1));
         } else if (day <= 14) {
-            // Week 2: Add primary category exercises (gender filtered)
-            dayExercises.push(...getGenderFilteredExercises("foundational").slice(2, 4));
-            dayExercises.push(...getGenderFilteredExercises(primaryCategory).slice(0, 2));
-            dayExercises.push(...getGenderFilteredExercises("control").slice(1, 2));
-            dayExercises.push(...getGenderFilteredExercises("functional").slice(0, 1));
+            // Week 2: Add primary category
+            dayExercises.push(...getFilteredExercises("foundational", 2));
+            dayExercises.push(...getFilteredExercises(primaryCategory, 2));
+            dayExercises.push(...getFilteredExercises("functional", 1));
+            dayExercises.push(...getFilteredExercises("mindfulness", 1));
         } else if (day <= 21) {
-            // Week 3: Add specific issue exercises (gender filtered)
-            dayExercises.push(...getGenderFilteredExercises(primaryCategory).slice(2, 4));
-            
-            if (issues.includes("urinary leakage")) {
-                dayExercises.push(...getGenderFilteredExercises("functional").filter(e => 
-                    e.subcategory === "stress-response"
-                ).slice(0, 1));
-            }
-            
-            if (issues.includes("pelvic pain")) {
-                dayExercises.push(...getGenderFilteredExercises("relaxation").slice(0, 1));
-            }
-            
-            if (issues.includes("sexual dysfunction")) {
-                // For sexual category, gender-specific exercises are already filtered
-                dayExercises.push(...getGenderFilteredExercises("sexual").slice(0, 1));
-            }
-            
-            dayExercises.push(...getGenderFilteredExercises("mindfulness").slice(0, 1));
+            // Week 3: Focus on primary category
+            dayExercises.push(...getFilteredExercises("strength", 1));
+            dayExercises.push(...getFilteredExercises(primaryCategory, 3));
+            dayExercises.push(...getFilteredExercises("functional", 1));
+            dayExercises.push(...getFilteredExercises("breathing", 1));
         } else {
-            // Week 4: Advanced and hybrid exercises (gender filtered)
-            dayExercises.push(...getGenderFilteredExercises(primaryCategory).slice(3, 5));
-            dayExercises.push(...getGenderFilteredExercises("hybrid").slice(0, 1));
-            dayExercises.push(...getGenderFilteredExercises("endurance").slice(0, 1));
-            dayExercises.push(...getGenderFilteredExercises("mindfulness").slice(1, 2));
+            // Week 4: Advanced and hybrid
+            dayExercises.push(...getFilteredExercises("hybrid", 2));
+            dayExercises.push(...getFilteredExercises("endurance", 2));
+            dayExercises.push(...getFilteredExercises(primaryCategory, 1));
+            dayExercises.push(...getFilteredExercises("mindfulness", 1));
         }
         
         // Ensure exactly 6 exercises per day
-        dayExercises = shuffleArray(dayExercises).slice(0, 6);
+        if (dayExercises.length > 6) {
+            dayExercises = dayExercises.slice(0, 6);
+        }
         
         // Sort by difficulty
         dayExercises.sort((a, b) => {
@@ -2882,19 +2968,6 @@
         return dayExercises;
     }
 
-    // Helper function to get gender-filtered exercises
-    function getGenderFilteredExercises(category) {
-        if (!exerciseLibrary[category]) return [];
-        
-        const userGender = appState.gender;
-        if (!userGender) return exerciseLibrary[category];
-        
-        // Filter exercises: include if gender is "both" or matches user gender
-        return exerciseLibrary[category].filter(exercise => 
-            exercise.gender === "both" || exercise.gender === userGender
-        );
-    }
-
     function generateAnalysis() {
         const analysisText = document.getElementById('analysis-text');
         const solutionPoints = document.getElementById('solution-points');
@@ -2902,25 +2975,29 @@
         // Generate analysis based on scores
         let analysis = "Based on your comprehensive 50-point assessment, ";
         
-        if (appState.scores.leakage > 70) {
+        if (appState.scores.leakage > 50) {
             analysis += "you have significant urinary leakage issues that require immediate attention. ";
-        } else if (appState.scores.leakage > 40) {
+        } else if (appState.scores.leakage > 30) {
             analysis += "you experience moderate urinary leakage that can be improved. ";
         } else {
             analysis += "you have good urinary control but can benefit from preventive training. ";
         }
         
-        if (appState.scores.pain > 60) {
-            analysis += "Pelvic pain is a major concern that needs targeted relaxation techniques. ";
-        } else if (appState.scores.pain > 30) {
+        if (appState.scores.pain > 40) {
+            analysis += "Pelvic pain is a concern that needs targeted relaxation techniques. ";
+        } else if (appState.scores.pain > 20) {
             analysis += "Some pelvic discomfort indicates need for relaxation training. ";
         }
         
-        if (appState.scores.sexual > 50) {
+        if (appState.scores.sexual > 40) {
             analysis += "Sexual function improvements are a key focus area. ";
         }
         
-        analysis += `Your personalized 30-day program includes ${appState.dayExercises[1].length} carefully selected exercises each day, specifically tailored for ${appState.gender || 'your'} needs.`;
+        if (appState.scores.control < 20) {
+            analysis += "Your good muscle control allows for advanced exercises. ";
+        }
+        
+        analysis += `Your personalized 30-day program includes 6 carefully selected exercises each day, specifically tailored for ${appState.gender || 'your'} needs and goals.`;
         
         analysisText.textContent = analysis;
         
@@ -2928,7 +3005,7 @@
         solutionPoints.innerHTML = '';
         
         const solutions = [
-            "🎯 <span class='text-gold-light font-bold'>Gender-Specific:</span> Exercises tailored for " + (appState.gender || 'your gender'),
+            `🎯 <span class='text-gold-light font-bold'>Gender-Specific:</span> Exercises tailored for ${appState.gender || 'your needs'}`,
             "📊 <span class='text-gold-light font-bold'>Progressive Plan:</span> Gradually increases difficulty over 30 days",
             "🔄 <span class='text-gold-light font-bold'>Sequential Learning:</span> Each exercise builds on previous ones",
             "⏱️ <span class='text-gold-light font-bold'>Time-Efficient:</span> 10-15 minutes daily commitment",
@@ -2963,13 +3040,23 @@
         document.getElementById('current-day').textContent = appState.currentDay;
         
         // Get exercises for current day
-        const currentDayExercises = appState.dayExercises[appState.currentDay];
+        const currentDayExercises = appState.dayExercises[appState.currentDay] || [];
         const completedExercises = appState.dayProgress[appState.currentDay] || [];
         
         // Update stats
         const completedCount = completedExercises.length;
         const totalExercises = currentDayExercises.length;
         document.getElementById('completion-stats').textContent = `${completedCount}/${totalExercises} completed`;
+        
+        if (currentDayExercises.length === 0) {
+            exerciseList.innerHTML = `
+                <div class="text-center py-8">
+                    <i class="fas fa-exclamation-triangle text-3xl text-yellow-500 mb-3"></i>
+                    <p class="text-gray-300">No exercises generated for today. Please restart assessment.</p>
+                </div>
+            `;
+            return;
+        }
         
         currentDayExercises.forEach((exercise, index) => {
             const isCompleted = completedExercises.includes(exercise.id);
@@ -2989,7 +3076,9 @@
                         <div class="flex items-center gap-2 mb-1.5">
                             <span class="category-tag">${exercise.category}</span>
                             <span class="text-xs text-gray-400 font-bold">${exercise.difficulty}</span>
-                            ${exercise.gender !== 'both' ? `<span class="text-xs px-2 py-0.5 rounded bg-${exercise.gender === 'Male' ? 'blue' : 'pink'}-900/30 text-${exercise.gender === 'Male' ? 'blue' : 'pink'}-300">${exercise.gender}</span>` : ''}
+                            ${exercise.gender !== 'both' ? 
+                                `<span class="text-xs px-2 py-0.5 rounded ${exercise.gender === 'Male' ? 'bg-blue-900/30 text-blue-300' : 'bg-pink-900/30 text-pink-300'}">${exercise.gender}</span>` : 
+                                ''}
                         </div>
                         <h3 class="text-sm font-bold text-white mb-1.5 truncate text-3d-white">${exercise.name}</h3>
                         <p class="text-xs text-gray-300 line-clamp-1 text-3d-secondary">${exercise.benefit}</p>
@@ -3031,12 +3120,17 @@
         const videoFrame = document.getElementById('video-frame');
         videoFrame.innerHTML = '';
         
-        // Create 16:9 YouTube iframe
+        // Create 16:9 YouTube iframe with proper settings
         const iframe = document.createElement('iframe');
-        iframe.src = `https://www.youtube.com/embed/${exercise.videoCode}?autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3`;
-        iframe.allow = "autoplay; encrypted-media";
+        iframe.src = `https://www.youtube.com/embed/${exercise.videoCode}?autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1`;
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
         iframe.allowFullscreen = true;
-        iframe.className = "aspect-ratio-16-9";
+        iframe.style.position = "absolute";
+        iframe.style.top = "0";
+        iframe.style.left = "0";
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.border = "none";
         
         videoFrame.appendChild(iframe);
         
@@ -3051,41 +3145,61 @@
         // Show modal
         document.getElementById('video-modal').classList.remove('hidden');
         document.body.style.overflow = 'hidden';
+        
+        // Add modal background
+        document.querySelector('.modal-background').classList.remove('hidden');
     }
 
     function repeatCurrentVideo() {
-        const currentExercise = appState.dayExercises[appState.currentDay][appState.currentVideoIndex];
-        openExerciseVideo(currentExercise, appState.currentVideoIndex);
+        const currentDayExercises = appState.dayExercises[appState.currentDay] || [];
+        const currentExercise = currentDayExercises[appState.currentVideoIndex];
+        if (currentExercise) {
+            openExerciseVideo(currentExercise, appState.currentVideoIndex);
+        }
     }
 
     function nextVideo() {
         // Mark current exercise as completed for current day
-        const currentExercise = appState.dayExercises[appState.currentDay][appState.currentVideoIndex];
-        if (!appState.dayProgress[appState.currentDay]) {
-            appState.dayProgress[appState.currentDay] = [];
-        }
+        const currentDayExercises = appState.dayExercises[appState.currentDay] || [];
+        const currentExercise = currentDayExercises[appState.currentVideoIndex];
         
-        if (!appState.dayProgress[appState.currentDay].includes(currentExercise.id)) {
-            appState.dayProgress[appState.currentDay].push(currentExercise.id);
+        if (currentExercise) {
+            if (!appState.dayProgress[appState.currentDay]) {
+                appState.dayProgress[appState.currentDay] = [];
+            }
+            
+            if (!appState.dayProgress[appState.currentDay].includes(currentExercise.id)) {
+                appState.dayProgress[appState.currentDay].push(currentExercise.id);
+            }
         }
         
         closeVideoModal();
         
         // Check if all exercises completed for current day
         const completedExercises = appState.dayProgress[appState.currentDay] || [];
-        const totalExercises = appState.dayExercises[appState.currentDay].length;
+        const totalExercises = currentDayExercises.length;
         
         if (completedExercises.length === totalExercises) {
             // Day completed, move to next day
             if (appState.currentDay < 30) {
                 appState.currentDay++;
                 setTimeout(() => {
-                    alert(`✅ Excellent! Day ${appState.currentDay-1} completed. Starting Day ${appState.currentDay}`);
                     renderExercisePlan();
+                    // Show completion message
+                    const completionMsg = document.createElement('div');
+                    completionMsg.className = "fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-900/90 text-white px-4 py-2 rounded-lg z-50 fade-in";
+                    completionMsg.innerHTML = `<i class="fas fa-check-circle mr-2"></i> Day ${appState.currentDay-1} completed! Starting Day ${appState.currentDay}`;
+                    document.body.appendChild(completionMsg);
+                    setTimeout(() => completionMsg.remove(), 3000);
                 }, 300);
             } else {
                 setTimeout(() => {
-                    alert(`🏆 Congratulations! You've completed the entire 30-day program!`);
+                    // Show final completion message
+                    const finalMsg = document.createElement('div');
+                    finalMsg.className = "fixed top-4 left-1/2 transform -translate-x-1/2 bg-gold-primary/90 text-black px-4 py-3 rounded-lg z-50 fade-in";
+                    finalMsg.innerHTML = `<i class="fas fa-trophy mr-2"></i> <strong>Congratulations!</strong> You've completed the entire 30-day program!`;
+                    document.body.appendChild(finalMsg);
+                    setTimeout(() => finalMsg.remove(), 5000);
                 }, 300);
             }
         } else {
@@ -3097,9 +3211,11 @@
         document.getElementById('video-modal').classList.add('hidden');
         document.getElementById('video-frame').innerHTML = '';
         document.body.style.overflow = 'auto';
+        document.querySelector('.modal-background').classList.add('hidden');
     }
 
     function restartAssessment() {
+        // Reset all state
         appState = {
             currentQuestion: 0,
             gender: null,
@@ -3120,6 +3236,15 @@
             dayExercises: {}
         };
         
+        // Reset UI
+        document.getElementById('analysis-section').classList.add('hidden');
+        document.getElementById('exercise-section').classList.add('hidden');
+        document.getElementById('quiz-section').classList.remove('hidden');
+        
+        // Update background
+        updateBackground('quiz');
+        
+        // Restart questions
         showQuestion();
     }
 
@@ -3140,28 +3265,12 @@
     }
 
     function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
         }
-        return array;
-    }
-
-    function getCategoryColor(category) {
-        const colors = {
-            "foundational": "#FFD700",
-            "strength": "#FF6B6B",
-            "control": "#4ECDC4",
-            "functional": "#FF9F43",
-            "breathing": "#54A0FF",
-            "sexual": "#FF9FF3",
-            "rehab": "#00D2D3",
-            "endurance": "#5F27CD",
-            "mindfulness": "#1DD1A1",
-            "hybrid": "#F368E0",
-            "relaxation": "#8395A7"
-        };
-        return colors[category] || "#D4AF37";
+        return shuffled;
     }
 
     function updateBackground(section) {
@@ -3199,7 +3308,9 @@
                 btn.style.transform = 'translateY(1px)';
             });
             btn.addEventListener('touchend', () => {
-                btn.style.transform = '';
+                setTimeout(() => {
+                    btn.style.transform = '';
+                }, 150);
             });
         });
         
@@ -3214,6 +3325,20 @@
                 history.pushState(null, null, window.location.href);
             }
         });
+    }
+
+    // Question popup functions (for future use)
+    function showQuestionPopup() {
+        // Implementation for popup questions
+    }
+
+    function closeQuestionPopup() {
+        document.getElementById('question-popup-modal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    function nextQuestionFromPopup() {
+        // Implementation for popup navigation
     }
 
     // Initialize
