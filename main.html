@@ -12,16 +12,34 @@
     <!-- Premium Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&family=Noto+Sans+Devanagari:wght@700;900&display=swap" rel="stylesheet">
     
+    <script>
+        // --- AUTO REDIRECT LOGIC START ---
+        (function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (!urlParams.has('reset')) {
+                const savedPage = localStorage.getItem('sti_preferred_page');
+                if (savedPage) {
+                    window.location.replace(savedPage);
+                }
+            }
+        })();
+        // --- AUTO REDIRECT LOGIC END ---
+    </script>
+
     <style>
         :root {
             --primary: #FFD700; 
             --primary-rgb: 255, 215, 0; 
             --bg-dark: #050401; 
             --card-glass: rgba(15, 12, 5, 0.95);
+            
+            /* RESTORED HEIGHTS (Back to 70px) */
             --header-offset: calc(15px + env(safe-area-inset-top));
-            --header-height: 64px;
+            --header-height: 70px; 
+            
             --footer-offset: calc(25px + env(safe-area-inset-bottom));
-            --footer-height: 70px;
+            --footer-height: 70px; 
+            
             --text-light: #ffffff;
             --dark-green: #013220; 
         }
@@ -31,12 +49,11 @@
             font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-light);
-            padding-top: calc(var(--header-offset) + var(--header-height) + 20px);
-            padding-bottom: calc(var(--footer-offset) + var(--footer-height) + 40px);
             margin: 0;
             font-weight: 900; 
-            overflow-x: hidden;
-            min-height: 100vh;
+            overflow: hidden; 
+            height: 100vh;
+            width: 100vw;
         }
 
         /* --- BACKGROUND --- */
@@ -47,114 +64,193 @@
             filter: contrast(125%) brightness(40%) sepia(20%);
         }
 
-        /* --- GOLDEN FLOATING HEADER --- */
+        /* --- GOLDEN FLOATING HEADER (Restored Size) --- */
         .iphone-header {
             position: fixed; top: var(--header-offset); left: 50%; transform: translateX(-50%);
             width: 92%; max-width: 600px; height: var(--header-height);
             background: rgba(5, 4, 1, 0.96); backdrop-filter: blur(30px);
-            border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 24px;
+            border: 1px solid rgba(255, 215, 0, 0.25); border-radius: 24px;
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 20px; z-index: 3000; box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
+            padding: 0 20px; z-index: 3000; box-shadow: 0 5px 25px rgba(0,0,0,0.5);
         }
+
+        /* Adjusted Logo Sizes for Standard Header WITH BORDER & SHADOW */
+        .header-left img, .header-right img { 
+            width: 38px; 
+            height: 38px; 
+            border-radius: 10px; 
+            border: 2px solid var(--primary); /* Gold Border Added Back */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.5); /* Shadow Added Back */
+            object-fit: cover;
+        }
+        .header-center img { height: 22px; max-width: 160px; }
 
         .header-left { display: flex; align-items: center; gap: 8px; }
         .header-center { position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; justify-content: center; }
         .header-right { display: flex; align-items: center; gap: 8px; }
 
-        /* --- GOLDEN DOCK --- */
+        /* --- GOLDEN DOCK (Restored Size) --- */
         .iphone-dock-wrapper { 
             position: fixed; bottom: var(--footer-offset); 
             left: 0; width: 100%; display: flex; justify-content: center; z-index: 3000; padding: 0 15px; 
         }
         .iphone-dock { 
             width: 100%; max-width: 500px; height: var(--footer-height); 
-            background: rgba(5, 4, 1, 0.98); backdrop-filter: blur(35px); 
-            border-radius: 28px; border: 2px solid rgba(255, 215, 0, 0.2); 
+            background: rgba(5, 4, 1, 0.95); 
+            backdrop-filter: blur(40px); 
+            border-radius: 35px; /* Rounder */
+            border: 1px solid rgba(255, 215, 0, 0.15); 
             display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.9); padding: 0 10px; overflow: visible; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.9); 
+            padding: 0 12px; overflow: visible; 
         }
         
         .nav-item { 
             flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            padding: 12px 0; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            color: #8892a0; cursor: pointer; position: relative; height: 100%;
+            padding: 0; 
+            transition: all 0.3s ease; 
+            color: #666; 
+            cursor: pointer; position: relative; height: 100%;
         }
-        .nav-item i { font-size: 1.2rem; margin-bottom: 4px; transition: 0.3s; }
-        .nav-item span { font-size: 0.55rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; transition: 0.3s; }
         
+        /* Icon Box (Restored Size) */
+        .nav-item .icon-box {
+            width: 42px; height: 42px; /* Bigger box */
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 14px; 
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); 
+            margin-bottom: 3px;
+            background: transparent;
+            border: 1px solid transparent; 
+        }
+
+        .nav-item i { 
+            font-size: 1.25rem; /* Bigger Icon */
+            transition: all 0.3s ease; 
+        }
+        
+        .nav-item span { 
+            font-size: 0.55rem; /* Bigger Text */
+            font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; 
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+        
+        /* --- ACTIVE STATE (MODERN GLASS HIGHLIGHT) --- */
         .nav-item.active { color: var(--primary); }
-        .nav-item.active .icon-box {
-            width: 50px; height: 50px; background: rgba(255, 215, 0, 0.15); 
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            border: 2px solid var(--primary); box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-        }
-        .nav-item.active i { font-size: 1.4rem; color: var(--primary); text-shadow: 0 0 10px rgba(255, 215, 0, 0.7); }
-        .nav-item.active span { color: var(--primary); text-shadow: 0 0 8px rgba(255, 215, 0, 0.5); }
-
-        /* --- CARD GRID --- */
-        .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        @media (min-width: 640px) { .card-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
-        @media (min-width: 1024px) { .card-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (min-width: 1280px) { .card-grid { grid-template-columns: repeat(6, 1fr); } }
-
-        .premium-card { 
-            background: var(--card-glass); 
-            border-radius: 28px; 
-            border: 1.5px solid rgba(255,215,0,0.3); 
-            padding: 10px; 
-            transition: 0.4s; 
-            cursor: pointer; 
-            position: relative; 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6); 
-            overflow: hidden; 
-        }
-        @media (min-width: 640px) { .premium-card { padding: 14px; } }
-        .premium-card:hover { border-color: var(--primary); transform: translateY(-10px); box-shadow: 0 0 45px rgba(var(--primary-rgb), 0.5); }
         
-        .card-img { 
-            width: 100%; 
-            height: 70px; 
-            border-radius: 16px; 
-            object-fit: cover; 
-            transition: 0.6s; 
-            border: 3px solid var(--dark-green);
+        .nav-item.active .icon-box {
+            background: rgba(255, 215, 0, 0.15); 
+            border: 1px solid rgba(255, 215, 0, 0.4); 
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2); 
+            transform: scale(1.15) translateY(-3px); 
         }
-        @media (min-width: 640px) { .card-img { height: 120px; } }
 
-        /* --- MODAL STYLES (SEPARATE POPUPS) --- */
-        .modal-overlay { 
-            position: fixed; inset: 0; background: rgba(0,0,0,0.4); 
-            backdrop-filter: blur(5px); display: none; z-index: 2500; 
-            align-items: center; justify-content: center; padding: 25px; 
+        .nav-item.active i { 
+            color: var(--primary); 
+            filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
         }
-        /* Hidden utility class to toggle display easily */
+
+        .nav-item.active span { 
+            color: var(--primary); 
+            opacity: 1;
+            font-weight: 900;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        /* --- MODAL STYLES --- */
+        .modal-overlay { 
+            position: fixed; 
+            top: calc(var(--header-offset) + var(--header-height) + 12px);
+            bottom: calc(var(--footer-offset) + var(--footer-height) + 12px);
+            left: 0; right: 0;
+            z-index: 2500; 
+            display: none; 
+            justify-content: center; 
+            padding: 0 12px; 
+            pointer-events: none;
+        }
+        
         .hidden-modal { display: none !important; }
         .flex-modal { display: flex !important; }
 
         .modal-box { 
-            background: rgba(10, 8, 2, 0.92); border: 2.5px solid var(--primary); 
-            border-radius: 40px; width: 100%; max-width: 900px; padding: 30px; 
-            box-shadow: 0 0 90px rgba(var(--primary-rgb), 0.7); position: relative; 
-            overflow: hidden; display: flex; flex-direction: column; max-height: 70vh; 
+            pointer-events: auto;
+            background: rgba(10, 8, 2, 0.92); border: 2px solid var(--primary); 
+            border-radius: 32px; 
+            
+            /* Mobile Defaults */
+            width: 100%; 
+            max-width: 500px; 
+            
+            height: 100%; 
+            padding: 20px; 
+            box-shadow: 0 0 80px rgba(var(--primary-rgb), 0.4); 
+            position: relative; 
+            overflow: hidden; 
+            display: flex; flex-direction: column; 
+            transition: max-width 0.3s ease;
         }
+
+        /* --- PC / TABLET ADAPTATION (Wider Modal) --- */
+        @media (min-width: 768px) {
+            .modal-box {
+                max-width: 90%; /* Much wider on tablets */
+                border-radius: 40px;
+            }
+            .lang-grid {
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 15px !important;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .modal-box {
+                max-width: 1100px; /* PC Width */
+            }
+            .iphone-dock, .iphone-header {
+                max-width: 800px; /* Wider controls on PC */
+            }
+            .lang-grid {
+                grid-template-columns: repeat(5, 1fr) !important;
+            }
+        }
+        
+        .modal-box .lang-grid {
+            flex-grow: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch; 
+            padding-bottom: 5px;
+        }
+        
+        /* Scrollbar styling */
+        .modal-box .lang-grid::-webkit-scrollbar { width: 5px; }
+        .modal-box .lang-grid::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+        .modal-box .lang-grid::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
         .modal-bg-img { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.25; z-index: 0; filter: brightness(25%); }
+        
+        /* Centered Modal Header */
+        .modal-header-center {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; margin-bottom: 15px; position: relative; z-index: 10;
+            width: 100%; padding-bottom: 15px; border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
         
         .lang-grid { 
             display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; 
-            position: relative; z-index: 10; overflow-y: auto; padding: 5px;
+            position: relative; z-index: 10; padding: 2px;
         }
-        @media (min-width: 640px) { .lang-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; } }
-        @media (min-width: 1024px) { .lang-grid { grid-template-columns: repeat(5, 1fr); gap: 15px; } }
 
         .lang-btn {
-            background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 16px; padding: 12px 8px; display: flex; align-items: center;
-            justify-content: center; cursor: pointer; transition: all 0.3s ease;
-            text-align: center; min-height: 50px; height: auto;
+            background: rgba(255, 215, 0, 0.08); border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 16px; padding: 10px 6px; display: flex; align-items: center;
+            justify-content: center; cursor: pointer; transition: all 0.2s ease;
+            text-align: center; min-height: 55px; height: auto;
         }
-        .lang-btn:hover { background: var(--primary); border-color: #fff; transform: scale(1.03); }
+        .lang-btn:hover { background: var(--primary); border-color: #fff; transform: scale(1.02); }
         .lang-btn:hover span { color: #000; }
-        .lang-btn span { font-size: 0.9rem; font-weight: 800; color: #fff; line-height: 1.2; }
+        .lang-btn span { font-size: 0.9rem; font-weight: 800; color: #fff; line-height: 1.1; }
 
         * { font-style: normal !important; }
         h1, h2, h3, span, p, a, button { font-weight: 900 !important; }
@@ -166,85 +262,22 @@
 
     <!-- FLOATING HEADER -->
     <header class="iphone-header">
+        <!-- LEFT LOGO -->
         <div class="header-left">
-            <img src="blessingsssl.png" alt="Logo" class="w-9 h-9 rounded-xl border-2 border-primary shadow-lg" onerror="this.src='https://via.placeholder.com/50/FFD700/000000?text=L'">
+            <img src="sti.png" alt="Logo" onerror="this.src='https://via.placeholder.com/38/FFD700/000000?text=L'">
         </div>
         
         <div class="header-center">
-            <img src="blessingsss.png" alt="Blessingsss" class="h-[22px] max-w-[180px]" onerror="this.src='https://via.placeholder.com/180x22/FFD700/000000?text=BLESSINGSSS'">
+            <img src="blessingsss.png" alt="Blessingsss" onerror="this.src='https://via.placeholder.com/160x22/FFD700/000000?text=BLESSINGSSS'">
         </div>
         
+        <!-- RIGHT LOGO -->
         <div class="header-right">
-            <img src="blessingsssl.png" alt="Logo" class="w-9 h-9 rounded-xl border-2 border-primary shadow-lg" onerror="this.src='https://via.placeholder.com/50/FFD700/000000?text=R'">
+            <img src="sti.png" alt="Logo" onerror="this.src='https://via.placeholder.com/38/FFD700/000000?text=R'">
         </div>
     </header>
 
-    <!-- MAIN CONTENT -->
-    <main class="container mx-auto px-4 sm:px-6">
-        <h1 class="text-3xl sm:text-4xl text-center text-primary mb-2 mt-6"></h1>
-        <p class="text-gray-400 text-center mb-10 text-sm"></p>
-        
-        <!-- CARD GRID -->
-        <div class="card-grid mb-24">
-            
-            <!-- Gym Card -->
-            <div class="premium-card group" onclick="openCategoryPopup('gym')">
-                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop" class="card-img">
-                <div class="mt-4 text-center">
-                    <h3 class="text-[10px] sm:text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">GYM WORKOUT</h3>
-                    <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Strength & Bodybuilding</p>
-                </div>
-            </div>
-            
-            <!-- Calisthenics Card -->
-            <div class="premium-card group" onclick="openCategoryPopup('calisthenics')">
-                <img src="https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?q=80&w=1000&auto=format&fit=crop" class="card-img">
-                <div class="mt-4 text-center">
-                    <h3 class="text-[10px] sm:text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">CALISTHENICS</h3>
-                    <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Bodyweight Training</p>
-                </div>
-            </div>
-            
-            <!-- Kegel Card -->
-            <div class="premium-card group" onclick="openCategoryPopup('kegel')">
-                <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1000&auto=format&fit=crop" class="card-img">
-                <div class="mt-4 text-center">
-                    <h3 class="text-[10px] sm:text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">KEGEL EXERCISES</h3>
-                    <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Pelvic Floor</p>
-                </div>
-            </div>
-            
-            <!-- Yoga Card -->
-            <div class="premium-card group" onclick="openCategoryPopup('yoga')">
-                <img src="https://images.unsplash.com/photo-1544367563-12123d896889?q=80&w=1000&auto=format&fit=crop" class="card-img">
-                <div class="mt-4 text-center">
-                    <h3 class="text-[10px] sm:text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">YOGA FLOW</h3>
-                    <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Mind & Body</p>
-                </div>
-            </div>
-            
-            <!-- Desi Card -->
-            <div class="premium-card group" onclick="openCategoryPopup('desi')">
-                <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1000&auto=format&fit=crop" class="card-img">
-                <div class="mt-4 text-center">
-                    <h3 class="text-[10px] sm:text-sm font-black group-hover:text-primary transition-colors uppercase tracking-widest">DESI AKHADA</h3>
-                    <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Traditional Power</p>
-                </div>
-            </div>
-            
-            <!-- All Workouts Card -->
-            <div class="premium-card group" onclick="openCategoryPopup('gym')">
-                <div class="card-img flex items-center justify-center bg-gradient-to-br from-[#050401] to-[#013220] border-2 border-green-500/50">
-                    <i class="fas fa-fire text-2xl text-green-400"></i>
-                </div>
-                <div class="mt-4 text-center">
-                    <h3 class="text-[10px] sm:text-sm font-black text-green-400 group-hover:text-white transition-colors uppercase tracking-widest">ALL WORKOUTS</h3>
-                    <p class="text-gray-400 text-[8px] sm:text-[10px] mt-1 italic">Complete Program</p>
-                </div>
-            </div>
-
-        </div>
-    </main>
+    <main></main>
     
     <!-- DOCK NAV -->
     <div class="iphone-dock-wrapper">
@@ -283,14 +316,11 @@
     <div id="modal-gym" class="modal-overlay hidden-modal">
         <div class="modal-box">
             <div class="modal-bg-img" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop');"></div>
-            <div class="flex justify-between items-center mb-6 px-2 relative z-10 w-full border-b border-primary/20 pb-4">
-                <div>
-                    <h2 class="text-xl sm:text-3xl font-black text-primary uppercase">GYM WORKOUT</h2>
-                    <p class="text-[10px] text-gray-300 uppercase tracking-[3px] mt-1">Strength & Bodybuilding</p>
-                </div>
-                <button onclick="closeAllPopups()" class="w-10 h-10 rounded-xl bg-white/10 border border-primary/30 text-primary flex items-center justify-center hover:bg-primary hover:text-black transition"><i class="fas fa-times"></i></button>
+            <div class="modal-header-center">
+                <h2 class="text-xl sm:text-3xl font-black text-primary uppercase">GYM WORKOUT</h2>
+                <p class="text-[10px] text-gray-300 uppercase tracking-[2px] mt-0.5">Strength & Bodybuilding</p>
             </div>
-            <div id="grid-gym" class="lang-grid"></div> <!-- Grid Container -->
+            <div id="grid-gym" class="lang-grid"></div> 
         </div>
     </div>
 
@@ -298,29 +328,23 @@
     <div id="modal-calisthenics" class="modal-overlay hidden-modal">
         <div class="modal-box">
             <div class="modal-bg-img" style="background-image: url('https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?q=80&w=1000&auto=format&fit=crop');"></div>
-            <div class="flex justify-between items-center mb-6 px-2 relative z-10 w-full border-b border-primary/20 pb-4">
-                <div>
-                    <h2 class="text-xl sm:text-3xl font-black text-primary uppercase">CALISTHENICS</h2>
-                    <p class="text-[10px] text-gray-300 uppercase tracking-[3px] mt-1">Bodyweight Training</p>
-                </div>
-                <button onclick="closeAllPopups()" class="w-10 h-10 rounded-xl bg-white/10 border border-primary/30 text-primary flex items-center justify-center hover:bg-primary hover:text-black transition"><i class="fas fa-times"></i></button>
+            <div class="modal-header-center">
+                <h2 class="text-xl sm:text-3xl font-black text-primary uppercase">CALISTHENICS</h2>
+                <p class="text-[10px] text-gray-300 uppercase tracking-[2px] mt-0.5">Bodyweight Training</p>
             </div>
-            <div id="grid-calisthenics" class="lang-grid"></div> <!-- Grid Container -->
+            <div id="grid-calisthenics" class="lang-grid"></div> 
         </div>
     </div>
 
     <!-- 3. KEGEL MODAL -->
     <div id="modal-kegel" class="modal-overlay hidden-modal">
         <div class="modal-box">
-            <div class="modal-bg-img" style="background-image: url('https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1000&auto=format&fit=crop');"></div>
-            <div class="flex justify-between items-center mb-6 px-2 relative z-10 w-full border-b border-primary/20 pb-4">
-                <div>
-                    <h2 class="text-xl sm:text-3xl font-black text-primary uppercase">KEGEL EXERCISES</h2>
-                    <p class="text-[10px] text-gray-300 uppercase tracking-[3px] mt-1">Pelvic Floor Training</p>
-                </div>
-                <button onclick="closeAllPopups()" class="w-10 h-10 rounded-xl bg-white/10 border border-primary/30 text-primary flex items-center justify-center hover:bg-primary hover:text-black transition"><i class="fas fa-times"></i></button>
+            <div class="modal-bg-img" style="background-image: url('https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=1000&auto=format&fit=crop');"></div>
+            <div class="modal-header-center">
+                <h2 class="text-xl sm:text-3xl font-black text-primary uppercase">KEGEL EXERCISES</h2>
+                <p class="text-[10px] text-gray-300 uppercase tracking-[2px] mt-0.5">Pelvic Floor Training</p>
             </div>
-            <div id="grid-kegel" class="lang-grid"></div> <!-- Grid Container -->
+            <div id="grid-kegel" class="lang-grid"></div> 
         </div>
     </div>
 
@@ -328,35 +352,28 @@
     <div id="modal-yoga" class="modal-overlay hidden-modal">
         <div class="modal-box">
             <div class="modal-bg-img" style="background-image: url('https://images.unsplash.com/photo-1544367563-12123d896889?q=80&w=1000&auto=format&fit=crop');"></div>
-            <div class="flex justify-between items-center mb-6 px-2 relative z-10 w-full border-b border-primary/20 pb-4">
-                <div>
-                    <h2 class="text-xl sm:text-3xl font-black text-primary uppercase">YOGA FLOW</h2>
-                    <p class="text-[10px] text-gray-300 uppercase tracking-[3px] mt-1">Mind & Body Harmony</p>
-                </div>
-                <button onclick="closeAllPopups()" class="w-10 h-10 rounded-xl bg-white/10 border border-primary/30 text-primary flex items-center justify-center hover:bg-primary hover:text-black transition"><i class="fas fa-times"></i></button>
+            <div class="modal-header-center">
+                <h2 class="text-xl sm:text-3xl font-black text-primary uppercase">YOGA FLOW</h2>
+                <p class="text-[10px] text-gray-300 uppercase tracking-[2px] mt-0.5">Mind & Body Harmony</p>
             </div>
-            <div id="grid-yoga" class="lang-grid"></div> <!-- Grid Container -->
+            <div id="grid-yoga" class="lang-grid"></div> 
         </div>
     </div>
 
     <!-- 5. DESI MODAL -->
     <div id="modal-desi" class="modal-overlay hidden-modal">
         <div class="modal-box">
-            <div class="modal-bg-img" style="background-image: url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1000&auto=format&fit=crop');"></div>
-            <div class="flex justify-between items-center mb-6 px-2 relative z-10 w-full border-b border-primary/20 pb-4">
-                <div>
-                    <h2 class="text-xl sm:text-3xl font-black text-primary uppercase">DESI AKHADA</h2>
-                    <p class="text-[10px] text-gray-300 uppercase tracking-[3px] mt-1">Traditional Indian Workout</p>
-                </div>
-                <button onclick="closeAllPopups()" class="w-10 h-10 rounded-xl bg-white/10 border border-primary/30 text-primary flex items-center justify-center hover:bg-primary hover:text-black transition"><i class="fas fa-times"></i></button>
+            <div class="modal-bg-img" style="background-image: url('https://images.unsplash.com/photo-1628173977507-6c23a7cb17c2?q=80&w=1000&auto=format&fit=crop');"></div>
+            <div class="modal-header-center">
+                <h2 class="text-xl sm:text-3xl font-black text-primary uppercase">DESI AKHADA</h2>
+                <p class="text-[10px] text-gray-300 uppercase tracking-[2px] mt-0.5">Traditional Indian Workout</p>
             </div>
-            <div id="grid-desi" class="lang-grid"></div> <!-- Grid Container -->
+            <div id="grid-desi" class="lang-grid"></div> 
         </div>
     </div>
 
     <script>
         // --- MASTER LANGUAGE LIST ---
-        // Same list for all categories
         const masterLanguages = [
             { name: "Hindi", suffix: "hindi" },
             { name: "English", suffix: "english" },
@@ -418,19 +435,10 @@
 
         // --- POPULATE MODALS ON LOAD ---
         function populateModals() {
-            // 1. Gym
             populateGrid('grid-gym', 'https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/gym_');
-
-            // 2. Calisthenics (#calesthenic_)
             populateGrid('grid-calisthenics', 'https://shekhu-tech.github.io/sti-kegal-calisthenics-Bhasa-ke-hisab-se/calesthenic_');
-
-            // 3. Kegel (#kegel_)
             populateGrid('grid-kegel', 'https://shekhu-tech.github.io/sti-kegal-kegals-Bhasa-ke-hisab-se/kegel_');
-
-            // 4. Yoga (#Yogasnas_)
             populateGrid('grid-yoga', 'https://shekhu-tech.github.io/sti-kegal-yoga-Bhasa-ke-hisab-se/yogasnas_');
-
-            // 5. Desi (#Desimehnat_)
             populateGrid('grid-desi', 'https://shekhu-tech.github.io/sti-kegal-kegals-desicardio-ke-hisab-se/desimehnat_');
         }
 
@@ -454,29 +462,21 @@
         function activateTab(element, category) {
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             element.classList.add('active');
-            
             openPopup(category);
         }
 
         function openCategoryPopup(category) {
-            // Update active footer tab
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            const footerItems = document.querySelectorAll('.nav-item');
-            const categoryMap = { 'gym': 0, 'calisthenics': 1, 'kegel': 2, 'yoga': 3, 'desi': 4 };
-            if (footerItems[categoryMap[category]]) {
-                footerItems[categoryMap[category]].classList.add('active');
-            }
-            
             openPopup(category);
         }
 
         function openPopup(category) {
             currentCategory = category;
             
-            // Hide all modals first
-            closeAllPopups();
+            document.querySelectorAll('.modal-overlay').forEach(el => {
+                el.classList.remove('flex-modal');
+                el.classList.add('hidden-modal');
+            });
 
-            // Show specific modal
             const modalId = `modal-${category}`;
             const modal = document.getElementById(modalId);
             if(modal) {
@@ -485,34 +485,14 @@
             }
         }
 
-        function closeAllPopups() {
-            document.querySelectorAll('.modal-overlay').forEach(el => {
-                el.classList.remove('flex-modal');
-                el.classList.add('hidden-modal');
-            });
-        }
-
         function goToPage(pageUrl) {
+            localStorage.setItem('sti_preferred_page', pageUrl);
             window.location.href = pageUrl;
         }
 
         window.addEventListener('DOMContentLoaded', function() {
-            // 1. Populate all buttons in all modals
             populateModals();
-
-            // 2. Show default modal
-            setTimeout(() => {
-                openPopup(currentCategory);
-            }, 300);
-        });
-
-        // Close on outside click
-        document.querySelectorAll('.modal-overlay').forEach(overlay => {
-            overlay.addEventListener('click', function(e) {
-                if(e.target === this) {
-                    closeAllPopups();
-                }
-            });
+            openPopup(currentCategory);
         });
     </script>
 </body>
