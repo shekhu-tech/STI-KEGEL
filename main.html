@@ -136,18 +136,42 @@
             flex-grow: 0; 
         }
 
-        /* --- FIXED SIZE BUTTONS --- */
+        /* --- FIXED SIZE BUTTONS (PREMIUM DARK GLASS STYLE) --- */
         .lang-btn {
-            background: rgba(255, 215, 0, 0.08); border: 1px solid rgba(255, 215, 0, 0.2);
+            background: rgba(0, 0, 0, 0.6); /* Dark Glass base */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 215, 0, 0.3); /* Subtle Gold Border */
             border-radius: 16px; 
             width: 100%; 
             height: 60px; 
             display: flex; align-items: center; justify-content: center; 
-            cursor: pointer; transition: all 0.2s ease; text-align: center;
+            cursor: pointer; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
-        .lang-btn:hover { background: var(--primary); transform: scale(1.02); }
-        .lang-btn:hover span { color: #000; }
-        .lang-btn span { font-size: 0.85rem; font-weight: 900; color: #fff; text-transform: uppercase; }
+        
+        .lang-btn:hover { 
+            background: var(--primary); /* Becomes Solid Gold on Hover */
+            border-color: var(--primary);
+            transform: translateY(-2px); /* Slight Lift */
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4); /* Gold Glow */
+        }
+        
+        .lang-btn:active {
+            transform: scale(0.98);
+        }
+
+        .lang-btn:hover span { color: #000; /* Text black on Gold background */ }
+        
+        .lang-btn span { 
+            font-size: 0.85rem; 
+            font-weight: 800; 
+            color: #ffffff; /* Text White originally */
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+        }
 
         .modal-bg-img { 
             position: absolute; inset: 0; background-size: cover; background-position: center; 
