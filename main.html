@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&family=Noto+Sans+Devanagari:wght@700;900&display=swap" rel="stylesheet">
     
     <script>
-        // --- AUTO REDIRECT LOGIC START ---
+        // --- AUTO REDIRECT LOGIC ---
         (function() {
             const urlParams = new URLSearchParams(window.location.search);
             if (!urlParams.has('reset')) {
@@ -23,7 +23,6 @@
                 }
             }
         })();
-        // --- AUTO REDIRECT LOGIC END ---
     </script>
 
     <style>
@@ -32,16 +31,11 @@
             --primary-rgb: 255, 215, 0; 
             --bg-dark: #050401; 
             --card-glass: rgba(15, 12, 5, 0.95);
-            
-            /* RESTORED HEIGHTS (Back to 70px) */
             --header-offset: calc(15px + env(safe-area-inset-top));
             --header-height: 70px; 
-            
             --footer-offset: calc(25px + env(safe-area-inset-bottom));
             --footer-height: 70px; 
-            
             --text-light: #ffffff;
-            --dark-green: #013220; 
         }
 
         html { scroll-behavior: smooth; }
@@ -60,11 +54,12 @@
         #fixed-media-background {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             z-index: -10; background-size: cover; background-position: center;
-            opacity: 0.7; background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop');
+            opacity: 0.95; /* Visibility changed to 95% */
+            background-image: url('gym.png');
             filter: contrast(125%) brightness(40%) sepia(20%);
         }
 
-        /* --- GOLDEN FLOATING HEADER (Restored Size) --- */
+        /* --- HEADER --- */
         .iphone-header {
             position: fixed; top: var(--header-offset); left: 50%; transform: translateX(-50%);
             width: 92%; max-width: 600px; height: var(--header-height);
@@ -74,235 +69,123 @@
             padding: 0 20px; z-index: 3000; box-shadow: 0 5px 25px rgba(0,0,0,0.5);
         }
 
-        /* Adjusted Logo Sizes for Standard Header WITH BORDER & SHADOW */
         .header-left img, .header-right img { 
-            width: 38px; 
-            height: 38px; 
-            border-radius: 10px; 
-            border: 2px solid var(--primary); /* Gold Border Added Back */
-            box-shadow: 0 4px 6px rgba(0,0,0,0.5); /* Shadow Added Back */
-            object-fit: cover;
+            width: 38px; height: 38px; border-radius: 10px; 
+            border: 2px solid var(--primary); box-shadow: 0 4px 6px rgba(0,0,0,0.5); object-fit: cover;
         }
         .header-center img { height: 22px; max-width: 160px; }
-
-        .header-left { display: flex; align-items: center; gap: 8px; }
         .header-center { position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; justify-content: center; }
-        .header-right { display: flex; align-items: center; gap: 8px; }
 
-        /* --- GOLDEN DOCK (Restored Size) --- */
+        /* --- DOCK --- */
         .iphone-dock-wrapper { 
             position: fixed; bottom: var(--footer-offset); 
             left: 0; width: 100%; display: flex; justify-content: center; z-index: 3000; padding: 0 15px; 
         }
         .iphone-dock { 
             width: 100%; max-width: 500px; height: var(--footer-height); 
-            background: rgba(5, 4, 1, 0.95); 
-            backdrop-filter: blur(40px); 
-            border-radius: 35px; /* Rounder */
-            border: 1px solid rgba(255, 215, 0, 0.15); 
+            background: rgba(5, 4, 1, 0.95); backdrop-filter: blur(40px); 
+            border-radius: 35px; border: 1px solid rgba(255, 215, 0, 0.15); 
             display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.9); 
-            padding: 0 12px; overflow: visible; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.9); padding: 0 12px;
         }
         
-        .nav-item { 
-            flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            padding: 0; 
-            transition: all 0.3s ease; 
-            color: #666; 
-            cursor: pointer; position: relative; height: 100%;
-        }
-        
-        /* Icon Box (Restored Size) */
-        .nav-item .icon-box {
-            width: 42px; height: 42px; /* Bigger box */
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 14px; 
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); 
-            margin-bottom: 3px;
-            background: transparent;
-            border: 1px solid transparent; 
-        }
-
-        .nav-item i { 
-            font-size: 1.25rem; /* Bigger Icon */
-            transition: all 0.3s ease; 
-        }
-        
-        .nav-item span { 
-            font-size: 0.55rem; /* Bigger Text */
-            font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; 
-            transition: all 0.3s ease;
-            opacity: 0.7;
-        }
-        
-        /* --- ACTIVE STATE (MODERN GLASS HIGHLIGHT) --- */
+        .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; height: 100%; color: #666; transition: all 0.3s ease; }
+        .nav-item .icon-box { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 14px; margin-bottom: 3px; }
+        .nav-item i { font-size: 1.25rem; }
+        .nav-item span { font-size: 0.55rem; font-weight: 700; text-transform: uppercase; opacity: 0.7; }
         .nav-item.active { color: var(--primary); }
-        
-        .nav-item.active .icon-box {
-            background: rgba(255, 215, 0, 0.15); 
-            border: 1px solid rgba(255, 215, 0, 0.4); 
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2); 
-            transform: scale(1.15) translateY(-3px); 
-        }
+        .nav-item.active .icon-box { background: rgba(255, 215, 0, 0.15); border: 1px solid rgba(255, 215, 0, 0.4); transform: scale(1.15) translateY(-3px); }
 
-        .nav-item.active i { 
-            color: var(--primary); 
-            filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
-        }
-
-        .nav-item.active span { 
-            color: var(--primary); 
-            opacity: 1;
-            font-weight: 900;
-            text-shadow: 0 0 10px rgba(0,0,0,0.5);
-        }
-
-        /* --- MODAL STYLES --- */
+        /* --- MODALS --- */
         .modal-overlay { 
             position: fixed; 
             top: calc(var(--header-offset) + var(--header-height) + 12px);
             bottom: calc(var(--footer-offset) + var(--footer-height) + 12px);
-            left: 0; right: 0;
-            z-index: 2500; 
-            display: none; 
+            left: 0; right: 0; z-index: 2500; display: none; 
             justify-content: center; 
-            padding: 0 12px; 
-            pointer-events: none;
+            align-items: center; 
+            padding: 0 12px; pointer-events: none;
         }
-        
-        .hidden-modal { display: none !important; }
         .flex-modal { display: flex !important; }
 
         .modal-box { 
-            pointer-events: auto;
-            background: rgba(10, 8, 2, 0.92); border: 2px solid var(--primary); 
-            border-radius: 32px; 
-            
-            /* Mobile Defaults */
-            width: 100%; 
-            max-width: 500px; 
-            
+            pointer-events: auto; background: rgba(10, 8, 2, 0.92); border: 2px solid var(--primary); 
+            border-radius: 32px; width: 100%; max-width: 500px; 
             height: 100%; 
             padding: 20px; 
             box-shadow: 0 0 80px rgba(var(--primary-rgb), 0.4); 
-            position: relative; 
-            overflow: hidden; 
+            position: relative; overflow: hidden; 
             display: flex; flex-direction: column; 
-            transition: max-width 0.3s ease;
+            justify-content: center; 
         }
 
-        /* --- PC / TABLET ADAPTATION (Wider Modal) --- */
-        @media (min-width: 768px) {
-            .modal-box {
-                max-width: 90%; /* Much wider on tablets */
-                border-radius: 40px;
-            }
-            .lang-grid {
-                grid-template-columns: repeat(4, 1fr) !important;
-                gap: 15px !important;
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            .modal-box {
-                max-width: 1100px; /* PC Width */
-            }
-            .iphone-dock, .iphone-header {
-                max-width: 800px; /* Wider controls on PC */
-            }
-            .lang-grid {
-                grid-template-columns: repeat(5, 1fr) !important;
-            }
-        }
-        
-        .modal-box .lang-grid {
-            flex-grow: 1;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch; 
-            padding-bottom: 5px;
-        }
-        
-        /* Scrollbar styling */
-        .modal-box .lang-grid::-webkit-scrollbar { width: 5px; }
-        .modal-box .lang-grid::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
-        .modal-box .lang-grid::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
-
-        .modal-bg-img { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.25; z-index: 0; filter: brightness(25%); }
-        
-        /* Centered Modal Header */
         .modal-header-center {
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center; margin-bottom: 15px; position: relative; z-index: 10;
-            width: 100%; padding-bottom: 15px; border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 20px; z-index: 10;
+            padding-bottom: 15px; border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            flex-shrink: 0;
+        }
+
+        .sub-heading {
+            font-size: 0.7rem; color: #ccc; text-transform: uppercase; letter-spacing: 2px; margin-top: 4px; font-weight: 700;
         }
         
         .lang-grid { 
             display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; 
-            position: relative; z-index: 10; padding: 2px;
+            position: relative; z-index: 10; overflow-y: auto; 
+            padding: 5px;
+            flex-grow: 0; 
         }
 
+        /* --- FIXED SIZE BUTTONS --- */
         .lang-btn {
             background: rgba(255, 215, 0, 0.08); border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 16px; padding: 10px 6px; display: flex; align-items: center;
-            justify-content: center; cursor: pointer; transition: all 0.2s ease;
-            text-align: center; min-height: 55px; height: auto;
+            border-radius: 16px; 
+            width: 100%; 
+            height: 60px; 
+            display: flex; align-items: center; justify-content: center; 
+            cursor: pointer; transition: all 0.2s ease; text-align: center;
         }
-        .lang-btn:hover { background: var(--primary); border-color: #fff; transform: scale(1.02); }
+        .lang-btn:hover { background: var(--primary); transform: scale(1.02); }
         .lang-btn:hover span { color: #000; }
-        .lang-btn span { font-size: 0.9rem; font-weight: 800; color: #fff; line-height: 1.1; }
+        .lang-btn span { font-size: 0.85rem; font-weight: 900; color: #fff; text-transform: uppercase; }
+
+        .modal-bg-img { 
+            position: absolute; inset: 0; background-size: cover; background-position: center; 
+            opacity: 0.95; /* Visibility changed to 95% */
+            z-index: 0; filter: brightness(25%); 
+        }
 
         * { font-style: normal !important; }
-        h1, h2, h3, span, p, a, button { font-weight: 900 !important; }
     </style>
 </head>
 <body>
     
     <div id="fixed-media-background"></div>
 
-    <!-- FLOATING HEADER -->
     <header class="iphone-header">
-        <!-- LEFT LOGO -->
-        <div class="header-left">
-            <img src="sti.png" alt="Logo" onerror="this.src='https://via.placeholder.com/38/FFD700/000000?text=L'">
-        </div>
-        
-        <div class="header-center">
-            <img src="stiprocenter.png" alt="Blessingsss" onerror="this.src='https://via.placeholder.com/160x22/FFD700/000000?text=BLESSINGSSS'">
-        </div>
-        
-        <!-- RIGHT LOGO -->
-        <div class="header-right">
-            <img src="stipro.png" alt="Logo" onerror="this.src='https://via.placeholder.com/38/FFD700/000000?text=R'">
-        </div>
+        <div class="header-left"><img src="sti.png" alt="L"></div>
+        <div class="header-center"><img src="stiprocenter.png" alt="STI PRO"></div>
+        <div class="header-right"><img src="stipro.png" alt="R"></div>
     </header>
 
-    <main></main>
-    
-    <!-- DOCK NAV -->
     <div class="iphone-dock-wrapper">
         <nav class="iphone-dock">
             <div class="nav-item" onclick="activateTab(this, 'gym')">
                 <div class="icon-box"><i class="fas fa-dumbbell"></i></div>
                 <span></span>
             </div>
-            
             <div class="nav-item" onclick="activateTab(this, 'calisthenics')">
                 <div class="icon-box"><i class="fas fa-person-running"></i></div>
                 <span></span>
             </div>
-            
-            <!-- Default Active: Kegel -->
             <div class="nav-item active" onclick="activateTab(this, 'kegel')">
                 <div class="icon-box"><i class="fas fa-heart-pulse"></i></div>
                 <span></span>
             </div>
-            
             <div class="nav-item" onclick="activateTab(this, 'yoga')">
                 <div class="icon-box"><i class="fas fa-om"></i></div>
                 <span></span>
             </div>
-
             <div class="nav-item" onclick="activateTab(this, 'desi')">
                 <div class="icon-box"><i class="fas fa-hand-fist"></i></div>
                 <span></span>
@@ -310,154 +193,167 @@
         </nav>
     </div>
 
-    <!-- ===== 5 SEPARATE POPUPS (MODALS) ===== -->
-
-    <!-- 1. GYM MODAL -->
-    <div id="modal-gym" class="modal-overlay hidden-modal">
+    <!-- MODALS -->
+    <div id="modal-gym" class="modal-overlay">
         <div class="modal-box">
-            <div class="modal-bg-img" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop');"></div>
+            <div class="modal-bg-img" style="background-image:url('gym.png');"></div>
             <div class="modal-header-center">
-                <h2 class="text-xl sm:text-3xl font-black text-primary uppercase">GYM WORKOUT</h2>
-                <p class="text-[10px] text-gray-300 uppercase tracking-[2px] mt-0.5">Strength & Bodybuilding</p>
+                <h2 class="text-2xl font-black text-primary">GYM WORKOUT</h2>
+                <span class="sub-heading">Unleash Your Strength</span>
             </div>
-            <div id="grid-gym" class="lang-grid"></div> 
+            <div id="grid-gym" class="lang-grid"></div>
         </div>
     </div>
 
-    <!-- 2. CALISTHENICS MODAL -->
-    <div id="modal-calisthenics" class="modal-overlay hidden-modal">
+    <div id="modal-calisthenics" class="modal-overlay">
         <div class="modal-box">
-            <div class="modal-bg-img" style="background-image: url('https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?q=80&w=1000&auto=format&fit=crop');"></div>
+            <div class="modal-bg-img" style="background-image:url('caleshthenics.png');"></div>
             <div class="modal-header-center">
-                <h2 class="text-xl sm:text-3xl font-black text-primary uppercase">CALISTHENICS</h2>
-                <p class="text-[10px] text-gray-300 uppercase tracking-[2px] mt-0.5">Bodyweight Training</p>
+                <h2 class="text-2xl font-black text-primary">CALISTHENICS</h2>
+                <span class="sub-heading">Master Your Bodyweight</span>
             </div>
-            <div id="grid-calisthenics" class="lang-grid"></div> 
+            <div id="grid-calisthenics" class="lang-grid"></div>
         </div>
     </div>
 
-    <!-- 3. KEGEL MODAL -->
-    <div id="modal-kegel" class="modal-overlay hidden-modal">
+    <div id="modal-kegel" class="modal-overlay">
         <div class="modal-box">
-            <div class="modal-bg-img" style="background-image: url('https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=1000&auto=format&fit=crop');"></div>
+            <div class="modal-bg-img" style="background-image:url('kegel.png');"></div>
             <div class="modal-header-center">
-                <h2 class="text-xl sm:text-3xl font-black text-primary uppercase">KEGEL EXERCISES</h2>
-                <p class="text-[10px] text-gray-300 uppercase tracking-[2px] mt-0.5">Pelvic Floor Training</p>
+                <h2 class="text-2xl font-black text-primary">KEGEL EXERCISES</h2>
+                <span class="sub-heading">Pelvic Floor Health</span>
             </div>
-            <div id="grid-kegel" class="lang-grid"></div> 
+            <div id="grid-kegel" class="lang-grid"></div>
         </div>
     </div>
 
-    <!-- 4. YOGA MODAL -->
-    <div id="modal-yoga" class="modal-overlay hidden-modal">
+    <div id="modal-yoga" class="modal-overlay">
         <div class="modal-box">
-            <div class="modal-bg-img" style="background-image: url('https://images.unsplash.com/photo-1544367563-12123d896889?q=80&w=1000&auto=format&fit=crop');"></div>
+            <div class="modal-bg-img" style="background-image:url('yoga.png');"></div>
             <div class="modal-header-center">
-                <h2 class="text-xl sm:text-3xl font-black text-primary uppercase">YOGA FLOW</h2>
-                <p class="text-[10px] text-gray-300 uppercase tracking-[2px] mt-0.5">Mind & Body Harmony</p>
+                <h2 class="text-2xl font-black text-primary">YOGA FLOW</h2>
+                <span class="sub-heading">Soul & Body Balance</span>
             </div>
-            <div id="grid-yoga" class="lang-grid"></div> 
+            <div id="grid-yoga" class="lang-grid"></div>
         </div>
     </div>
 
-    <!-- 5. DESI MODAL -->
-    <div id="modal-desi" class="modal-overlay hidden-modal">
+    <div id="modal-desi" class="modal-overlay">
         <div class="modal-box">
-            <div class="modal-bg-img" style="background-image: url('https://images.unsplash.com/photo-1628173977507-6c23a7cb17c2?q=80&w=1000&auto=format&fit=crop');"></div>
+            <div class="modal-bg-img" style="background-image:url('deshi.png');"></div>
             <div class="modal-header-center">
-                <h2 class="text-xl sm:text-3xl font-black text-primary uppercase">DESI AKHADA/CARDIO</h2>
-                <p class="text-[10px] text-gray-300 uppercase tracking-[2px] mt-0.5">Traditional Indian Workout</p>
+                <h2 class="text-2xl font-black text-primary">DESI AKHADA</h2>
+                <span class="sub-heading">Traditional Hardcore Cardio</span>
             </div>
-            <div id="grid-desi" class="lang-grid"></div> 
+            <div id="grid-desi" class="lang-grid"></div>
         </div>
     </div>
 
     <script>
-        // --- MASTER LANGUAGE LIST ---
-        const masterLanguages = [
-            { name: "Hindi", suffix: "hindi" },
-            { name: "English", suffix: "english" },
-            { name: "Punjabi", suffix: "punjabi" },
-            { name: "Bengali", suffix: "bengali" },
-            { name: "Gujarati", suffix: "gujarati" },
-            { name: "Marathi", suffix: "marathi" },
-            { name: "Tamil", suffix: "tamil" },
-            { name: "Telugu", suffix: "telugu" },
-            { name: "Kannada", suffix: "kannada" },
-            { name: "Malayalam", suffix: "malayalam" },
-            { name: "Odia", suffix: "odia" },
-            { name: "Assamese", suffix: "assamese" },
-            { name: "Urdu", suffix: "urdu" },
-            { name: "Sanskrit", suffix: "sanskrit" },
-            { name: "Maithili", suffix: "maithili" },
-            { name: "Bhojpuri", suffix: "bhojpuri" },
-            { name: "Rajasthani", suffix: "rajasthani" },
-            { name: "Haryanvi", suffix: "haryanvi" },
-            { name: "Konkani", suffix: "konkani" },
-            { name: "Sindhi", suffix: "sindhi" },
-            { name: "Dogri", suffix: "dogri" },
-            { name: "Kashmiri", suffix: "kashmiri" },
-            { name: "Manipuri (Meitei)", suffix: "manipuri" },
-            { name: "Nepali", suffix: "nepali" },
-            { name: "Santali", suffix: "santali" },
-            { name: "Spanish", suffix: "spanish" },
-            { name: "French", suffix: "french" },
-            { name: "Arabic", suffix: "arabic" },
-            { name: "Portuguese", suffix: "portuguese" },
-            { name: "Russian", suffix: "russian" },
-            { name: "Chinese", suffix: "chinese" },
-            { name: "Japanese", suffix: "japanese" },
-            { name: "Korean", suffix: "korean" },
-            { name: "German", suffix: "german" },
-            { name: "Italian", suffix: "italian" },
-            { name: "Turkish", suffix: "turkish" },
-            { name: "Persian", suffix: "persian" },
-            { name: "Sinhala", suffix: "sinhala" },
-            { name: "Thai", suffix: "thai" },
-            { name: "Vietnamese", suffix: "vietnamese" },
-            { name: "Indonesian", suffix: "indonesian" },
-            { name: "Malay", suffix: "malay" },
-            { name: "Filipino", suffix: "filipino" },
-            { name: "Swahili", suffix: "swahili" },
-            { name: "Dutch", suffix: "dutch" },
-            { name: "Polish", suffix: "polish" },
-            { name: "Ukrainian", suffix: "ukrainian" },
-            { name: "Hebrew", suffix: "hebrew" },
-            { name: "Greek", suffix: "greek" },
-            { name: "Czech", suffix: "czech" },
-            { name: "Hungarian", suffix: "hungarian" },
-            { name: "Romanian", suffix: "romanian" },
-            { name: "Swedish", suffix: "swedish" },
-            { name: "Norwegian", suffix: "norwegian" },
-            { name: "Finnish", suffix: "finnish" },
-            { name: "Danish", suffix: "danish" }
+        // --- SEPARATE DATA FOR EACH POPUP ---
+        const gymData = [
+{ name: "Chest", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/chest.html" },
+{ name: "Back", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/back.html" },
+{ name: "Shoulders", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/shoulders.html" },
+{ name: "Biceps", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/biceps.html" },
+{ name: "Triceps", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/triceps.html" },
+{ name: "Forearms", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/forearms.html" },
+{ name: "Legs", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/legs.html" },
+{ name: "Glutes", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/glutes.html" },
+{ name: "Calves", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calves.html" },
+{ name: "Abs", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/abs.html" },
+{ name: "Core", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/core.html" },
+{ name: "Cardio", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/cardio.html" },
+{ name: "Functional", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/functional.html" },
+{ name: "Full Body", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/fullbody.html" }
         ];
 
-        // --- POPULATE MODALS ON LOAD ---
-        function populateModals() {
-            populateGrid('grid-gym', 'https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/gym_');
-            populateGrid('grid-calisthenics', 'https://shekhu-tech.github.io/sti-kegal-calisthenics-Bhasa-ke-hisab-se/calesthenic_');
-            populateGrid('grid-kegel', 'https://shekhu-tech.github.io/sti-kegal-kegals-Bhasa-ke-hisab-se/kegel_');
-            populateGrid('grid-yoga', 'https://shekhu-tech.github.io/sti-kegal-yoga-Bhasa-ke-hisab-se/yogasnas_');
-            populateGrid('grid-desi', 'https://shekhu-tech.github.io/sti-kegal-kegals-desicardio-ke-hisab-se/desimehnat_');
+        const calisthenicsData = [
+           { name: "Push", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_push.html" },
+{ name: "Pull", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_pull.html" },
+{ name: "Leg ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_legs.html" },
+{ name: "Core", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_core.html" },
+{ name: "Abs ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_abs.html" },
+{ name: "Shoulder ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_shoulders.html" },
+{ name: "Chest", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_chest.html" },
+{ name: "Back ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_back.html" },
+{ name: "Arms", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_arms.html" },
+{ name: "Biceps ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_biceps.html" },
+{ name: "Triceps", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_triceps.html" },
+{ name: "Beginner ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_beginner.html" },
+{ name: "Intermediate ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_intermediate.html" },
+{ name: "Advanced ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_advanced.html" },
+{ name: "Static-Holds", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_static.html" },
+{ name: "Dynamics", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_dynamic.html" },
+{ name: "Explosive", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_explosive.html" },
+{ name: "Skill", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_skills.html" },
+{ name: "MoFlexibility", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_mobility.html" },
+{ name: "Full Body ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_fullbody.html" }
+
+        ];
+
+        const kegelData = [
+             { name: "Long-Time(EEC)", url: "#https://shekhu-tech.github.io/sti-kegal-kegals-Bhasa-ke-hisab-se/kegel_english.html" },
+            { name: "Hard Erection", url: "#https://shekhu-tech.github.io/sti-kegal-kegals-Bhasa-ke-hisab-se/kegel_english.html" },
+            { name: "Stemina Energy", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/kegel_english.html" },
+            { name: "Size Support", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-sekegel_english.html" },
+            { name: "Testosterone", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/kegel_english.html" },
+            { name: "All-In-One", url: "https://shekhu-tech.github.io/sti-kegal-kegals-Bhasa-ke-hisab-se/kegel_english.html" }
+        ];
+
+        const yogaData = [
+            { name: "Hatha Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_hatha.html" },
+{ name: "Vinyasa", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_vinyasa.html" },
+{ name: "Ashtanga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_ashtanga.html" },
+{ name: "Power-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_power.html" },
+{ name: "Kundalini-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_kundalini.html" },
+{ name: "Iyengar-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_iyengar.html" },
+{ name: "Bikram-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_bikram.html" },
+{ name: "Yin-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_yin.html" },
+{ name: "Restorative-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_restorative.html" },
+{ name: "Prenatal-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_prenatal.html" },
+{ name: "Postnatal-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_postnatal.html" },
+{ name: "Chair-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_chair.html" },
+{ name: "Meditation-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_meditation.html" },
+{ name: "All-In-One", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_meditation.html" },
+{ name: "Pranayama", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_pranayama.html" }
+
+        ];
+
+        const desiData = [
+{ name: "Chest", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_chest.html" },
+{ name: "Back ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_back.html" },
+{ name: "Shoulders", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_shoulders.html" },
+{ name: "Biceps", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_biceps.html" },
+{ name: "Triceps", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_triceps.html" },
+{ name: "Forearms", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_forearms.html" },
+{ name: "Legs", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_legs.html" },
+{ name: "Glutes", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_glutes.html" },
+{ name: "Calves", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_calves.html" },
+{ name: "Abs", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_abs.html" },
+{ name: "Core", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_core.html" },
+{ name: "Cardio", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_cardio.html" },
+{ name: "Functional", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_functional.html" },
+{ name: "Full Body", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_fullbody.html" }
+
+        ];
+
+        function populateGrids() {
+            renderItems('grid-gym', gymData);
+            renderItems('grid-calisthenics', calisthenicsData);
+            renderItems('grid-kegel', kegelData);
+            renderItems('grid-yoga', yogaData);
+            renderItems('grid-desi', desiData);
         }
 
-        // Helper to populate a specific grid
-        function populateGrid(gridId, prefix) {
+        function renderItems(gridId, data) {
             const grid = document.getElementById(gridId);
-            if(!grid) return;
-            
-            grid.innerHTML = masterLanguages.map(lang => {
-                const pageUrl = `${prefix}${lang.suffix}.html`;
-                return `
-                    <div class="lang-btn" onclick="goToPage('${pageUrl}')">
-                        <span>${lang.name}</span>
-                    </div>
-                `;
-            }).join('');
+            grid.innerHTML = data.map(item => `
+                <div class="lang-btn" onclick="goToPage('${item.url}')">
+                    <span>${item.name}</span>
+                </div>
+            `).join('');
         }
-
-        let currentCategory = 'kegel';
 
         function activateTab(element, category) {
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
@@ -465,35 +361,21 @@
             openPopup(category);
         }
 
-        function openCategoryPopup(category) {
-            openPopup(category);
-        }
-
         function openPopup(category) {
-            currentCategory = category;
-            
-            document.querySelectorAll('.modal-overlay').forEach(el => {
-                el.classList.remove('flex-modal');
-                el.classList.add('hidden-modal');
-            });
-
-            const modalId = `modal-${category}`;
-            const modal = document.getElementById(modalId);
-            if(modal) {
-                modal.classList.remove('hidden-modal');
-                modal.classList.add('flex-modal');
-            }
+            document.querySelectorAll('.modal-overlay').forEach(el => el.classList.remove('flex-modal'));
+            const modal = document.getElementById(`modal-${category}`);
+            if(modal) modal.classList.add('flex-modal');
         }
 
-        function goToPage(pageUrl) {
-            localStorage.setItem('sti_preferred_page', pageUrl);
-            window.location.href = pageUrl;
+        function goToPage(url) {
+            localStorage.setItem('sti_preferred_page', url);
+            window.location.href = url;
         }
 
-        window.addEventListener('DOMContentLoaded', function() {
-            populateModals();
-            openPopup(currentCategory);
-        });
+        window.onload = () => {
+            populateGrids();
+            openPopup('kegel'); // Default popup
+        };
     </script>
 </body>
 </html>
