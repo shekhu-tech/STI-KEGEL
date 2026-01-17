@@ -31,10 +31,10 @@
             --primary-rgb: 255, 215, 0; 
             --bg-dark: #050401; 
             --card-glass: rgba(15, 12, 5, 0.95);
-            --header-offset: calc(15px + env(safe-area-inset-top));
-            --header-height: 70px; 
-            --footer-offset: calc(25px + env(safe-area-inset-bottom));
-            --footer-height: 70px; 
+            --header-offset: calc(10px + env(safe-area-inset-top)); /* Reduced for iPhone 12 Mini */
+            --header-height: 60px; /* Reduced for iPhone 12 Mini */
+            --footer-offset: calc(15px + env(safe-area-inset-bottom)); /* Reduced for iPhone 12 Mini */
+            --footer-height: 60px; /* Reduced for iPhone 12 Mini */
             --text-light: #ffffff;
         }
 
@@ -59,124 +59,212 @@
             filter: contrast(125%) brightness(40%) sepia(20%);
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER (iPhone 12 Mini Optimized) --- */
         .iphone-header {
             position: fixed; top: var(--header-offset); left: 50%; transform: translateX(-50%);
-            width: 92%; max-width: 600px; height: var(--header-height);
+            width: 95%; /* Increased for better fit */
+            max-width: 360px; /* Reduced for iPhone 12 Mini */
+            height: var(--header-height);
             background: rgba(5, 4, 1, 0.96); backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 215, 0, 0.25); border-radius: 24px;
+            border: 1px solid rgba(255, 215, 0, 0.25); border-radius: 20px; /* Reduced border radius */
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 20px; z-index: 3000; box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            padding: 0 15px; z-index: 3000; box-shadow: 0 5px 25px rgba(0,0,0,0.5);
         }
 
         .header-left img, .header-right img { 
-            width: 38px; height: 38px; border-radius: 10px; 
+            width: 32px; height: 32px; border-radius: 8px; /* Reduced for iPhone 12 Mini */
             border: 2px solid var(--primary); box-shadow: 0 4px 6px rgba(0,0,0,0.5); object-fit: cover;
         }
-        .header-center img { height: 22px; max-width: 160px; }
-        .header-center { position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; justify-content: center; }
+        .header-center img { 
+            height: 18px; /* Reduced for iPhone 12 Mini */
+            max-width: 140px; /* Reduced for iPhone 12 Mini */
+        }
+        .header-center { 
+            position: absolute; left: 50%; transform: translateX(-50%); 
+            display: flex; align-items: center; justify-content: center; 
+        }
 
-        /* --- DOCK --- */
+        /* --- DOCK (iPhone 12 Mini Optimized) --- */
         .iphone-dock-wrapper { 
             position: fixed; bottom: var(--footer-offset); 
-            left: 0; width: 100%; display: flex; justify-content: center; z-index: 3000; padding: 0 15px; 
+            left: 0; width: 100%; display: flex; justify-content: center; z-index: 3000; padding: 0 10px; 
         }
         .iphone-dock { 
-            width: 100%; max-width: 500px; height: var(--footer-height); 
+            width: 100%; 
+            max-width: 360px; /* Reduced for iPhone 12 Mini */
+            height: var(--footer-height); 
             background: rgba(5, 4, 1, 0.95); backdrop-filter: blur(40px); 
-            border-radius: 35px; border: 1px solid rgba(255, 215, 0, 0.15); 
+            border-radius: 30px; /* Reduced for iPhone 12 Mini */
+            border: 1px solid rgba(255, 215, 0, 0.15); 
             display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.9); padding: 0 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.9); padding: 0 10px; /* Reduced padding */
         }
         
-        .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; height: 100%; color: #666; transition: all 0.3s ease; }
-        .nav-item .icon-box { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 14px; margin-bottom: 3px; }
-        .nav-item i { font-size: 1.25rem; }
-        .nav-item span { font-size: 0.55rem; font-weight: 700; text-transform: uppercase; opacity: 0.7; }
+        .nav-item { 
+            flex: 1; display: flex; flex-direction: column; align-items: center; 
+            justify-content: center; cursor: pointer; height: 100%; color: #666; transition: all 0.3s ease; 
+        }
+        .nav-item .icon-box { 
+            width: 36px; height: 36px; /* Reduced for iPhone 12 Mini */
+            display: flex; align-items: center; justify-content: center; 
+            border-radius: 12px; /* Reduced for iPhone 12 Mini */
+            margin-bottom: 2px; /* Reduced margin */
+        }
+        .nav-item i { font-size: 1rem; } /* Reduced for iPhone 12 Mini */
+        .nav-item span { 
+            font-size: 0.5rem; /* Reduced for iPhone 12 Mini */
+            font-weight: 700; text-transform: uppercase; opacity: 0.7; 
+        }
         .nav-item.active { color: var(--primary); }
-        .nav-item.active .icon-box { background: rgba(255, 215, 0, 0.15); border: 1px solid rgba(255, 215, 0, 0.4); transform: scale(1.15) translateY(-3px); }
+        .nav-item.active .icon-box { 
+            background: rgba(255, 215, 0, 0.15); 
+            border: 1px solid rgba(255, 215, 0, 0.4); 
+            transform: scale(1.1) translateY(-2px); /* Reduced scale */
+        }
 
-        /* --- MODALS --- */
+        /* --- MODALS (iPhone 12 Mini Optimized) --- */
         .modal-overlay { 
             position: fixed; 
-            top: calc(var(--header-offset) + var(--header-height) + 12px);
-            bottom: calc(var(--footer-offset) + var(--footer-height) + 12px);
+            top: calc(var(--header-offset) + var(--header-height) + 10px); /* Reduced spacing */
+            bottom: calc(var(--footer-offset) + var(--footer-height) + 10px); /* Reduced spacing */
             left: 0; right: 0; z-index: 2500; display: none; 
             justify-content: center; 
             align-items: center; 
-            padding: 0 12px; pointer-events: none;
+            padding: 0 10px; /* Reduced padding */
+            pointer-events: none;
         }
         .flex-modal { display: flex !important; }
 
         .modal-box { 
-            pointer-events: auto; background: rgba(10, 8, 2, 0.92); border: 2px solid var(--primary); 
-            border-radius: 32px; width: 100%; max-width: 500px; 
+            pointer-events: auto; 
+            background: rgba(10, 8, 2, 0.92); 
+            border: 2px solid var(--primary); 
+            border-radius: 28px; /* Reduced for iPhone 12 Mini */
+            width: 100%; 
+            max-width: 360px; /* Reduced for iPhone 12 Mini */
             height: 100%; 
-            padding: 20px; 
+            padding: 15px; /* Reduced padding */
             box-shadow: 0 0 80px rgba(var(--primary-rgb), 0.4); 
             position: relative; overflow: hidden; 
             display: flex; flex-direction: column; 
-            justify-content: center; 
+            justify-content: flex-start;
         }
 
         .modal-header-center {
-            display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 20px; z-index: 10;
-            padding-bottom: 15px; border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            display: flex; flex-direction: column; align-items: center; text-align: center; 
+            margin-bottom: 15px; /* Reduced margin */
+            z-index: 10;
+            padding-bottom: 12px; /* Reduced padding */
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
             flex-shrink: 0;
         }
 
-        .sub-heading {
-            font-size: 0.7rem; color: #ccc; text-transform: uppercase; letter-spacing: 2px; margin-top: 4px; font-weight: 700;
-        }
-        
-        .lang-grid { 
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; 
-            position: relative; z-index: 10; overflow-y: auto; 
-            padding: 5px;
-            flex-grow: 0; 
+        .modal-header-center h2 {
+            font-size: 1.5rem; /* Reduced for iPhone 12 Mini */
+            font-weight: 900;
+            color: var(--primary);
+            margin: 0;
         }
 
-        /* --- FIXED SIZE BUTTONS (PREMIUM DARK GLASS STYLE) --- */
-        .lang-btn {
+        .sub-heading {
+            font-size: 0.6rem; /* Reduced for iPhone 12 Mini */
+            color: #ccc; text-transform: uppercase; letter-spacing: 1.5px; /* Reduced letter spacing */
+            margin-top: 3px; /* Reduced margin */
+            font-weight: 700;
+        }
+        
+        /* --- CARD GRID STYLE (iPhone 12 Mini Optimized) --- */
+        .card-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 10px; /* Reduced gap for iPhone 12 Mini */
+            position: relative; z-index: 10; 
+            overflow-y: auto; 
+            padding: 5px;
+            flex-grow: 1;
+        }
+
+        /* --- CARD STYLE (iPhone 12 Mini Optimized) --- */
+        .card {
             background: rgba(0, 0, 0, 0.6); /* Dark Glass base */
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 215, 0, 0.3); /* Subtle Gold Border */
-            border-radius: 16px; 
+            border-radius: 14px; /* Reduced for iPhone 12 Mini */
             width: 100%; 
-            height: 60px; 
-            display: flex; align-items: center; justify-content: center; 
+            height: 115px; /* Reduced height for iPhone 12 Mini */
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: flex-start; 
             cursor: pointer; 
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            padding: 0;
         }
         
-        .lang-btn:hover { 
+        .card:hover { 
             background: var(--primary); /* Becomes Solid Gold on Hover */
             border-color: var(--primary);
-            transform: translateY(-2px); /* Slight Lift */
+            transform: translateY(-2px); /* Reduced lift for iPhone 12 Mini */
             box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4); /* Gold Glow */
         }
         
-        .lang-btn:active {
+        .card:active {
             transform: scale(0.98);
         }
 
-        .lang-btn:hover span { color: #000; /* Text black on Gold background */ }
+        .card:hover .card-text { color: #000; /* Text black on Gold background */ }
         
-        .lang-btn span { 
-            font-size: 0.85rem; 
+        .card-image {
+            width: 100%;
+            height: 80px; /* Reduced height for iPhone 12 Mini */
+            background-size: cover;
+            background-position: center;
+            border-top-left-radius: 14px; /* Match card radius */
+            border-top-right-radius: 14px; /* Match card radius */
+            flex-shrink: 0;
+            opacity: 1; /* 100% VISIBILITY FOR CARD IMAGES */
+            background-color: #1a1a1a; /* Fallback color */
+        }
+        
+        .card-text { 
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem; /* Reduced for iPhone 12 Mini */
             font-weight: 800; 
             color: #ffffff; /* Text White originally */
             text-transform: uppercase; 
-            letter-spacing: 1px;
+            letter-spacing: 0.8px; /* Reduced letter spacing */
+            padding: 6px; /* Reduced padding */
+            line-height: 1.2;
+            text-align: center;
+            word-break: break-word;
         }
 
         .modal-bg-img { 
             position: absolute; inset: 0; background-size: cover; background-position: center; 
-            opacity: 0.95; /* Visibility changed to 95% */
+            opacity: 0.95; /* 95% VISIBILITY FOR MODAL BACKGROUND */
             z-index: 0; filter: brightness(25%); 
+        }
+
+        /* Scrollbar styling for better visibility */
+        .card-grid::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .card-grid::-webkit-scrollbar-track {
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+        }
+        
+        .card-grid::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
         }
 
         * { font-style: normal !important; }
@@ -222,10 +310,10 @@
         <div class="modal-box">
             <div class="modal-bg-img" style="background-image:url('gym.png');"></div>
             <div class="modal-header-center">
-                <h2 class="text-2xl font-black text-primary">GYM WORKOUT</h2>
+                <h2>GYM WORKOUT</h2>
                 <span class="sub-heading">Unleash Your Strength</span>
             </div>
-            <div id="grid-gym" class="lang-grid"></div>
+            <div id="grid-gym" class="card-grid"></div>
         </div>
     </div>
 
@@ -233,10 +321,10 @@
         <div class="modal-box">
             <div class="modal-bg-img" style="background-image:url('caleshthenics.png');"></div>
             <div class="modal-header-center">
-                <h2 class="text-2xl font-black text-primary">CALISTHENICS</h2>
+                <h2>CALISTHENICS</h2>
                 <span class="sub-heading">Master Your Bodyweight</span>
             </div>
-            <div id="grid-calisthenics" class="lang-grid"></div>
+            <div id="grid-calisthenics" class="card-grid"></div>
         </div>
     </div>
 
@@ -244,10 +332,10 @@
         <div class="modal-box">
             <div class="modal-bg-img" style="background-image:url('kegel.png');"></div>
             <div class="modal-header-center">
-                <h2 class="text-2xl font-black text-primary">KEGEL EXERCISES</h2>
+                <h2>KEGEL EXERCISES</h2>
                 <span class="sub-heading">Pelvic Floor Health</span>
             </div>
-            <div id="grid-kegel" class="lang-grid"></div>
+            <div id="grid-kegel" class="card-grid"></div>
         </div>
     </div>
 
@@ -255,10 +343,10 @@
         <div class="modal-box">
             <div class="modal-bg-img" style="background-image:url('yoga.png');"></div>
             <div class="modal-header-center">
-                <h2 class="text-2xl font-black text-primary">YOGA FLOW</h2>
+                <h2>YOGA FLOW</h2>
                 <span class="sub-heading">Soul & Body Balance</span>
             </div>
-            <div id="grid-yoga" class="lang-grid"></div>
+            <div id="grid-yoga" class="card-grid"></div>
         </div>
     </div>
 
@@ -266,115 +354,113 @@
         <div class="modal-box">
             <div class="modal-bg-img" style="background-image:url('deshi.png');"></div>
             <div class="modal-header-center">
-                <h2 class="text-2xl font-black text-primary">DESI AKHADA</h2>
+                <h2>DESI AKHADA</h2>
                 <span class="sub-heading">Traditional Hardcore Cardio</span>
             </div>
-            <div id="grid-desi" class="lang-grid"></div>
+            <div id="grid-desi" class="card-grid"></div>
         </div>
     </div>
 
     <script>
-        // --- SEPARATE DATA FOR EACH POPUP ---
+        // --- SEPARATE DATA FOR EACH POPUP WITH CARD IMAGES ---
         const gymData = [
-{ name: "Chest", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/chest.html" },
-{ name: "Back", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/back.html" },
-{ name: "Shoulders", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/shoulders.html" },
-{ name: "Biceps", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/biceps.html" },
-{ name: "Triceps", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/triceps.html" },
-{ name: "Forearms", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/forearms.html" },
-{ name: "Legs", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/legs.html" },
-{ name: "Glutes", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/glutes.html" },
-{ name: "Calves", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calves.html" },
-{ name: "Abs", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/abs.html" },
-{ name: "Core", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/core.html" },
-{ name: "Cardio", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/cardio.html" },
-{ name: "Functional", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/functional.html" },
-{ name: "Full Body", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/fullbody.html" }
+            { name: "Chest", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/chest.html", img: "https://images.unsplash.com/photo-1534367507877-0edd93bd013b?w=300&h=150&fit=crop" },
+            { name: "Back", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/back.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Shoulders", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/shoulders.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Biceps", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/biceps.html", img: "https://images.unsplash.com/photo-1598974357801-cbca100e5d10?w=300&h=150&fit=crop" },
+            { name: "Triceps", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/triceps.html", img: "https://images.unsplash.com/photo-1598974357801-cbca100e5d10?w=300&h=150&fit=crop" },
+            { name: "Forearms", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/forearms.html", img: "https://images.unsplash.com/photo-1598974357801-cbca100e5d10?w=300&h=150&fit=crop" },
+            { name: "Legs", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/legs.html", img: "https://images.unsplash.com/photo-1549060279-7e168fce7090?w=300&h=150&fit=crop" },
+            { name: "Glutes", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/glutes.html", img: "https://images.unsplash.com/photo-1549060279-7e168fce7090?w=300&h=150&fit=crop" },
+            { name: "Calves", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calves.html", img: "https://images.unsplash.com/photo-1549060279-7e168fce7090?w=300&h=150&fit=crop" },
+            { name: "Abs", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/abs.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Core", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/core.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Cardio", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/cardio.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Functional", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/functional.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Full Body", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/fullbody.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" }
         ];
 
         const calisthenicsData = [
-           { name: "Push", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_push.html" },
-{ name: "Pull", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_pull.html" },
-{ name: "Leg ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_legs.html" },
-{ name: "Core", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_core.html" },
-{ name: "Abs ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_abs.html" },
-{ name: "Shoulder ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_shoulders.html" },
-{ name: "Chest", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_chest.html" },
-{ name: "Back ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_back.html" },
-{ name: "Arms", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_arms.html" },
-{ name: "Biceps ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_biceps.html" },
-{ name: "Triceps", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_triceps.html" },
-{ name: "Beginner ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_beginner.html" },
-{ name: "Intermediate ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_intermediate.html" },
-{ name: "Advanced ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_advanced.html" },
-{ name: "Static-Holds", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_static.html" },
-{ name: "Dynamics", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_dynamic.html" },
-{ name: "Explosive", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_explosive.html" },
-{ name: "Skill", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_skills.html" },
-{ name: "MoFlexibility", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_mobility.html" },
-{ name: "Full Body ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_fullbody.html" }
-
+            { name: "Push", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_push.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Pull", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_pull.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Leg ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_legs.html", img: "https://images.unsplash.com/photo-1549060279-7e168fce7090?w=300&h=150&fit=crop" },
+            { name: "Core", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_core.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Abs ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_abs.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Shoulder ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_shoulders.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Chest", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_chest.html", img: "https://images.unsplash.com/photo-1534367507877-0edd93bd013b?w=300&h=150&fit=crop" },
+            { name: "Back ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_back.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Arms", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_arms.html", img: "https://images.unsplash.com/photo-1598974357801-cbca100e5d10?w=300&h=150&fit=crop" },
+            { name: "Biceps ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_biceps.html", img: "https://images.unsplash.com/photo-1598974357801-cbca100e5d10?w=300&h=150&fit=crop" },
+            { name: "Triceps", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_triceps.html", img: "https://images.unsplash.com/photo-1598974357801-cbca100e5d10?w=300&h=150&fit=crop" },
+            { name: "Beginner ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_beginner.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Intermediate ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_intermediate.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Advanced ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_advanced.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Static-Holds", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_static.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Dynamics", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_dynamic.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Explosive", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_explosive.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Skill", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_skills.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "MoFlexibility", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_mobility.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Full Body ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/calisthenics_fullbody.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" }
         ];
 
         const kegelData = [
-             { name: "Long-Time(EEC)", url: "#https://shekhu-tech.github.io/sti-kegal-kegals-Bhasa-ke-hisab-se/kegel_english.html" },
-            { name: "Hard Erection", url: "#https://shekhu-tech.github.io/sti-kegal-kegals-Bhasa-ke-hisab-se/kegel_english.html" },
-            { name: "Stemina Energy", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/kegel_english.html" },
-            { name: "Size Support", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-sekegel_english.html" },
-            { name: "Testosterone", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/kegel_english.html" },
-            { name: "All-In-One", url: "https://shekhu-tech.github.io/sti-kegal-kegals-Bhasa-ke-hisab-se/kegel_english.html" }
+            { name: "Long-Time(EEC)", url: "#https://shekhu-tech.github.io/sti-kegal-kegals-Bhasa-ke-hisab-se/kegel_english.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Hard Erection", url: "#https://shekhu-tech.github.io/sti-kegal-kegals-Bhasa-ke-hisab-se/kegel_english.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Stemina Energy", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/kegel_english.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Size Support", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/kegel_english.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Testosterone", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/kegel_english.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "All-In-One", url: "https://shekhu-tech.github.io/sti-kegal-kegals-Bhasa-ke-hisab-se/kegel_english.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" }
         ];
 
         const yogaData = [
-            { name: "Hatha Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_hatha.html" },
-{ name: "Vinyasa", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_vinyasa.html" },
-{ name: "Ashtanga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_ashtanga.html" },
-{ name: "Power-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_power.html" },
-{ name: "Kundalini-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_kundalini.html" },
-{ name: "Iyengar-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_iyengar.html" },
-{ name: "Bikram-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_bikram.html" },
-{ name: "Yin-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_yin.html" },
-{ name: "Restorative-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_restorative.html" },
-{ name: "Prenatal-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_prenatal.html" },
-{ name: "Postnatal-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_postnatal.html" },
-{ name: "Chair-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_chair.html" },
-{ name: "Meditation-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_meditation.html" },
-{ name: "All-In-One", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_meditation.html" },
-{ name: "Pranayama", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_pranayama.html" }
-
+            { name: "Hatha Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_hatha.html", img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=150&fit=crop" },
+            { name: "Vinyasa", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_vinyasa.html", img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=150&fit=crop" },
+            { name: "Ashtanga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_ashtanga.html", img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=150&fit=crop" },
+            { name: "Power-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_power.html", img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=150&fit=crop" },
+            { name: "Kundalini-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_kundalini.html", img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=150&fit=crop" },
+            { name: "Iyengar-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_iyengar.html", img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=150&fit=crop" },
+            { name: "Bikram-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_bikram.html", img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=150&fit=crop" },
+            { name: "Yin-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_yin.html", img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=150&fit=crop" },
+            { name: "Restorative-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_restorative.html", img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=150&fit=crop" },
+            { name: "Prenatal-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_prenatal.html", img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=150&fit=crop" },
+            { name: "Postnatal-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_postnatal.html", img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=150&fit=crop" },
+            { name: "Chair-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_chair.html", img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=150&fit=crop" },
+            { name: "Meditation-Yoga", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_meditation.html", img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=150&fit=crop" },
+            { name: "All-In-One", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_meditation.html", img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=150&fit=crop" },
+            { name: "Pranayama", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/yoga_pranayama.html", img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=150&fit=crop" }
         ];
 
         const desiData = [
-{ name: "Chest", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_chest.html" },
-{ name: "Back ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_back.html" },
-{ name: "Shoulders", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_shoulders.html" },
-{ name: "Biceps", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_biceps.html" },
-{ name: "Triceps", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_triceps.html" },
-{ name: "Forearms", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_forearms.html" },
-{ name: "Legs", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_legs.html" },
-{ name: "Glutes", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_glutes.html" },
-{ name: "Calves", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_calves.html" },
-{ name: "Abs", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_abs.html" },
-{ name: "Core", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_core.html" },
-{ name: "Cardio", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_cardio.html" },
-{ name: "Functional", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_functional.html" },
-{ name: "Full Body", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_fullbody.html" }
-
+            { name: "Chest", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_chest.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Back ", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_back.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Shoulders", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_shoulders.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Biceps", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_biceps.html", img: "https://images.unsplash.com/photo-1598974357801-cbca100e5d10?w=300&h=150&fit=crop" },
+            { name: "Triceps", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_triceps.html", img: "https://images.unsplash.com/photo-1598974357801-cbca100e5d10?w=300&h=150&fit=crop" },
+            { name: "Forearms", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_forearms.html", img: "https://images.unsplash.com/photo-1598974357801-cbca100e5d10?w=300&h=150&fit=crop" },
+            { name: "Legs", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_legs.html", img: "https://images.unsplash.com/photo-1549060279-7e168fce7090?w=300&h=150&fit=crop" },
+            { name: "Glutes", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_glutes.html", img: "https://images.unsplash.com/photo-1549060279-7e168fce7090?w=300&h=150&fit=crop" },
+            { name: "Calves", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_calves.html", img: "https://images.unsplash.com/photo-1549060279-7e168fce7090?w=300&h=150&fit=crop" },
+            { name: "Abs", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_abs.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Core", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_core.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Cardio", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_cardio.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Functional", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_functional.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" },
+            { name: "Full Body", url: "#https://shekhu-tech.github.io/sti-kegal-gym-Bhasa-ke-hisab-se/desi_fullbody.html", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=150&fit=crop" }
         ];
 
         function populateGrids() {
-            renderItems('grid-gym', gymData);
-            renderItems('grid-calisthenics', calisthenicsData);
-            renderItems('grid-kegel', kegelData);
-            renderItems('grid-yoga', yogaData);
-            renderItems('grid-desi', desiData);
+            renderCards('grid-gym', gymData);
+            renderCards('grid-calisthenics', calisthenicsData);
+            renderCards('grid-kegel', kegelData);
+            renderCards('grid-yoga', yogaData);
+            renderCards('grid-desi', desiData);
         }
 
-        function renderItems(gridId, data) {
+        function renderCards(gridId, data) {
             const grid = document.getElementById(gridId);
             grid.innerHTML = data.map(item => `
-                <div class="lang-btn" onclick="goToPage('${item.url}')">
-                    <span>${item.name}</span>
+                <div class="card" onclick="goToPage('${item.url}')">
+                    <div class="card-image" style="background-image: url('${item.img}'); opacity: 1;"></div>
+                    <div class="card-text">${item.name}</div>
                 </div>
             `).join('');
         }
